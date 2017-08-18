@@ -1,0 +1,233 @@
+<!doctype html>
+<HTML>
+<HEAD>
+<TITLE>pub Multi select -예제</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../theme/default/pub.example.css" rel="stylesheet">
+<link href="../theme/default/pub.ep.css" rel="stylesheet">
+
+<script src="../plugins/jquery-1.10.2.min.js"></script>
+<script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="../dist/pub.multiselect.js"></script>
+
+</HEAD>
+<BODY>
+<style type="text/css">
+.pub-multiselect-area {
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select:none;
+	overflow-x:hidden;	
+	overflow-y:auto;
+    border: 1px solid #cccccc;
+}
+
+.pub-multiselect-area ul,.pub-multiselect-area ol ,.pub-multiselect-area li{
+	list-style:none;
+}
+
+.pub-multiselect-area .selected {
+	background: #5353f7;
+    color: #fff;
+}
+
+.pub-multiselect-area{
+	padding: 0px;
+    margin: 0px;
+}
+
+
+.pub-select-item{
+	cursor:pointer;
+}
+
+.page-num{
+	display:block;
+}
+
+.page-num{
+	cursor:pointer;
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 8px 8px 10px 8px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    border:1px solid #999999;
+
+}
+.page-num.selected{
+	filter: Alpha(Opacity=100);
+    opacity: 1.0;
+    background: #869791;
+}
+
+.page-num:first {
+	margin: 0 7px;
+}
+.page-control {
+	width:35px;
+	height:190px;
+	position:relative;
+	top:0px;
+	background-color:#efefef;
+	display:inline-block;
+}
+
+.page-no-text{
+	display:none;
+}
+
+.top-select {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333333;
+}
+</style>
+
+<div class="pub-main">
+	<h2 class="page-header">다중선택</h2>
+	<div>
+		<table width="100%" border="0" class="exampleTbl" >
+			<colgroup>
+				<col width="200px">
+				<col width="50px">
+				<col width="200px">
+			</colgroup>
+			<tr>
+				<td colspan="10">
+					* 목록을 마우스로 드래그앤 드롭하거나 더블클릭 하세요. 
+					<div class="mbottom-10"></div>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<div class="top-select mbottom-10 fb tl mRight-20" style="width:265px;">source</div>
+				</th>
+				<th></th>
+				<th>
+					<div class="top-select mbottom-10 fb tl mRight-20" style="width:265px;">target</div>
+					
+				</th>
+			</tr>
+			<tr>
+				<td>
+		<div>
+			<ul id="source" class="pub-select-source pub-multiselect-area" style="height: 200px;width: 265px;">
+			
+			</ul>
+		</div>
+				</td>
+				<td>
+					<a href="javascript:;" class="add-item">>></a>
+					<br/>
+					<a href="javascript:;" class="cancle-item"><<</a>
+				</td>
+				<td>
+			<ul id="target" class="pub-select-target pub-multiselect-area" style="height: 200px;width: 265px;">
+				
+			</ul>
+				</td>
+				<td>
+				<div id="page_area"></div>
+				</td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="3" align="right">
+					<a href="javascript:;" class="item-move" mode="up">위</a>
+					<span style="padding-left:10px;"></span>
+					<a href="javascript:;" class="item-move" mode="down">아래</a>
+					<span style="padding-right:10px;"></span>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</BODY>
+</HTML>
+
+
+<script>
+var selectObj;
+var tmpSourceItem = [] , paramSourceItem=[]; 
+$(document).ready(function (){
+	var paramTargetItem = [];
+	for(var i = 0 ;i <20; i++){
+		paramSourceItem.push({LINK_ID :'0000'+i ,LINK_NAME:'name'+i});
+	}
+
+	for(var i = 0 ;i <20; i++){
+		tmpSourceItem.push({LINK_ID :'1000'+i ,LINK_NAME:'name'+i});
+	}
+	
+
+	for(var i = 0 ;i <10; i++){
+		var pageNum = 3; 
+		if(i > 5){
+			pageNum =4;
+		}
+		paramTargetItem.push({LINK_ID :'0000'+i ,LINK_NAME:'name'+i,pageNo:pageNum});
+	}
+
+	selectObj= $.pubMultiselect('#source', {
+		targetSelector : '#target'
+		,addItemClass:'text_selected'
+		,useMultiSelect : true
+		,pageInfo :{
+			max :9 
+		}
+		,maxSize :20
+		,maxSizeMsg :'20개 까지 등록 가능합니다.'
+		,duplicateCheck : true
+		,sourceItem : {
+			optVal : 'LINK_ID'
+			,optTxt : 'LINK_NAME'
+			,items : paramSourceItem
+		}
+		,targetItem : {
+			optVal : 'LINK_ID'
+			,optTxt : 'LINK_NAME'
+			,items : []
+			,click: function (e, sEle){
+				//console.log(e,sEle);
+			}
+			,dblclick : function (e, sEle){
+				console.log(e,sEle);
+			}
+			,render: function (sItem){
+				//console.log('render', sItem);
+				return '<span  style="color:'+sItem.item.STYLE+'">'+sItem.text+'</span>';
+			}
+		}
+		,compleateTargetMove : function (addItem){
+			alert(addItem);
+		}
+		,compleateSourceMove : function (delItem){
+			console.log(delItem);
+		}
+	});
+
+	selectObj.setItem('target',paramTargetItem);
+
+
+	//추가
+	$('.add-item').on('click',function (){
+		selectObj.sourceMove();
+	});
+	//취소
+	$('.cancle-item').on('click',function (){
+		selectObj.targetMove();
+	});
+
+	//아래위 이동
+	$('.item-move').on('click',function (){
+		selectObj.move($(this).attr('mode'));
+	});
+})
+</script>

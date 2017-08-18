@@ -1,0 +1,196 @@
+<!doctype html>
+<HTML>
+<HEAD>
+<TITLE>pub EP-예제</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../theme/default/pub.example.css" rel="stylesheet">
+<link href="../theme/default/pub.ep.css" rel="stylesheet">
+
+<script src="../plugins/jquery-1.10.2.min.js"></script>
+<script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="../dist/pub.ep.js"></script>
+<script src="../dist/pub.ep.ui.js"></script>
+</HEAD>
+<BODY>
+<style type="text/css">
+    * { font-family: 'Roboto Slab', serif; margin: 0; padding: 0; }
+    hr { border: 1px solid #ccc; margin-bottom: 20px; }
+    a { text-decoration: none;}
+    .container { display: block; width: 1200px; margin: auto; }
+    strong { padding-bottom: 1px; border-bottom: 1px dotted; }
+    code { word-break:break-all;font-family: monospace; color: #2d2d2d; background: whitesmoke; display: block; padding: 10px; border: 1px solid #ccc; overflow: scroll;}
+    a.eval-js { color: whitesmoke; padding: 5px 10px; display: inline-block; background: #2d2d2d; border-radius: 2px; }
+    a.copy-btn { margin-left:10px;color: whitesmoke; padding: 5px 10px; display: inline-block; background: #2d2d2d; border-radius: 2px; }
+    span.muted { font-size: 17px; color: #8B7373; }
+    span.code { font-family: monospace; color: #2d2d2d; background: whitesmoke; padding: 5px; border: 1px solid #ccc; }
+    div.code-runner { margin: 3px;}
+    ul, ol { margin: 10px 50px; }
+    ul li { margin-bottom: 10px; }
+    .hidden { display: none; }
+    span.k { display: inline-block; width: 175px; }
+    span.c { color: #F7BCBC; padding-left: 30px; }
+    .plugin-options label { display: inline-block; width: 265px; }
+    span.toast-position span.k { display: inline; } 
+    .toast-index .muted { display: block; color: #AD9D9D; }
+    .toast-index .muted:hover { color: #333; }
+    .text-right{
+    	text-align:right;
+    }
+    .text-left{
+		text-align:left;
+    }
+    .exampleTbl {  border: 1px solid;}
+    .exampleTbl td {vertical-align:top;  border-top: 1px solid;}
+    .exampleTbl td:last-child {padding-top:27px;}
+</style>
+<div class="pub-main">
+	<h2 class="page-header">EP</h2>
+	<div>
+		<table width="100%" border="1" class="exampleTbl" >
+			<colgroup>
+				<col width="50%">
+				<col width="50%">
+			</colgroup>
+			<tr>
+				<th colspan="2">
+					사용법은 아래 사용법을 복사해서 사용하시면됩니다. <br/>  
+				</th>
+			</tr>
+			<tr>
+				<th>사용법 </th>
+				<th>설명 </th>
+			</tr>
+
+			<tr>
+				<td>
+		<div class="code-runner text-right">
+			<a href="#" class="copy-btn">copy</a>
+			<a href="#" class="eval-js">demo</a>
+		<div class="text-left"><code class="text-to-copy">PubEP.req.ajax({
+			url: 'http://jsfiddle.net/echo/jsonp/?text=%27asdf%27',
+			loadSelector : '#ajaxtest',
+			cache: false,
+			dataType: "jsonp",
+			data:{
+				aaa:'test'
+			},
+			success: function(resData) {
+				$('#ajaxtest').html('result');
+			},
+			error: function(xhr, status, e) {
+				
+			}
+		});</code></div>
+		</div>
+				</td>
+				<td>
+		<code>
+		ajax jquery ajax 옵션과 동일.
+		</code>
+		<div id="ajaxtest" style="height:40px;border:1px solid #000;">결과</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+		<div class="code-runner text-right">
+			<a href="#" class="copy-btn">copy</a>
+			<a href="#" class="eval-js">demo</a>
+		<div class="text-left"><code class="text-to-copy">PubEP.cookie('cookieName')</code></div>
+		</div>
+				</td>
+				<td>
+		<code>
+		cookie 보기 PubEP.cookie('cookieName')
+		cookie 셋팅 PubEP.cookie('쿠키명', '쿠키값', {expires:1, path:'/', domain:'zpubjs.com'})
+
+		</code>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+		<div class="code-runner text-right">
+			<a href="#" class="copy-btn">copy</a>
+			<a href="#" class="eval-js">demo</a>
+		<div class="text-left"><code class="text-to-copy">
+		PubEP.page.view('https://github.com/young-tae/pub', "popup", {gubun:'popup',method:"get", position:{align:'top' ,topMargin:50,leftMargin:200},gubunkey:"test", viewOption:'width=500,height=500'});
+		</code></div>
+		</div>
+				</td>
+				<td>
+		<code>
+		팝업보기<br/>
+		PubEP.page.view('https://github.com/young-tae/pub', "popup", {gubun:'popup',method:"get", gubunkey:"test", viewOption:'width=500,height=500'});
+		<br/>
+		<br/>
+		페이지 보기.<br/>
+		PubEP.page.view('https://github.com/young-tae/pub', "location", '');
+		<br/>
+		<br/>
+		iframe 보기<br/>
+		PubEP.page.view('https://github.com/young-tae/pub', "iframe", {target:'#iframeView'});
+		</code>
+				</td>
+			</tr>
+
+		</table>
+	</div>
+</div>
+
+<iframe id="iframeView" width="400px" height="500px"></iframe>
+<div id="copyArea" style="width:3px;height:3px;overflow:hidden;"></div>
+<script>
+$(document).ready(function() {
+    $('.eval-js').on('click', function ( e ) {
+        e.preventDefault();
+
+        if ( !$(this).hasClass('generate-toast') ) {
+            var code = $(this).siblings('div').find('code').text();
+            code.replace("<span class='hidden'>", '');
+            code.replace("</span");
+
+            eval( code );
+        };
+    });
+    var tmpCopyArea =  $('#copyArea'); 
+    $('.copy-btn').on('click', function ( e ) {
+        e.preventDefault();
+
+        var code = $(this).siblings('pre').find('code').text();
+		var tmpid = 'text-copy-areaid'+GAINEP.generateUUID(); 
+		tmpCopyArea.empty();
+		tmpCopyArea.html('<div><code id="'+tmpid+'">'+code+'</code></div>');
+        
+        // select the text
+        var copyItem = document.querySelector('#'+tmpid);
+        var range = document.createRange();
+        range.selectNode(copyItem);
+        window.getSelection().addRange(range);
+        try {
+            // now that we've selected the text, execute the copy command
+            var successful = document.execCommand('copy');
+        } catch (err) {
+            console.log(err)
+        }
+        // this is what selects it on iOS
+        copyItem.focus();
+        copyItem.selectionStart = 0;
+        copyItem.selectionEnd = copyItem.textContent.length;
+        
+        window.getSelection().removeAllRanges();
+        
+        PubEPUI.toast.view({
+        	text: 'copy 되었습니다.'
+        	,icon:'info'
+        	,hideAfter: 1000
+        });
+    });
+});
+</script>
+
+</BODY>
+</HTML>
+<script>
+
+</script>

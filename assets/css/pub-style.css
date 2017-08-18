@@ -1,0 +1,34 @@
+body {
+    padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}
+
+.portfolio-item {
+    margin-bottom: 30px;
+}
+
+.pub-bar-bg {
+	background-color: #7376df;
+	color: #fff;
+}
+
+
+
+.pub-top-nav-bar{
+	width:100%;
+	border-color: #e7e7e7;
+}
+
+.pub-top-nav-bar .navbar-brand:focus, .pub-top-nav-bar .navbar-brand:hover {
+    color: #bff1ec;
+    background-color: transparent;
+}
+
+.pub-top-nav-bar .navbar-brand {
+    color:#fff;
+}
