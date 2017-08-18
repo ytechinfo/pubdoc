@@ -3,52 +3,30 @@ layout: main-layout
 title : Pub-js
 ---
 
+{% assign i18lang = site.data.lang %}
+
 <!-- Page Content -->
 <div class="container">
 
     <!-- Page Heading -->
     <h1 class="my-4">Pub js <small>jQuery Plugins </small></h1>
 
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project One</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Two</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Three</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Four</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Five</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
+    <div class="row" id="pubjs-plugin">
+    	{% for menu in site.data.menu["g_pubMainMenuObject"] %}
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">{{menu.name}}</h4>
+						<div><a href="{{menu.api_url}}">{{i18lang.label.api}}</a></div>
+						<div><a href="{{menu.demo_url}}">{{i18lang.label.demo}}</a></div>
+						<div><a href="{{menu.git_url}}">{{i18lang.label.download}}<i class="fa fa-download"></i></a></div>
+						<p class="card-text">{{menu.desc}}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 </div>
+
+
 <!-- /.container -->

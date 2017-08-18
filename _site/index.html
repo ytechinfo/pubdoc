@@ -6,11 +6,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/4-col-portfolio.css" rel="stylesheet">
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery-ui.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/mustache/mustache.min.js"></script>
  
   </head>
   <body>
@@ -38,54 +39,104 @@
         </div>
     </nav>
 
-    <!-- Page Content -->
+    
+
+<!-- Page Content -->
 <div class="container">
 
     <!-- Page Heading -->
     <h1 class="my-4">Pub js <small>jQuery Plugins </small></h1>
 
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project One</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Two</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Three</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Four</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a href="#">Project Five</a></h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
+    <div class="row" id="pubjs-plugin">
+    	
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">pubGrid</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">대용량 데이터용 그리드</p>
+					</div>
+				</div>
+			</div>
+		
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">autocomplete</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">자동완성</p>
+					</div>
+				</div>
+			</div>
+		
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">calendar</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">당력</p>
+					</div>
+				</div>
+			</div>
+		
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">context</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">컨텍스트 메뉴</p>
+					</div>
+				</div>
+			</div>
+		
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">multiselect</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">multi select 모듈</p>
+					</div>
+				</div>
+			</div>
+		
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">tab</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">탭</p>
+					</div>
+				</div>
+			</div>
+		
+		  	<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">tree</h4>
+						<div><a href="">Api</a></div>
+						<div><a href="">Demo</a></div>
+						<div><a href="https://github.com/ytechinfo/pub">Download<i class="fa fa-download"></i></a></div>
+						<p class="card-text">java script truee</p>
+					</div>
+				</div>
+			</div>
+		
+	</div>
 </div>
+
+
 <!-- /.container --> <!-- 여기에 Post의 내용이 주입된다. -->
         
       
@@ -95,6 +146,6 @@
     </div>
 </footer> 
     
-    scripts
+    <script src="/assets/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -1,0 +1,37 @@
+var g_pubMainMenuObject = [
+	{
+		name : 'pubGrid'
+		,url :''
+		,desc : ''
+	}
+	,{
+		name : 'autocomplete'
+		,url :''
+		,desc : ''
+	}
+	,{
+		name : 'calendar'
+			,url :''
+		,desc : ''
+	}
+	,{
+		name : 'context'
+		,url :''
+		,desc : ''
+	}
+	,{
+		name : 'multiselect'
+		,url :''
+		,desc : ''
+	}
+	,{
+		name : 'tab'
+		,url :''
+		,desc : ''
+	}
+	,{
+		name : 'tree'
+		,url :''
+		,desc : ''
+	}
+];
