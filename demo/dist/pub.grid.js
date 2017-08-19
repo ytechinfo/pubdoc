@@ -809,7 +809,7 @@ Plugin.prototype ={
 		}
 		
 		var bodyH = this.config.height-this.config.headerWrapElement.height() - footerHeight; 
-		bodyH = bodyH > 0 ? bodyH : _this.config.headerWrapElement.height+5
+		bodyH = bodyH > 0 ? bodyH : this.config.headerWrapElement.height+5
 		this.config.gridBodyHeight = bodyH;
 		
 		return bodyH ;
