@@ -1,7 +1,3 @@
----
-layout: sub-layout
-title : Calendar
----
 <!doctype html>
 <HTML>
 <HEAD>
@@ -16,8 +12,9 @@ title : Calendar
 
 <script src="../dist/pub.calendar.js"></script>
 <script>
+var todayDate =moment(new Date()).format('YYYY-MM-DD');
 function createMini(){
-	var todayDate ='2016-05-27';
+
 	$.pubCalendar('#minical',{
 		todayDate : todayDate
 		,viewMode : 'mini'
@@ -171,8 +168,7 @@ $(document).ready(function (){
 	evtTest();
 });
 
-var todayDate ='2016-07-19';
-var miniFlag = 1;
+var miniFlag = 0;
 
 function fn_init(){
 	var todayDateArr = todayDate.split("-"); // 오늘 날짜
@@ -183,7 +179,7 @@ function fn_init(){
 
 	$.pubCalendar('#full',{
 		todayDate : todayDate
-		,viewMode : 'full-day'
+		,viewMode : 'full-month'
 		,useLunar : true
 		,dayViewMode : '3'
 		,maxEventRow : 3
