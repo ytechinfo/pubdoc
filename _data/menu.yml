@@ -4,6 +4,11 @@ g_pubMainMenuObject :
     api_url :
     demo_url : /demo/samples/pubGrid.html
     desc :  대용량 데이터용 그리드
+  - name : pubGridFixed
+    git_url : https://github.com/ytechinfo/pub
+    api_url :
+    demo_url : /demo/samples/pubGridFixed.html
+    desc :  대용량 데이터용 그리드
   - name : autocomplete
     git_url : https://github.com/ytechinfo/pub
     api_url :
