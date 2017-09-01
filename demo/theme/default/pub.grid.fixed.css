@@ -6,7 +6,7 @@
  * http://www.opensource.org/licenses/mit-license.php
 */
 /*bootstrap conflict 막기위해 넣은 코드. */
-.pub-grid {
+.pubGrid {
 	position: relative;
 	border : 1px solid #bcbcbd;
 	font-size:12px;
@@ -24,15 +24,22 @@
     outline: none;
 }
 
-.pub-grid div , .pub-grid tr, .pubGrid th, .pubGrid td{
+.pubGrid div , .pubGrid tr, .pubGrid th, .pubGrid td{
  -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-.pub-grid-main{
+.pubGrid-main{
 	position: relative;
 }
 
+
+.pub-content-ellipsis , .pub-content-ellipsis >*{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	padding: 0px;margin:0px;
+}
 
 .pubGrid-page-navigation>ul {
   display: inline-block;
@@ -300,18 +307,31 @@
 }
 
 
-.pub-grid-main{
+.pubGrid-main{
 	position:relative;
 	border-bottom:1px solid #bcbcbd;
 }
 
 /* header */
-.pub-grid-header{
+.pubGrid-header-container-warpper{
 	position:relative;
+	z-index:1;
+	width:100%;
+	background-image: -webkit-linear-gradient(#ffffff,#dadada);
+    background-image: -moz-linear-gradient(#ffffff,#dadada);
+    background-image: -ms-linear-gradient(#ffffff,#dadada);
+    background-image: -o-linear-gradient(#ffffff,#dadada);
+    background-image: linear-gradient(#ffffff,#dadada);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#dadada', GradientType=0);
+}
+
+.pubGrid-header-container{
+	position:relative;
+	width:100%;
 	display: table-row;
 }
 
-.pubGrid-header {
+.pubGrid-header-cont {
 	width: 100%;
 	border-collapse: collapse;
 	table-layout: fixed;
@@ -322,51 +342,51 @@
 	box-sizing: border-box;
 }
 
-.pubGrid-header .label-wrapper {
+.pubGrid-header-cont .label-wrapper {
 	position: relative;
     padding:0;	
 	width:100%;
     padding-right: 4px;
 }
 
-.pubGrid-header .label-wrapper > .pub-header-label {
+.pubGrid-header-cont .label-wrapper > .pub-header-label {
 	position: relative;
 	color: #5e5e5e;
 	text-shadow: 0 1px 0 #fff;
 	width:100%;
 	padding: 0px 0px;
 }
-.pubGrid-header .pub-header-tr .pub-header-cont {
+.pubGrid-header-cont .pub-header-tr .pub-header-cont {
 	width: 100%;
 	height: 100%;
 }
-.pubGrid-header .pub-header-tr .pub-header-cont .inner {
+.pubGrid-header-cont .pub-header-tr .pub-header-cont .inner {
   vertical-align: middle;
   text-align: center;
 }
-.pubGrid-header .pub-header-tr .pub-header-cont .inner .centered {
+.pubGrid-header-cont .pub-header-tr .pub-header-cont .inner .centered {
   position: relative;
-  padding: 5px 2px;
+  padding: 0px 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight:normal;
 }
 
-.pubGrid-header .pub-header-tr .pub-header-cont.sort-header {
+.pubGrid-header-cont .pub-header-tr .pub-header-cont.sort-header {
     cursor: pointer;
 }
 
-.pubGrid-header .pub-header-tr .label-wrapper.sortasc {
+.pubGrid-header-cont .pub-header-tr .label-wrapper.sortasc {
     background: url(./images/sort-asc.png) center 0 no-repeat;
     background-position: 50% -3px;
 }
 
-.pubGrid-header .pub-header-tr .label-wrapper.sortdesc {
+.pubGrid-header-cont .pub-header-tr .label-wrapper.sortdesc {
     background: url(./images/sort-desc.png) center 0 no-repeat;
     background-position: 50% -2px;
 }
-.pubGrid-header th {
+.pubGrid-header-cont th {
 	border: 1px solid #bcbcbd;
 	border-top: 0px solid #bcbcbd;
 	margin: 0;
@@ -381,7 +401,7 @@
     filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#dadada', GradientType=0);
 }
 
-.pubGrid-header .label-wrapper > .pub-header-resizer {
+.pubGrid-header-cont .label-wrapper > .pub-header-resizer {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -390,28 +410,29 @@
 	cursor: col-resize;
 	z-index: 1;
 }
-.pubGrid-header .label-wrapper > .pubGrid-move-header{
+.pubGrid-header-cont .label-wrapper > .pubGrid-move-header{
 	background:#82c5c0;
 }
 
-.pub-grid-header-left{
+.pubGrid-header-cont-left{
 	display: table-cell;
 	z-index:1;
 	position:relative;
 	background:#fff;
 }
 
-.pub-grid-header-cont{
+.pubGrid-header{
 	display: table-cell;
 }
 
 /* body */
-.pub-grid-body{
-	position:relative;
+.pubGrid-body-container{
+	position: absolute;
+	width:100%;
 	display: table-row;
 }
 
-.pub-grid-body-tbl{
+.pubGrid-body-cont{
 	border-collapse: collapse;
 	table-layout: fixed;
 	border:0px;
@@ -421,41 +442,45 @@
 	box-sizing: border-box;
 }
 
-.pub-grid-body-tbl td{
+.pubGrid-body-cont td{
 	border-collapse: collapse;
 	border:1px solid #bcbcbd;
-    padding: 0;
+    padding: 0px 2px 0px 2px;
     margin: 0;
     border-spacing: 0;
     border-collapse: collapse;
 }
 
-.pub-grid-body-tbl [rowinfo="0"]>td {
+.pubGrid-body-cont [rowinfo="0"]>td {
 	border-top:0px;
 }
 
-.pubGrid-header th:first-child, .pub-grid-body-tbl td:first-child {
+.pubGrid-header th:first-child, .pubGrid-body-cont td:first-child {
 	border-left: 0px solid #bcbcbd;
 }
 
-.pub-grid-body-tbl .al{text-align:left;}
-.pub-grid-body-tbl .ar{text-align:right;}
-.pub-grid-body-tbl .ac{text-align:center;}
+.pubGrid-body-cont .al{text-align:left;}
+.pubGrid-body-cont .ar{text-align:right;}
+.pubGrid-body-cont .ac{text-align:center;}
 
-.pub-grid-body-left{
+.pubGrid-body-left{
 	display: table-cell;
 	z-index:1;
 	position:relative;
 	background:#fff;
 }
 
-.pub-grid-body-cont{
-	display: table-cell;
+[data-start-idx="0"]>.tr0 , [data-start-idx="1"]>.tr1{
+   background: #f3f6fa;
+}
+
+[data-start-idx="0"]>.tr1, [data-start-idx="1"]>.tr0{
+   background: #fff;
 }
 
 
 /* footer */
-.pub-grid-footer{
+.pubGrid-footer-container{
 	display: none;
 	width:100%;
 	height:30px;
@@ -463,90 +488,100 @@
 	bottom:10px;
 }
 
-.pub-grid-footer.on{
+.pubGrid-footer.on{
 	display: table-row;
 }
 
-.pub-grid-footer-left{
+.pubGrid-footer-left{
 	display: table-cell;
 }
 
-.pub-grid-footer-cont{
+.pubGrid-footer-cont{
 	display: table-cell;
 }
 
 /*scroll*/
-.pub-grid-hscroll{
+.pubGrid-hscroll{
 	width:100%;
-	height:10px;
+	height:12px;
 	position:absolute;
 	bottom:0px;
-	background:#fff;
-	padding-left:25px;
-	padding-right:25px;
-	background:#fff;
-	border:1px solid #cac3c3;
 	z-index:2;
+	background:#fbfbfb;
+	padding:1px;
+	border-top: 1px solid #cac3c3;
 }
-.pub-grid-hscroll-left{
+.pubGrid-hscroll-left{
 	position:absolute;left:0px;top:0px;
 }
-.pub-grid-hscroll-right{
+.pubGrid-hscroll-right{
 	position:absolute;right:0px;top: 0px;
 }
-.pub-grid-hscroll-bar-area{
+.pubGrid-hscroll-bar-area{
 	position : relative;
 	height:100%; 
 	width:100%;
 }
-.pub-grid-hscroll-bar{
+.pubGrid-hscroll-bar{
 	position:absolute;
 	width:100px;
 	height:100%; 
-	background:#f1f1f1;
-    box-sizing: border-box;
+	background:#989191;
     border: 1px solid #aaa;
-    border-radius: 0.5em;
+	border-radius: 0.5em;
     touch-action: none;
+	-webkit-box-sizing:  border-box; !important;
+	-moz-box-sizing: border-box; !important;
+	box-sizing: border-box !important;
 }
 
-.pub-grid-vscroll{
+.pubGrid-vscroll{
 	height:100%;
-	width:10px;
+	width:12px;
 	position:absolute;
 	right:0px;
 	top:0px;
-	background:#fff;
-	padding-top:25px;
-	padding-bottom:25px;
-	border:1px solid #cac3c3;
+	z-index: 3;
+	background:#fbfbfb;
+	padding:1px;
+	border-left: 1px solid #cac3c3;
 }
-.pub-grid-vscroll-up{
+.pubGrid-vscroll-up{
 	position:absolute; top:0px; left:0px;
 }
-.pub-grid-vscroll-down{
+.pubGrid-vscroll-down{
 	position:absolute; bottom:0px; left:0px;
 }
 
-.pub-grid-vscroll-bar-area{
+.pubGrid-vscroll-bar-area{
 	position : relative;
 	height:100%; 
 	width:100%;
+	border-bottom: 1px solid #cac3c3;
+	
 }
-.pub-grid-vscroll-bar{
+.pubGrid-vscroll-bar{
 	position:absolute;
 	width:100%;
 	height:100px; 
-	background:#f1f1f1;
-	box-sizing: border-box;
-    border: 1px solid #aaa;
+	background:#989191;
     border-radius: 0.5em;
     touch-action: none;
+	-webkit-box-sizing:  border-box; !important;
+	-moz-box-sizing: border-box; !important;
+	box-sizing: border-box !important;
 }
 
 /*navigation*/
-.pub-grid-navigation{
+.pubGrid-navigation{
 	position : relative;
+	display:none;
 	width:100%;
 	height:30px;
+	background-image: -webkit-linear-gradient(#ffffff,#dadada);
+    background-image: -moz-linear-gradient(#ffffff,#dadada);
+    background-image: -ms-linear-gradient(#ffffff,#dadada);
+    background-image: -o-linear-gradient(#ffffff,#dadada);
+    background-image: linear-gradient(#ffffff,#dadada);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#dadada', GradientType=0);
 }
