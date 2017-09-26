@@ -4,6 +4,8 @@
  * Copyright 2016 ytkim
  * Licensed under MIT
  * http://www.opensource.org/licenses/mit-license.php
+ * url : https://github.com/ytechinfo/pub
+ * demo : http://pub.moaview.com/
 */
 
 ;(function($, window, document) {
@@ -1426,6 +1428,8 @@ Plugin.prototype ={
 				
 		_this.element.hScrollBar.off('touchstart.pubhscroll mousedown.pubhscroll');
 		_this.element.hScrollBar.on('touchstart.pubhscroll mousedown.pubhscroll',function (e){
+			e.stopPropagation();
+
 			var oe = e.originalEvent.touches;
 			var ele = $(this); 
 			var data = {};
@@ -1447,6 +1451,7 @@ Plugin.prototype ={
 		
 		_this.element.vScrollBar.off('touchstart.pubvscroll mousedown.pubvscroll');
 		_this.element.vScrollBar.on('touchstart.pubvscroll mousedown.pubvscroll',function (e){
+			e.stopPropagation();
 			var oe = e.originalEvent.touches;
 			var ele = $(this); 
 			var data = {};
@@ -1807,8 +1812,6 @@ Plugin.prototype ={
 	,_initBodyEvent : function (){
 		var _this = this
 			 ,rowClickFlag =false; 
-		
-		var table = _this.element.body.find('.pubGrid-body-cont');
 		
 		_this.config.select.isMouseDown = false; 		
 		
