@@ -27,7 +27,7 @@ g_pubMainMenuObject :
   - name : multiselect
     git_url : https://github.com/ytechinfo/pub
     api_url :
-    demo_url : /demo/samples/pubGrid.html
+    demo_url : /demo/samples/pubMultiselect.html
     desc : multi select 모듈
   - name : tab
     git_url : https://github.com/ytechinfo/pub
