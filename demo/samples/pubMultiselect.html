@@ -1,7 +1,3 @@
----
-layout: sub-layout
-title : Multi select
----
 <!doctype html>
 <HTML>
 <HEAD>
@@ -11,7 +7,7 @@ title : Multi select
 <link href="../theme/default/pub.ep.css" rel="stylesheet">
 
 <script src="../plugins/jquery-1.10.2.min.js"></script>
-<script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="../plugins/jquery-ui-1.12.1.min.js"></script>
 <script src="../dist/pub.multiselect.js"></script>
 
 </HEAD>
@@ -139,7 +135,6 @@ title : Multi select
 				<td>
 				<div id="page_area"></div>
 				</td>
-				
 			</tr>
 
 			<tr>
@@ -150,6 +145,49 @@ title : Multi select
 					<span style="padding-right:10px;"></span>
 				</td>
 			</tr>
+		</table>
+	</div>
+
+	<div>
+		<table width="100%" border="0" class="exampleTbl" >
+			<colgroup>
+				<col width="200px">
+				<col width="50px">
+				<col width="200px">
+			</colgroup>
+			<tr>
+				<td colspan="10">
+					* 목록을 마우스로 드래그앤 드롭하거나 더블클릭 하세요. 
+					<div class="mbottom-10"></div>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<div class="top-select mbottom-10 fb tl mRight-20" style="width:265px;">source</div>
+				</th>
+				<th></th>
+				<th>
+					<div class="top-select mbottom-10 fb tl mRight-20" style="width:265px;">target</div>
+					
+				</th>
+			</tr>
+			<tr>
+				<td>
+		<div>
+			<ul id="source2" class="pub-select-source pub-multiselect-area" style="height: 200px;width: 265px;">
+			
+			</ul>
+		</div>
+				</td>
+				<td>
+					<a href="javascript:;" class="add-item">>></a>
+					<br/>
+					<a href="javascript:;" class="cancle-item"><<</a>
+				</td>
+				<td>
+			<ul id="target2" class="pub-select-target pub-multiselect-area" style="height: 200px;width: 265px;">
+				
+			
 		</table>
 	</div>
 </div>
@@ -182,6 +220,7 @@ $(document).ready(function (){
 	selectObj= $.pubMultiselect('#source', {
 		targetSelector : '#target'
 		,addItemClass:'text_selected'
+		,containment :'.exampleTbl'
 		,useMultiSelect : true
 		,pageInfo :{
 			max :9 
@@ -232,6 +271,47 @@ $(document).ready(function (){
 	//아래위 이동
 	$('.item-move').on('click',function (){
 		selectObj.move($(this).attr('mode'));
+	});
+
+
+	var paramTargetItem2 = [];
+	for(var i = 0 ;i <10; i++){
+		paramTargetItem2.push({LINK_ID1 :'0000'+i ,LINK_NAME1:'name'+i});
+	}
+	
+	return ; 
+
+	selectObj2= $.pubMultiselect('#source2', {
+		targetSelector : '#target2'
+		,addItemClass:'text_selected'
+		,useMultiSelect : true
+		,duplicateCheck : true
+		,sourceItem : {
+			optVal : 'LINK_ID1'
+			,optTxt : 'LINK_NAME1'
+			,items : paramTargetItem2
+		}
+		,targetItem : {
+			optVal : 'LINK_ID'
+			,optTxt : 'LINK_NAME'
+			,items : []
+			,click: function (e, sEle){
+				//console.log(e,sEle);
+			}
+			,dblclick : function (e, sEle){
+				console.log(e,sEle);
+			}
+			,render: function (sItem){
+				//console.log('render', sItem);
+				return '<span  style="color:'+sItem.item.STYLE+'">'+sItem.text+'</span>';
+			}
+		}
+		,compleateTargetMove : function (addItem){
+			alert(addItem);
+		}
+		,compleateSourceMove : function (delItem){
+			console.log(delItem);
+		}
 	});
 })
 </script>
