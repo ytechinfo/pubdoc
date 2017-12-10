@@ -24,6 +24,7 @@ var _initialized = false
 		,click : false //row(tr) click event
 		,contextMenu : false // row(tr) contextmenu event
 	}
+	,useDefaultFormatter :false
 	,formatter :{
 		money :{prefix :'$', suffix :'원' , fixed : 0}	// money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에 뭍일것 , fixed : 소수점 
 		,number : {prefix :'$', suffix :'원' , fixed : 0}
@@ -130,11 +131,20 @@ var util= {
 			return (prefix||'')+ util.formatter.number(num, fixedNum) +(suffix||'');
 		}
 		,'number': function (num, fixedNum){
+			
+			if(!isNaN(num)){
+				return num; 
+			}
+			
 			fixedNum = fixedNum || 0; 
 			
 			if (!isFinite(num)) {
 				return num;
 			}
+			if(typeof num === 'string'){
+				num = num* 1;
+			}
+			
 			var a = num.toFixed(fixedNum).split('.');
 			a[0] = a[0].replace(/\d(?=(\d{3})+$)/g, '$&,');
 			return a.join('.');
@@ -940,10 +950,12 @@ Plugin.prototype ={
 				return util.formatter[type](val, fixed ,prefix, suffix); 
 			}});
 		}else{
-			if(type == 'money'){
-				itemVal = util.formatter[type](itemVal, tmpFormatter.fixed , tmpFormatter.prefix ,tmpFormatter.suffix);
-			}else if(type == 'number'){
-				itemVal = util.formatter[type](itemVal , tmpFormatter.fixed , tmpFormatter.prefix ,tmpFormatter.suffix);
+			if(this.options.useDefaultFormatter===true){
+				if(type == 'money'){
+					itemVal = util.formatter[type](itemVal, tmpFormatter.fixed , tmpFormatter.prefix ,tmpFormatter.suffix);
+				}else if(type == 'number'){
+					itemVal = util.formatter[type](itemVal , tmpFormatter.fixed , tmpFormatter.prefix ,tmpFormatter.suffix);
+				}
 			}
 		}
 		if(returnFlag){
@@ -1910,30 +1922,6 @@ Plugin.prototype ={
 			}
 		}
 
-		// select data 구하기.
-		function selectData() {
-			
-			var colInfo = _this.getSelectCellInfo(_this.config.select);
-				
-			var sCol= colInfo.startCol
-				,eCol =  colInfo.endCol
-				,sIdx= colInfo.startIdx
-				,eIdx =  colInfo.endIdx;
-						
-			var textArr = [];
-			for(var i = sIdx ; i <= eIdx ; i++){
-				var item = _this.options.tbodyItem[i];
-				var rowText = [];
-				for(var j=sCol ;j <= eCol; j++){
-					rowText.push(_this.valueFormatter( i, _this.options.tColItem[j],item,null,true)); 
-				}
-				
-				textArr.push(rowText.join('\t'));
-			}
-
-			return textArr.join('\n');
-		}
-	
 		if(_this.options.rowOptions.click !== false && typeof _this.options.rowOptions.click == 'function'){
 			rowClickFlag =true; 
 
@@ -1962,7 +1950,7 @@ Plugin.prototype ={
 				
 				if (e.which == 67) {
 					
-					var copyData = selectData();
+					var copyData = _this.selectData();
 					try{
 						copyStringToClipboard(_this.prefix, copyData);
 					}catch(e){
@@ -1981,6 +1969,44 @@ Plugin.prototype ={
 				_this.config.focus = false; 
 			}
 		});
+	}
+	/**
+     * @method copyData
+     * @description 데이타 복사.
+     */
+	,copyData : function (){
+		var copyData = this.selectData();
+		try{
+			copyStringToClipboard(this.prefix, copyData);
+		}catch(e){
+			console.log('Unable to copy', e);					
+		}			
+	}
+	/**
+     * @method selectData
+     * @description select data 구하기.
+     */
+	,selectData : function () {
+		var _this = this; 
+		var colInfo = _this.getSelectCellInfo(_this.config.select);
+			
+		var sCol= colInfo.startCol
+			,eCol =  colInfo.endCol
+			,sIdx= colInfo.startIdx
+			,eIdx =  colInfo.endIdx;
+					
+		var textArr = [];
+		for(var i = sIdx ; i <= eIdx ; i++){
+			var item = _this.options.tbodyItem[i];
+			var rowText = [];
+			for(var j=sCol ;j <= eCol; j++){
+				rowText.push(_this.valueFormatter( i, _this.options.tColItem[j],item,null,true)); 
+			}
+			
+			textArr.push(rowText.join('\t'));
+		}
+
+		return textArr.join('\n');
 	}
 	/**
      * @method _setBodyEvent
