@@ -22,7 +22,7 @@ g_pubMainMenuObject :
   - name : context
     git_url : https://github.com/ytechinfo/pub
     api_url :
-    demo_url : /demo/samples/pubGrid.html
+    demo_url : /demo/samples/pubContext.html
     desc : 컨텍스트 메뉴
   - name : multiselect
     git_url : https://github.com/ytechinfo/pub
