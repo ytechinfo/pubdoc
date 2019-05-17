@@ -1,11 +1,12 @@
 <!doctype html>
 
-<htm>
-	<title>Pub</title>
-  <head>
+<html>
+<title>{{site.data.lang.main.title}}</title>
+{% include meta.html %} 
+<head>
 {% include main_head.html %} 
-  </head>
-  <body>
+</head>
+<body>
    <!-- Navigation -->
    	<div class="fixed-top pub-top-nav-bar pub-bar-bg">
    		<div class="container">
@@ -40,5 +41,5 @@
     {{ content }} <!-- 여기에 Post의 내용이 주입된다. -->
     {% include main_footer.html %} 
     {% include main_scripts.html %}
-  </body>
+</body>
 </html>

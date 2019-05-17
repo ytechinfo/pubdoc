@@ -1,0 +1,66 @@
+---
+layout: sub-api-layout
+title : Tab
+---
+<!doctype html>
+<HTML>
+<HEAD>
+<TITLE>pub Tab-예제</TITLE>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="../theme/default/pub.example.css" rel="stylesheet">
+	<link href="../theme/default/pub.tab.css" rel="stylesheet">
+
+	<script src="../plugins/jquery-1.10.2.min.js"></script>
+	<script src="../dist/pub.tab.js"></script>
+
+<style>
+
+</style>
+</HEAD>
+<BODY>
+	<div id="pubTabId" style="width:300px">
+	</div>
+-------------------------------<br/>
+	<div id="asdfasdf" style="width:300px">
+		<div class="pub-tab-wrapper">
+			<div class="pub-tab" data-mode="vertical">
+				<span class="pub-tab-prev">앞</span>
+				<ul class="pub-tab-container">
+					<li class="pub-tab-item ui-state-default ui-corner-top ui-state-active" contentid="tables" contenturl="tables" refresh="N"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Tables</span></li><li class="pub-tab-item ui-state-default ui-corner-top" contentid="views" contenturl="views"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Views</span></li><li class="pub-tab-item ui-state-default ui-corner-top" contentid="procedures" contenturl="procedures"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Procedures</span></li><li class="pub-tab-item ui-state-default ui-corner-top" contentid="functions" contenturl="functions"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Functions</span></li>
+					<li class="pub-tab-item ui-state-default ui-corner-top ui-state-active" contentid="tables" contenturl="tables" refresh="N"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Tables</span></li><li class="pub-tab-item ui-state-default ui-corner-top" contentid="views" contenturl="views"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Views</span></li><li class="pub-tab-item ui-state-default ui-corner-top" contentid="procedures" contenturl="procedures"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Procedures</span></li><li class="pub-tab-item ui-state-default ui-corner-top" contentid="functions" contenturl="functions"><span href="#tabs-3" class="left-menu-ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Functions</span></li>
+				</ul>
+				<span class="pub-tab-next">뒤</span>
+			</div>
+		</div>
+	</div>
+</BODY>
+</HTML>
+<script>
+$(document).ready(function (e){
+	var aaa = 'Tables	Views	Procedures	Functions'.split('\t');
+		
+	for(var i =0 ;i <aaa.length; i++){
+		aaa[i] = {
+			test1 : aaa[i]
+		}
+	}
+	/*
+	for(var i =aaa.length ;i <10; i++){
+		aaa.push({
+			title:'asdf'+i
+		})
+	}
+	*/
+
+	$.pubTab('#pubTabId',{
+		items :aaa
+		,width:'auto'
+		,click : function (item){
+			console.log(item);
+		}
+		,itemKey :{							// item key mapping
+			title :'test1'
+		}
+	})
+})
+</script>

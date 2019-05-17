@@ -1,43 +1,42 @@
-g_pubMainMenuObject : 
-  - name : pubGrid
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubGrid.html
-    desc :  대용량 데이터용 그리드
-  - name : pubGridFixed
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubGridFixed.html
-    desc :  대용량 데이터용 그리드
-  - name : autocomplete
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubAutocomplete.html
-    desc : 자동완성 
-  - name : calendar
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubCalendar.html
-    desc : 당력
-  - name : context
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubContext.html
-    desc : 컨텍스트 메뉴
-  - name : multiselect
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubMultiselect.html
-    desc : multi select 모듈
-  - name : tab
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubTab.html
-    desc :  탭 
-  - name : tree
-    git_url : https://github.com/ytechinfo/pub
-    api_url :
-    demo_url : /demo/samples/pubTree.html
-    desc :  java script truee
-  
- 
+pubGrid :
+  name : "pubGrid"
+  git_url : https://github.com/ytechinfo/pub
+  api_url : /api/apiPubGrid.html
+  demo_url : /demo/pubGrid.html
+  desc :  대용량 데이터용 그리드
+autocomplete :
+  name : "autocomplete"
+  git_url : "https://github.com/ytechinfo/pub"
+  api_url : /api/apiPubAutocomplete.html
+  demo_url : /demo/pubAutocomplete.html
+  desc : 자동완성
+calendar :  
+  name : calendar
+  git_url : https://github.com/ytechinfo/pub
+  api_url : /api/apiPubCalendar.html
+  demo_url : /demo/pubCalendar.html
+  desc : 당력
+context :
+  name : context
+  git_url : https://github.com/ytechinfo/pub
+  api_url : /api/apiPubContext.html
+  demo_url : /demo/pubContext.html
+  desc : 컨텍스트 메뉴
+multiselect : 
+  name : multiselect
+  git_url : https://github.com/ytechinfo/pub
+  api_url : /api/apiPubMultiselect.html
+  demo_url : /demo/pubMultiselect.html
+  desc : multi select 모듈
+tab :
+  name : tab
+  git_url : https://github.com/ytechinfo/pub
+  api_url : /api/apiPubTab.html
+  demo_url : /demo/pubTab.html
+  desc :  탭 
+tree :
+  name : tree
+  git_url : https://github.com/ytechinfo/pub
+  api_url : /api/apiPubTree.html
+  demo_url : /demo/pubTree.html
+  desc :  java script truee 

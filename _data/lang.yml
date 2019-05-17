@@ -1,3 +1,6 @@
+main : 
+  title : "Pub-JS"
+
 label : 
   api : Api
   demo : Demo

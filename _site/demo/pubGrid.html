@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="loading" lang="en">
+
+<head>
+<title>Pub-GRID</title> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/pub/css/pub.all.min.css" rel="stylesheet">
+<link href="/assets/css/pub-sub-style.css" rel="stylesheet">
+<link href="/assets/css/codemirror.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/codemirror/codemirror.js"></script>
+<script src="/assets/js/codemirror/javascript.js"></script>
+
+<script src="/assets/pub/dist/pub.grid.js"></script> <script src="/assets/pub/dist/pub.context.js"></script> 
+
+
+
+</head>
+
+<body>
+	<div class="pub-sub-navbar-fixed">
+		<div class="container gnb-container">
+			<a class="navbar-brand" href="/">Pub-JS</a>
+										
+			<div id="nav-menu-container">
+				<ul class="nav-menu">
+					<li class="nav-item">
+						<a class="nav-link" href="/demo/pubGrid.html">Demo</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/api/apiPubGrid.html">API</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="main-demo-wrapper">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+		<div class="container">
+			<div class="main-header">
+				<div class="page-title">
+					<h2>Pub-GRID</h2>
+				</div>
+			</div>
+			<!-- content-->
+			<div class="main-content row">
+				<div class="col-lg-6 col-md-12 js-option-area">
+borderSpace : 2 // width board space
+,rowOptions:{
+	height: 22	// cell 높이
+	,click : false //row(tr) click event
+	,contextMenu : false // row(tr) contextmenu event
+	,addStyle : false	// 추가할 style method
+}
+,useDefaultFormatter :false
+,formatter :{
+	money :{prefix :'$', suffix :'원' , fixed : 0}	// money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에 뭍일것 , fixed : 소수점 
+	,number : {prefix :'$', suffix :'원' , fixed : 0}
+}
+,autoResize : {
+	enabled:true
+	,responsive : true // 리사이즈시 그리드 리사이즈 여부.
+	,threshold :150
+}
+,headerOptions : {
+	view : true	// header 보기 여부
+	,height: 23
+	,sort : false	// 초기에 정렬할 값
+	,redraw : true	// 초기에 옵션 들어오면 새로 그릴지 여부.
+	,resize:{	// resize 여부
+		enabled : true
+		,cursor : 'col-resize'
+		,update : false	// 변경시 콜랙 함수
+	}
+	,isColSelectAll : true	// 전체 선택 여부.
+	,colFixedIndex : 0	// 고정 컬럼 
+	,colWidthFixed : false  // 넓이 고정 여부.
+	,colMinWidth : 50  // 컬럼 최소 넓이
+	,colMaxWidth : 500  // 컬럼 최대 넓이
+	,oneCharWidth: 7
+	,viewAllLabel : true
+	,contextMenu : false // header contextmenu event
+	
+}
+,setting : {
+	enabled : false
+	,enableSpeed : false
+	,enableSearch : true
+	,enableColumnFix : false
+	,click : false		// 직접 처리 할경우. function 으로 처리.
+	,speedMaxVal :10
+	,callback : function (item){
+		
+	}
+	,configVal :{
+		search :{			// 검색
+			field : ''		// 검색 필드
+			,val : ''		// 검색어
+		}
+		,speed :-1			// scroll speed
+		,fixColumnPosition : -1	// fixed col position
+	}
+	,util : {
+		searchFilter : function (item, key,searchVal){
+			var itemVal = (item[key]||'');
+			if(itemVal.toLowerCase().indexOf(searchVal) > -1){
+				return true; 
+			}
+			return false;
+		}
+	}
+}
+,asideOptions :{
+	lineNumber : {
+		enabled :false
+		,key : 'lineNumber'
+		,charWidth : 9
+		,name : ''
+		,width : 40
+		,styleCss : ''	//css 
+		,isSelectRow:true
+	}
+	,rowSelector :{
+		enabled :false
+		,key : 'checkbox'
+		,name : 'V'
+		,width : 25
+	}
+	,modifyInfo :{
+		enabled :false
+		,key : 'modify'
+		,name : 'modify'
+		,width : 10
+	}
+}
+,bodyOptions : {
+	cellDblClick : false	// body td click
+	,valueFilter : false	// cell value filter
+}
+,scroll :{
+	isPreventDefault : true	// 이벤트 전파 여부.	
+	,vertical : {
+		width : 12
+		,bgDelay : 100		// 스크롤 빈공간 mousedown delay
+		,btnDelay : 100		// 방향키 mousedown delay
+		,speed :  'auto'	// 스크롤 스피드
+		,onUpdate : function (item){	// 스크롤 업데이트. 
+			return true; 
+		}
+		,tooltip : false		// item count tooltip
+	}
+	,horizontal :{
+		height: 12
+		,bgDelay : 100		
+		,btnDelay : 100		// 방향키 버튼 속도.
+		,speed : 1			// 스크롤 스피드
+	}
+}
+,selectionMode : 'multiple-cell'	// row , cell , multiple-row , multiple-cell	// 선택 방법. 
+,theme : 'light'
+,height: 'auto'
+,itemMaxCount : -1	// add시 item max로 유지할 카운트
+/*
+tColItem  object info
+{
+  "key": "b"	// key
+  ,"label": "비"	// label
+  ,"width": 100		// width
+  ,"sort": true		// sort flag
+  ,"align": "center"	// align
+  ,"type": "money"		// value type
+  ,"render": "html"		// render mode
+  ,colClick :function (idx,item){ console.log(idx, item)}		// cell click event
+  ,styleClass : function (idx, item){return 'pub-bg-private';}	// cell add class
+}
+*/
+,tColItem : [] //head item 
+,theadGroup : [] // head group 
+,tbodyItem : []  // body item
+,tbodyGroup : [] // body group 
+,tfootItem : []  // foot item
+,page : false	// paging info
+,message : {
+	empty : 'no data'
+	,pageStatus : function (status){
+		return status.currStart +' - ' + status.currEnd+' of '+ status.total;
+	}
+}
+,i18n :{
+	'setting.label' : '설정'
+	,'search.button' : '검색'
+	,'setting.speed.label' : '스크롤속도'
+	,'setting.column.fixed.label' : '고정컬럼'
+}
+,icon : {
+	'sortup' : '<svg width="8px" height="8px" viewBox="0 0 110 110" style="enable-background:new 0 0 100 100;"><g><polygon points="50,0 0,100 100,100" fill="#737171"></polygon></g></svg>'
+	,'sortdown' : '<svg width="8px" height="8px" viewBox="0 0 110 110" style="enable-background:new 0 0 100 100;"><g><polygon points="0,0 100,0 50,90" fill="#737171"></polygon></g></svg>'
+}	
+</div>
+
+<div class="col-lg-6 col-md-12">
+	<div class="js-option-text" >
+		Options
+		<div style="border:1px solid #eeeeee;">
+			<textarea id="optionCode" name="optionCode"></textarea>
+		</div>
+	</div>
+	<div class="js-run-area">
+		<i class="fa fa-address-book" aria-hidden="true"></i>
+		item generate count<div id="genCount"></div>
+		<button class="exceldown" type="button">excel download</button>
+		<button type="button" onclick="fn_init()">regrid</button>
+		<select id="itemCount">
+			<option value="3">3</option>
+			<option value="0">0</option>
+			<option value="10">10</option>
+			<option value="100" selected>100</option>
+			<option value="500">500</option>
+			<option value="1000">1000</option>
+			<option value="10000">10000</option>
+			<option value="100000">100000</option>
+		</select>
+	</div>
+	<div class="asdfasdfWrapper">
+		<div id="asdfasdf" style="height:500px"></div>
+	</div>
+</div>
+
+<script>
+
+$(document).ready(function (){
+	//$.pubGrid('#asdfasdf').resizeDraw({});
+	
+	var editor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+	  lineNumbers: true,
+	  matchBrackets: true,
+	  continueComments: "Enter",
+	  extraKeys: {"Ctrl-Q": "toggleComment"}
+	});
+
+	
+	
+	fn_init();
+
+	$('.exceldown').on('click', function (){
+		$.pubGrid('#asdfasdf').excelExport({type:'download', fileName:'aaa.xls'});
+	})
+});
+
+function getItem (type){
+	var aaa = [];
+	var colItem = [];
+	var	itemCount = parseInt($('#itemCount').val(),10);
+	if(type ==1){
+		for(var i =0 ;i <itemCount; i++){
+			aaa.push({
+				a:'aaasdfasdfasdfasdfasdfasdfa'+i
+				,b:'ddd_'+i+'asdf'
+				,c: (i*10000)
+				,d:'ddd_'+i
+				,e:'eee_'+i
+			});
+		}
+		colItem = [
+			{key :'a', label:'에이에이에이에이에이에이', width:100, sort : true}
+			,{key :'b', label:'비', width:100, colClick :function (idx,item){ console.log(idx, item)}}
+			,{key :'c', label:'씨',width:100, align:'center', type : 'money', render:'html'}
+			,{key :'d', label:'디',width:100 ,type : 'number', formatter : function (rowInfo){
+				
+				var item  = rowInfo.item;
+				return rowInfo.formatter(item['c'],0);
+			}}
+			,{key :'e', label:'이',width:100}
+			//,{key :'d', label:'디', hidden:true}
+		]
+	}else{
+		
+		for(var i =0 ;i <itemCount; i++){
+			var tmpItem = {};
+
+			for(var j =0 ; j< 15 ;j++){
+				var colName = 'col'+j ; 
+				tmpItem[colName] =  ('cont'+i+" _ "+j) ;
+				//tmpItem[colName] = j< 30 ? ('cont'+i+" _ "+j) :'';
+			}
+
+			aaa.push(tmpItem)
+		}
+		
+		if(aaa.length > 0){
+			colFirstItem = aaa[0];
+			
+			var keyIdx =0; 
+			for(var key in colFirstItem){
+				colItem.push( {
+					key :key
+					,label:'한글'+key
+					,width:100
+				});
+
+				keyIdx++;
+			}
+		}
+	}
+
+	return {
+		"aaa": aaa
+		,"colItem": colItem
+	}; 
+}
+
+
+function fn_init(){
+	
+	var	item=getItem ( 2 );
+
+	var aaa =item.aaa
+		,colItem  = item.colItem;
+	
+	gridDraw('#asdfasdf',aaa, colItem);
+	//gridDraw('#asdfasdf1',aaa, colItem);
+}
+function gridDraw(selector, aaa, colItem){
+		var gridObj = $.pubGrid(selector,{
+			headerOptions:{
+				view : true
+				,sort : true
+				,displayLineNumber : true	 // 라인 넘버 보기.
+				,displayRowSelector : false	 // row selecotr checkbox 보기
+				,displayModifyInfo : false	 // 수정여부 보기
+				,colFixedIndex :0
+				,resize:{
+					enabled : true
+				}
+				,contextMenu :{
+					callback: function(key,sObj) {
+						console.log('header context',this,key,sObj);
+					}
+					,items: [
+						{key : "refresh" , "name": "새로고침"}
+					]
+				}
+			}
+			,height : 'auto'
+			,height1:400
+			,scroll :{
+				lazyLoad : true // scroll 실시간으로 로드할지 여부 (속도에 영향으줌. )
+				,lazyLoadTime : 30 // scroll 로드 타임. 
+				,verticalWidth: 10
+				,horizontalHeight: 10
+			}
+			,autoResize : true
+			//,bigData :false
+			,bigData : {
+				enabled : true 
+				,gridCount : 20		// 화면에 한꺼번에 그리드 할 데이타 gridcount * 3 이 한꺼번에 그려진다. 
+				,spaceUnitHeight : 100000	// 그리드 공백 높이 지정
+				,horizontalEnableCount : 50
+			}
+			,message :{
+				'asdf':''
+				,empty: '데이타 없음'
+				//,empty: function (){ return '데이타 없음'}
+				
+			}
+			,page : false
+			,page1 :{
+				enabeld :true
+				,status :true
+				,totalCount :1000
+				, currPage :1
+				, countPerPage :10
+				, unitPage :10
+				,position : 'left'
+				,callback : function (no){
+					console.log(no);
+					gridObj.setData(aaa);
+				}
+			}
+			,tColItem : colItem
+			
+			,theadGroup1 :[ 
+				[
+				{key :'a',label:'ac2<br/>asdf',colspan:4 , style:''}
+				,{key :'c',label:'rc2',rowspan: 3 }
+				]
+				,[
+					{label:'aaaa',colspan:2 , style:''}
+					,{label:'bbbb',colspan:2 , style:''}
+				]
+				,[
+					{key :'a'}
+					,{key :'b'}
+					,{key :'c'}
+					,{key :'d'}
+					,{label :'aaa'}
+				]
+			]
+			,tbodyItem :aaa
+			,tfootItem :['asdf']
+			,rowOptions :{
+				height : 50
+				,click : function (idx, item){
+					//console.log(idx, item);
+				}
+				,contextMenu :{
+					beforeSelect :function (){
+						$(this).trigger('click');
+					}
+					,callback: function(key,sObj) {
+						console.log(this,key,sObj);
+
+						if(key =='copy'){
+							gridObj.copyData();
+						}
+					}
+					,items: [
+						{key : "refresh" , "name": "새로고침"}
+						,{key : "copy" , "name": "복사"}
+						,{key : "sql_create", "name": "sql생성" 
+							,subMenu: [
+								{ key : "selectStar","name": "select *" , mode: "selectStar"}
+								,{ key : "select","name": "select column" ,mode:"select"}
+								,{ key : "insert","name": "insert" , mode:"insert"}
+								,{ key : "update","name": "update" ,mode:"update"}
+								,{ key : "delete","name": "delete" ,mode:"delete"}
+								,{ key : "drop","name": "drop" , mode:"drop"}
+							]
+						}
+						,{key : "create_ddl","name": "DDL 보기" 
+							
+						}
+						,{key : "mybatis-sql_create","name": "mybatis Sql생성" 
+							,subMenu : [
+								{ key : "mybatis_insert","name": "insert" ,mode:"insert" ,param_yn:'Y'}
+								,{ key : "mybatis_update","name": "update" ,mode:"update" ,param_yn:'Y'}
+								,{ key : "mybatis_delete","name": "delete" ,mode:"delete",param_yn:'Y'}
+							]
+						}
+						,{key :'export', "name": "내보내기" 
+							,subMenu:[
+								{key : "export_data","name": "데이타 내보내기"}
+								,{key : "export_column","name": "컬럼정보 내보내기"}
+							]
+						}
+					]
+				}
+			}
+		});
+	}
+
+(function($) {
+
+var _evt = $.event,
+	_special,
+	resizeTimeout;
+
+_special = _evt.special.pubgridResize = {
+	setup: function() {
+		$( this ).on( "resize", _special.handler );
+	},
+	teardown: function() {
+		$( this ).off( "resize", _special.handler );
+	},
+	handler: function( event, execAsap ) {
+		// Save the context
+		var context = this,
+			args = arguments,
+			dispatch = function() {
+				// set correct event type
+				event.type = "pubgridResize";
+				_evt.dispatch.apply( context, args );
+			};
+
+		if ( resizeTimeout ) {
+			clearTimeout( resizeTimeout );
+		}
+
+		execAsap ?
+			dispatch() :
+			resizeTimeout = setTimeout( dispatch, $special.threshold );
+	},
+	threshold: 150
+};
+
+})(jQuery);
+</script>
+
+			</div>
+		</div>
+	</div>
+	<!-- </div>-->
+	<!-- SCRIPTS-->
+	
+	<!-- _includes에 정의된 scripts -->
+</body>
+</html>
