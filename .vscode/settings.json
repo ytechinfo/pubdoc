@@ -10,7 +10,7 @@
     "liquid": "html"
 }
 ,"files.associations": {
-    "*.html": "liquid"
+    "*.html": "html"
 }
 
 }

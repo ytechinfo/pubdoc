@@ -83,13 +83,14 @@ html , body {
 
 
 .js-option-area{
-	
+	height: 900px;
+	overflow: auto;
 }
 .js-option-view-area{
 	
 }
 .js-run-area{
-	
+	margin-bottom: 20px;
 }
 
 .wh100{
