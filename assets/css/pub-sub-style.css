@@ -83,14 +83,25 @@ html , body {
 
 
 .js-option-area{
-	height: 900px;
+	height: 850px;
 	overflow: auto;
+	border: 1px solid #dddddd;
+	margin: 0px -10px 20px;
+}
+.js-result-area{
+	border: 1px solid #dddddd;
+	margin: 0px -10px 10px;
 }
 .js-option-view-area{
-	
+	border: 1px solid #dddddd;
 }
 .js-run-area{
-	margin-bottom: 20px;
+	margin: 12px 0px 20px;
+	height: 490px;
+}
+
+.js-view-area{
+	height: 410px;
 }
 
 .wh100{
@@ -109,3 +120,56 @@ html , body {
 .container {
     max-width: 1260px;
 }
+
+
+
+/* option desc area start*/
+.result-html-area thead th {
+text-align: center;
+}
+
+.result-html-area select {
+height: 25px;
+line-height: 20px;
+padding: 0px;
+margin: 0px;
+min-width: 50px;
+}
+
+.result-html-area input[type="text"] {
+width: 100%;
+border-radius: 4px;
+border: 1px solid #dddddd;
+padding: 0px 5px;
+}
+
+.result-html-area .pub-option-key > div, .result-html-area .pub-option-val > div {
+padding-left: 3px;
+}
+
+.result-html-area > tbody td {
+vertical-align: top;
+border: 1px solid #747272;
+background: #ffffff;
+}
+
+.result-html-area > tbody .pub-option-key {
+width: 150px;
+}
+
+.result-html-area > tbody .pub-option-val {
+width: calc(100% - 150px);
+}
+
+.result-html-area .pub-option-sub-tbl {
+width: 100%;
+}
+
+.result-html-area .pub-option-sub-tbl > tbody .pub-option-key {
+width: 100px;
+}
+
+.result-html-area .pub-option-sub-tbl > tbody .pub-option-val {
+width: calc(100% - 100px);
+}
+/* option desc area end*/

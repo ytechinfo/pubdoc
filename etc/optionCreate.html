@@ -8,63 +8,24 @@
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/pub-style.css" rel="stylesheet">
+<link href="./optionCreate.css" rel="stylesheet">
+
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery-ui.min.js"></script>
 <script src="/assets/js/mustache/mustache.min.js"></script>
         
-<style>
-html, body{
-    width:100%;
-    height:100%;
-}
-
-.content-body{
-    width:100%;
-}
-.content-body td{
-    border: 1px solid #807d7d;
-    vertical-align: top;
-    height: 20px;
-}
-.result-area{
-    height: 600px;
-}
-#optionText{
-    height: 100%;
-    width:100%;
-}
-#optPreviewArea{
-    border: 1px solid #807d7d;
-    min-height:  440px;
-}
-
-.result-html-area{
-    width: 100%;
-    background: #ffffff;
-}
-.result-html-area thead th{
-    text-align: center;
-}
-
-.result-html-area tbody td{
-    vertical-align: top;
-    border: 1px solid #747272;
-    background: #ffffff;
-
-}
-</style>
 </head>
 
 <body>
     <table class="content-body">
         <tr>
-            <td>
+            <th style="width:50%;">
              옵션   
-            </td>
-            <td>
+            </th>
+            <th style="width:50%;">
                 <a href="javascript:;" class="opt-change">html 변경.</a> 
-            </td>
+            </th>
         </tr>
         <tr>
             <td>
@@ -227,20 +188,22 @@ html, body{
             <td>
 <div class="result-area">
     result code
-    <textarea id="changeHTml" style="width:100%;" rows="4"></textarea>
+    <textarea id="changeHtml" style="width:100%;" rows="4"></textarea>
     
     result html
-    <table class="result-html-area">
-        <thead>
-            <tr>
-                <th>옵션명</th>
-                <th>옵션값</th>
-            </tr>
-        </thead>
-        <tbody id="optPreviewArea">
+    <div id="resultSourceArea">
+        <table class="result-html-area">
+            <thead>
+                <tr>
+                    <th>옵션명</th>
+                    <th>옵션값</th>
+                </tr>
+            </thead>
+            <tbody id="optPreviewArea">
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
             </td>
         </tr>
@@ -259,39 +222,66 @@ var optionsChg = {
 
         $('.opt-change').on('click',function (){
             _this.change();
+
+            $('#changeHtml').val($.trim($('#resultSourceArea').html()));
         });
 
-
+        $('.opt-change').trigger('click');
     }
     ,change : function (){
         var optText = $('#optionText').val();
 
         var optObj = new Function('return '+ optText+';')();
 
+        var strHtm = this.getOptHtml(optObj, false ,optText);
+      
+        $('#optPreviewArea').empty().html(strHtm);
+    }
+    ,getOptHtml : function (optObj, childFlag ,optText){
         var strHtm = [];
 
-        
+        if(childFlag){
+            strHtm.push('<table class="pub-option-sub-tbl">');
+        }
         for(var key in optObj){
             var optObjVal = optObj[key]; 
-            strHtm.push('<tr>');
-            strHtm.push('<td>'+key+'</td>');
-            
-            strHtm.push('<td>'+this.getOptValTab(key,optObjVal)+'</td>');
-            strHtm.push('<tr>')
 
+            strHtm.push(this.getOptValTab(key,optObjVal,optText));
+        }
+        if(childFlag){
+            strHtm.push('</table>');
         }
 
-        $('#optPreviewArea').empty().html(strHtm.join(''));
+        return strHtm.join('');
     }
-    ,getOptValTab : function (key,optObjVal){
+    ,getOptValTab : function (key,optObjVal,optText){
         var strHtm = [];
+
+        strHtm.push('<tr>');
+        strHtm.push('<td class="pub-option-key">'+key+'</td>');
+
+        var reval ='';
+        var isObjectFlag = false;
+        var desc = this.getDesc(key,optText); 
         if($.isNumeric(optObjVal)){
-            return this.getSelectBoxVal(key,optObjVal);
+            reval= this.getSelectBoxVal(key,optObjVal);
         }else if(typeof optObjVal=== 'boolean'){
             var flag = optObjVal ==true;  
-            strHtm.push('<input type="radio" data-key="'+key+'" name="'+key+'" class="item-val" value="true" '+(flag===true?'checked':'')+'>true')
-            strHtm.push('<input type="radio" data-key="'+key+'" name="'+key+'" class="item-val" value="false" '+(flag===false?'checked':'')+'>false')
+            reval+='<input type="radio" data-key="'+key+'" name="'+key+'" class="item-val" value="true" '+(flag===true?'checked':'')+'>true';
+            reval+='<input type="radio" data-key="'+key+'" name="'+key+'" class="item-val" value="false" '+(flag===false?'checked':'')+'>false';
+        }else if(typeof optObjVal=== 'string'){
+            reval= '<input type="text" data-key="'+key+'" name="'+key+'" class="item-val" value="'+optObjVal+'">';
+        }else if(Array.isArray(optObjVal)){
+            reval ='array value';
+        }else if(typeof optObjVal=== 'function'){
+            reval ='function value';
+        }else if(typeof optObjVal=== 'object'){
+            isObjectFlag = true; 
+            reval ='<div class="obj-desc">'+desc+'</div>'+this.getOptHtml(optObjVal,true, optText);
         }
+
+        strHtm.push('<td class="pub-option-val"><div>'+reval+'</div>'+(!isObjectFlag?'<div class="field-desc">'+desc+'</div>':'')+'</td>');
+        strHtm.push('</tr>');
 
         return strHtm.join('');
     }
@@ -302,17 +292,33 @@ var optionsChg = {
             reval.push('<option value="-1" selected>-1<option>');
             for(var i=1; i<= 5;i++){
                 var val = i*1000;
-                reval.push('<option value="'+val+'">'+val+'<option>');
+                reval.push('<option value="'+val+'">'+val+'</option>');
             }
         }else{
             for(var i=0; i<= 10;i++){
                 var val = i;
-                reval.push('<option value="'+val+'" '+(i==optObjVal?'selected':'')+'>'+val+'<option>');
+                reval.push('<option value="'+val+'" '+(i==optObjVal?'selected':'')+'>'+val+'</option>');
             }
         }
         reval.push('<select>')
 
         return reval.join('');
+    }
+    // 설명 추출
+    ,getDesc : function (key,optText){
+        
+        var regStr = '.*'+key+"\\s.*:\\s.*//.*\n";
+        var regExp = new RegExp(regStr, "gm");
+        var matches = regExp.exec(optText); 
+        
+        var remarks ='설명';
+        if(matches && matches.length > 0){
+            remarks = matches[0].replace(/.*\/\/\s/,'')
+        }
+
+        //console.log(regStr,matches,remarks,optText)
+        return remarks;
+
     }
 }
 

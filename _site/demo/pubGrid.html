@@ -52,393 +52,1595 @@
 			</div>
 			<!-- content-->
 			<div class="main-content row">
-				<div class="col-lg-6 col-md-12 js-option-area">
-<pre style="overflow: initial;">
+				<div class="col-lg-6 col-md-12">
+	<div class="js-option-area">
 
-{
-borderSpace : 2 // width board space
-,rowOptions:{
-	height: 22	// cell 높이
-	,click : false //row(tr) click event
-	,contextMenu : false // row(tr) contextmenu event
-	,addStyle : false	// 추가할 style method
-}
-,useDefaultFormatter :false
-,formatter :{
-	money :{prefix :'$', suffix :'원' , fixed : 0}	// money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에 뭍일것 , fixed : 소수점 
-	,number : {prefix :'$', suffix :'원' , fixed : 0}
-}
-,autoResize : {
-	enabled:true
-	,responsive : true // 리사이즈시 그리드 리사이즈 여부.
-	,threshold :150
-}
-,headerOptions : {
-	view : true	// header 보기 여부
-	,height: 23
-	,sort : false	// 초기에 정렬할 값
-	,redraw : true	// 초기에 옵션 들어오면 새로 그릴지 여부.
-	,resize:{	// resize 여부
-		enabled : true
-		,cursor : 'col-resize'
-		,update : false	// 변경시 콜랙 함수
-	}
-	,isColSelectAll : true	// 전체 선택 여부.
-	,colFixedIndex : 0	// 고정 컬럼 
-	,colWidthFixed : false  // 넓이 고정 여부.
-	,colMinWidth : 50  // 컬럼 최소 넓이
-	,colMaxWidth : 500  // 컬럼 최대 넓이
-	,oneCharWidth: 7
-	,viewAllLabel : true
-	,contextMenu : false // header contextmenu event
-	
-}
-,setting : {
-	enabled : false
-	,enableSpeed : false
-	,enableSearch : true
-	,enableColumnFix : false
-	,click : false		// 직접 처리 할경우. function 으로 처리.
-	,speedMaxVal :10
-	,callback : function (item){
-		
-	}
-	,configVal :{
-		search :{			// 검색
-			field : ''		// 검색 필드
-			,val : ''		// 검색어
-		}
-		,speed :-1			// scroll speed
-		,fixColumnPosition : -1	// fixed col position
-	}
-	,util : {
-		searchFilter : function (item, key,searchVal){
-			var itemVal = (item[key]||'');
-			if(itemVal.toLowerCase().indexOf(searchVal) > -1){
-				return true; 
-			}
-			return false;
-		}
-	}
-}
-,asideOptions :{
-	lineNumber : {
-		enabled :false
-		,key : 'lineNumber'
-		,charWidth : 9
-		,name : ''
-		,width : 40
-		,styleCss : ''	//css 
-		,isSelectRow:true
-	}
-	,rowSelector :{
-		enabled :false
-		,key : 'checkbox'
-		,name : 'V'
-		,width : 25
-	}
-	,modifyInfo :{
-		enabled :false
-		,key : 'modify'
-		,name : 'modify'
-		,width : 10
-	}
-}
-,bodyOptions : {
-	cellDblClick : false	// body td click
-	,valueFilter : false	// cell value filter
-}
-,scroll :{
-	isPreventDefault : true	// 이벤트 전파 여부.	
-	,vertical : {
-		width : 12
-		,bgDelay : 100		// 스크롤 빈공간 mousedown delay
-		,btnDelay : 100		// 방향키 mousedown delay
-		,speed :  'auto'	// 스크롤 스피드
-		,onUpdate : function (item){	// 스크롤 업데이트. 
-			return true; 
-		}
-		,tooltip : false		// item count tooltip
-	}
-	,horizontal :{
-		height: 12
-		,bgDelay : 100		
-		,btnDelay : 100		// 방향키 버튼 속도.
-		,speed : 1			// 스크롤 스피드
-	}
-}
-,selectionMode : 'multiple-cell'	// row , cell , multiple-row , multiple-cell	// 선택 방법. 
-,theme : 'light'
-,height: 'auto'
-,itemMaxCount : -1	// add시 item max로 유지할 카운트
-/*
-tColItem  object info
-{
-  "key": "b"	// key
-  ,"label": "비"	// label
-  ,"width": 100		// width
-  ,"sort": true		// sort flag
-  ,"align": "center"	// align
-  ,"type": "money"		// value type
-  ,"render": "html"		// render mode
-  ,colClick :function (idx,item){ console.log(idx, item)}		// cell click event
-  ,styleClass : function (idx, item){return 'pub-bg-private';}	// cell add class
-}
-*/
-,tColItem : [] //head item 
-,theadGroup : [] // head group 
-,tbodyItem : []  // body item
-,tbodyGroup : [] // body group 
-,tfootItem : []  // foot item
-,page : false	// paging info
-,message : {
-	empty : 'no data'
-	,pageStatus : function (status){
-		return status.currStart +' - ' + status.currEnd+' of '+ status.total;
-	}
-}
-,i18n :{
-	'setting.label' : '설정'
-	,'search.button' : '검색'
-	,'setting.speed.label' : '스크롤속도'
-	,'setting.column.fixed.label' : '고정컬럼'
-}
-,icon : {
-	'sortup' : '<svg width="8px" height="8px" viewBox="0 0 110 110" style="enable-background:new 0 0 100 100;"><g><polygon points="50,0 0,100 100,100" fill="#737171"></polygon></g></svg>'
-	,'sortdown' : '<svg width="8px" height="8px" viewBox="0 0 110 110" style="enable-background:new 0 0 100 100;"><g><polygon points="0,0 100,0 50,90" fill="#737171"></polygon></g></svg>'
-}
+<table class="result-html-area">
+	<thead>
+		<tr>
+			<th>옵션명</th>
+			<th>옵션값</th>
+		</tr>
+	</thead>
+	<tbody id="optPreviewArea">
+		<tr>
+			<td class="pub-option-key">borderSpace</td>
+			<td class="pub-option-val">
+				<div><select class="item-val" data-key="borderSpace">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2" selected="">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select></div>
+				<div class="field-desc">width board space
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">rowOptions</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">height</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="height">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">click</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="click" name="click" class="item-val"
+											value="true">true<input type="radio" data-key="click" name="click"
+											class="item-val" value="false" checked="">false</div>
+									<div class="field-desc"> ,click : false //row(tr) click event
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">contextMenu</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="contextMenu" name="contextMenu" class="item-val"
+											value="true">true<input type="radio" data-key="contextMenu"
+											name="contextMenu" class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">row(tr) contextmenu event
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">addStyle</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="addStyle" name="addStyle" class="item-val"
+											value="true">true<input type="radio" data-key="addStyle" name="addStyle"
+											class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">추가할 style method
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">useDefaultFormatter</td>
+			<td class="pub-option-val">
+				<div><input type="radio" data-key="useDefaultFormatter" name="useDefaultFormatter" class="item-val"
+						value="true">true<input type="radio" data-key="useDefaultFormatter" name="useDefaultFormatter"
+						class="item-val" value="false" checked="">false</div>
+				<div class="field-desc">설명</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">formatter</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">money</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에 뭍일것 , fixed : 소수점
+										</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">prefix</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="prefix" name="prefix"
+																class="item-val" value="$"></div>
+														<div class="field-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에
+															뭍일것 , fixed : 소수점
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">suffix</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="suffix" name="suffix"
+																class="item-val" value="원"></div>
+														<div class="field-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에
+															뭍일것 , fixed : 소수점
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">fixed</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="fixed">
+																<option value="0" selected="">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에
+															뭍일것 , fixed : 소수점
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">number</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">prefix</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="prefix" name="prefix"
+																class="item-val" value="$"></div>
+														<div class="field-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에
+															뭍일것 , fixed : 소수점
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">suffix</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="suffix" name="suffix"
+																class="item-val" value="원"></div>
+														<div class="field-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에
+															뭍일것 , fixed : 소수점
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">fixed</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="fixed">
+																<option value="0" selected="">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">money 설정 prefix 앞에 붙일 문구 , suffix : 마지막에
+															뭍일것 , fixed : 소수점
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">autoResize</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">enabled</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="enabled" name="enabled" class="item-val"
+											value="true" checked="">true<input type="radio" data-key="enabled"
+											name="enabled" class="item-val" value="false">false</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">responsive</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="responsive" name="responsive" class="item-val"
+											value="true" checked="">true<input type="radio" data-key="responsive"
+											name="responsive" class="item-val" value="false">false</div>
+									<div class="field-desc">리사이즈시 그리드 리사이즈 여부.
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">threshold</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="threshold">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">headerOptions</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">view</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="view" name="view" class="item-val" value="true"
+											checked="">true<input type="radio" data-key="view" name="view"
+											class="item-val" value="false">false</div>
+									<div class="field-desc">header 보기 여부
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">height</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="height">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">sort</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="sort" name="sort" class="item-val"
+											value="true">true<input type="radio" data-key="sort" name="sort"
+											class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">초기에 정렬할 값
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">redraw</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="redraw" name="redraw" class="item-val"
+											value="true" checked="">true<input type="radio" data-key="redraw"
+											name="redraw" class="item-val" value="false">false</div>
+									<div class="field-desc">초기에 옵션 들어오면 새로 그릴지 여부.
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">resize</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">enabled</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="enabled" name="enabled"
+																class="item-val" value="true" checked="">true<input
+																type="radio" data-key="enabled" name="enabled"
+																class="item-val" value="false">false</div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">cursor</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="cursor" name="cursor"
+																class="item-val" value="col-resize"></div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">update</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="update" name="update"
+																class="item-val" value="true">true<input type="radio"
+																data-key="update" name="update" class="item-val"
+																value="false" checked="">false</div>
+														<div class="field-desc">변경시 콜랙 함수
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">isColSelectAll</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="isColSelectAll" name="isColSelectAll"
+											class="item-val" value="true" checked="">true<input type="radio"
+											data-key="isColSelectAll" name="isColSelectAll" class="item-val"
+											value="false">false</div>
+									<div class="field-desc">전체 선택 여부.
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">colFixedIndex</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="colFixedIndex">
+											<option value="0" selected="">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">고정 컬럼
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">colWidthFixed</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="colWidthFixed" name="colWidthFixed"
+											class="item-val" value="true">true<input type="radio"
+											data-key="colWidthFixed" name="colWidthFixed" class="item-val" value="false"
+											checked="">false</div>
+									<div class="field-desc">넓이 고정 여부.
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">colMinWidth</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="colMinWidth">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">컬럼 최소 넓이
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">colMaxWidth</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="colMaxWidth">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">컬럼 최대 넓이
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">oneCharWidth</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="oneCharWidth">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7" selected="">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+										</select></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">viewAllLabel</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="viewAllLabel" name="viewAllLabel"
+											class="item-val" value="true" checked="">true<input type="radio"
+											data-key="viewAllLabel" name="viewAllLabel" class="item-val"
+											value="false">false</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">contextMenu</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="contextMenu" name="contextMenu" class="item-val"
+											value="true">true<input type="radio" data-key="contextMenu"
+											name="contextMenu" class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">row(tr) contextmenu event
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">setting</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">enabled</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="enabled" name="enabled" class="item-val"
+											value="true">true<input type="radio" data-key="enabled" name="enabled"
+											class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">enableSpeed</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="enableSpeed" name="enableSpeed" class="item-val"
+											value="true">true<input type="radio" data-key="enableSpeed"
+											name="enableSpeed" class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">enableSearch</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="enableSearch" name="enableSearch"
+											class="item-val" value="true" checked="">true<input type="radio"
+											data-key="enableSearch" name="enableSearch" class="item-val"
+											value="false">false</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">enableColumnFix</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="enableColumnFix" name="enableColumnFix"
+											class="item-val" value="true">true<input type="radio"
+											data-key="enableColumnFix" name="enableColumnFix" class="item-val"
+											value="false" checked="">false</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">click</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="click" name="click" class="item-val"
+											value="true">true<input type="radio" data-key="click" name="click"
+											class="item-val" value="false" checked="">false</div>
+									<div class="field-desc"> ,click : false //row(tr) click event
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">speedMaxVal</td>
+								<td class="pub-option-val">
+									<div><select class="item-val" data-key="speedMaxVal">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10" selected="">10</option>
+										</select></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">callback</td>
+								<td class="pub-option-val">
+									<div>function value</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">configVal</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">search</td>
+													<td class="pub-option-val">
+														<div>
+															<div class="obj-desc">설명</div>
+															<table class="pub-option-sub-tbl">
+																<tbody>
+																	<tr>
+																		<td class="pub-option-key">field</td>
+																		<td class="pub-option-val">
+																			<div><input type="text" data-key="field"
+																					name="field" class="item-val"
+																					value=""></div>
+																			<div class="field-desc">검색 필드
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="pub-option-key">val</td>
+																		<td class="pub-option-val">
+																			<div><input type="text" data-key="val"
+																					name="val" class="item-val"
+																					value=""></div>
+																			<div class="field-desc">검색어
+																			</div>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">speed</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="speed">
+																<option value="-1" selected="">-1</option>
+																<option></option>
+																<option value="1000">1000</option>
+																<option value="2000">2000</option>
+																<option value="3000">3000</option>
+																<option value="4000">4000</option>
+																<option value="5000">5000</option>
+															</select></div>
+														<div class="field-desc">scroll speed
+															,fixColumnPosition : -1 // fixed col position
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">fixColumnPosition</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="fixColumnPosition">
+																<option value="-1" selected="">-1</option>
+																<option></option>
+																<option value="1000">1000</option>
+																<option value="2000">2000</option>
+																<option value="3000">3000</option>
+																<option value="4000">4000</option>
+																<option value="5000">5000</option>
+															</select></div>
+														<div class="field-desc">fixed col position
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">util</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">searchFilter</td>
+													<td class="pub-option-val">
+														<div>function value</div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">asideOptions</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">lineNumber</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">enabled</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="enabled" name="enabled"
+																class="item-val" value="true">true<input type="radio"
+																data-key="enabled" name="enabled" class="item-val"
+																value="false" checked="">false</div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">key</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="key" name="key"
+																class="item-val" value="lineNumber"></div>
+														<div class="field-desc">key
+															,"label": "비" // label
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">charWidth</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="charWidth">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9" selected="">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">name</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="name" name="name"
+																class="item-val" value=""></div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">width</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="width">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">width
+															,"sort": true // sort flag
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">styleCss</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="styleCss" name="styleCss"
+																class="item-val" value=""></div>
+														<div class="field-desc"> ,styleCss : '' //css
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">isSelectRow</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="isSelectRow"
+																name="isSelectRow" class="item-val" value="true"
+																checked="">true<input type="radio"
+																data-key="isSelectRow" name="isSelectRow"
+																class="item-val" value="false">false</div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">rowSelector</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">enabled</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="enabled" name="enabled"
+																class="item-val" value="true">true<input type="radio"
+																data-key="enabled" name="enabled" class="item-val"
+																value="false" checked="">false</div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">key</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="key" name="key"
+																class="item-val" value="checkbox"></div>
+														<div class="field-desc">key
+															,"label": "비" // label
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">name</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="name" name="name"
+																class="item-val" value="V"></div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">width</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="width">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">width
+															,"sort": true // sort flag
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">modifyInfo</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">enabled</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="enabled" name="enabled"
+																class="item-val" value="true">true<input type="radio"
+																data-key="enabled" name="enabled" class="item-val"
+																value="false" checked="">false</div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">key</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="key" name="key"
+																class="item-val" value="modify"></div>
+														<div class="field-desc">key
+															,"label": "비" // label
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">name</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="name" name="name"
+																class="item-val" value="modify"></div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">width</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="width">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10" selected="">10</option>
+															</select></div>
+														<div class="field-desc">width
+															,"sort": true // sort flag
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">bodyOptions</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">cellDblClick</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="cellDblClick" name="cellDblClick"
+											class="item-val" value="true">true<input type="radio"
+											data-key="cellDblClick" name="cellDblClick" class="item-val" value="false"
+											checked="">false</div>
+									<div class="field-desc">body td click
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">valueFilter</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="valueFilter" name="valueFilter" class="item-val"
+											value="true">true<input type="radio" data-key="valueFilter"
+											name="valueFilter" class="item-val" value="false" checked="">false</div>
+									<div class="field-desc">cell value filter
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">scroll</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">isPreventDefault</td>
+								<td class="pub-option-val">
+									<div><input type="radio" data-key="isPreventDefault" name="isPreventDefault"
+											class="item-val" value="true" checked="">true<input type="radio"
+											data-key="isPreventDefault" name="isPreventDefault" class="item-val"
+											value="false">false</div>
+									<div class="field-desc">이벤트 전파 여부.
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">vertical</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">width</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="width">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">width
+															,"sort": true // sort flag
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">bgDelay</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="bgDelay">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">스크롤 빈공간 mousedown delay
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">btnDelay</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="btnDelay">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">방향키 mousedown delay
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">speed</td>
+													<td class="pub-option-val">
+														<div><input type="text" data-key="speed" name="speed"
+																class="item-val" value="auto"></div>
+														<div class="field-desc">scroll speed
+															,fixColumnPosition : -1 // fixed col position
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">onUpdate</td>
+													<td class="pub-option-val">
+														<div>function value</div>
+														<div class="field-desc">스크롤 업데이트.
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">tooltip</td>
+													<td class="pub-option-val">
+														<div><input type="radio" data-key="tooltip" name="tooltip"
+																class="item-val" value="true">true<input type="radio"
+																data-key="tooltip" name="tooltip" class="item-val"
+																value="false" checked="">false</div>
+														<div class="field-desc">item count tooltip
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">horizontal</td>
+								<td class="pub-option-val">
+									<div>
+										<div class="obj-desc">설명</div>
+										<table class="pub-option-sub-tbl">
+											<tbody>
+												<tr>
+													<td class="pub-option-key">height</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="height">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">설명</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">bgDelay</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="bgDelay">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">스크롤 빈공간 mousedown delay
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">btnDelay</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="btnDelay">
+																<option value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">방향키 mousedown delay
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="pub-option-key">speed</td>
+													<td class="pub-option-val">
+														<div><select class="item-val" data-key="speed">
+																<option value="0">0</option>
+																<option value="1" selected="">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+															</select></div>
+														<div class="field-desc">scroll speed
+															,fixColumnPosition : -1 // fixed col position
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">selectionMode</td>
+			<td class="pub-option-val">
+				<div><input type="text" data-key="selectionMode" name="selectionMode" class="item-val"
+						value="multiple-cell"></div>
+				<div class="field-desc">선택 방법.
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">theme</td>
+			<td class="pub-option-val">
+				<div><input type="text" data-key="theme" name="theme" class="item-val" value="light"></div>
+				<div class="field-desc">설명</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">height</td>
+			<td class="pub-option-val">
+				<div><input type="text" data-key="height" name="height" class="item-val" value="auto"></div>
+				<div class="field-desc">설명</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">itemMaxCount</td>
+			<td class="pub-option-val">
+				<div><select class="item-val" data-key="itemMaxCount">
+						<option value="-1" selected="">-1</option>
+						<option></option>
+						<option value="1000">1000</option>
+						<option value="2000">2000</option>
+						<option value="3000">3000</option>
+						<option value="4000">4000</option>
+						<option value="5000">5000</option>
+					</select></div>
+				<div class="field-desc">add시 item max로 유지할 카운트
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">tColItem</td>
+			<td class="pub-option-val">
+				<div>array value</div>
+				<div class="field-desc"> ,tColItem : [] //head item
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">theadGroup</td>
+			<td class="pub-option-val">
+				<div>array value</div>
+				<div class="field-desc">head group
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">tbodyItem</td>
+			<td class="pub-option-val">
+				<div>array value</div>
+				<div class="field-desc">body item
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">tbodyGroup</td>
+			<td class="pub-option-val">
+				<div>array value</div>
+				<div class="field-desc">body group
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">tfootItem</td>
+			<td class="pub-option-val">
+				<div>array value</div>
+				<div class="field-desc">foot item
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">page</td>
+			<td class="pub-option-val">
+				<div><input type="radio" data-key="page" name="page" class="item-val" value="true">true<input
+						type="radio" data-key="page" name="page" class="item-val" value="false" checked="">false</div>
+				<div class="field-desc">paging info
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">message</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">empty</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="empty" name="empty" class="item-val"
+											value="no data"></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">pageStatus</td>
+								<td class="pub-option-val">
+									<div>function value</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">i18n</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">setting.label</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="setting.label" name="setting.label"
+											class="item-val" value="설정"></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">search.button</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="search.button" name="search.button"
+											class="item-val" value="검색"></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">setting.speed.label</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="setting.speed.label" name="setting.speed.label"
+											class="item-val" value="스크롤속도"></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">setting.column.fixed.label</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="setting.column.fixed.label"
+											name="setting.column.fixed.label" class="item-val" value="고정컬럼"></div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="pub-option-key">icon</td>
+			<td class="pub-option-val">
+				<div>
+					<div class="obj-desc">설명</div>
+					<table class="pub-option-sub-tbl">
+						<tbody>
+							<tr>
+								<td class="pub-option-key">sortup</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="sortup" name="sortup" class="item-val"
+											value="<svg width=" 8px"="" height="8px" viewbox="0 0 110 110"
+											style="enable-background:new 0 0 100 100;">
+										<g>
+											<polygon points="50,0 0,100 100,100" fill="#737171"></polygon>
+										</g>"&gt;
+									</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="pub-option-key">sortdown</td>
+								<td class="pub-option-val">
+									<div><input type="text" data-key="sortdown" name="sortdown" class="item-val"
+											value="<svg width=" 8px"="" height="8px" viewbox="0 0 110 110"
+											style="enable-background:new 0 0 100 100;">
+										<g>
+											<polygon points="0,0 100,0 50,90" fill="#737171"></polygon>
+										</g>"&gt;
+									</div>
+									<div class="field-desc">설명</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
 
-</pre>
+	</div>
 </div>
 
 <div class="col-lg-6 col-md-12">
-	<div class="js-option-text" >
-		Options
-		<div style="border:1px solid #eeeeee;">
-<textarea id="optionCode" name="optionCode">
-{
-	headerOptions:{
-		view : true
-		,sort : true
-		,displayLineNumber : true	 // 라인 넘버 보기.
-		,displayRowSelector : false	 // row selecotr checkbox 보기
-		,displayModifyInfo : false	 // 수정여부 보기
-		,colFixedIndex :0
-		,resize:{
-			enabled : true
-		}
-		,contextMenu :{
-			callback: function(key,sObj) {
-				console.log('header context',this,key,sObj);
+	<div class="js-result-area">
+		<div class="js-option-text" >
+			Options
+			<div style="border:1px solid #eeeeee;">
+	<textarea id="optionCode" name="optionCode">
+	{
+		headerOptions:{
+			view : true
+			,sort : true
+			,displayLineNumber : true	 // 라인 넘버 보기.
+			,displayRowSelector : false	 // row selecotr checkbox 보기
+			,displayModifyInfo : false	 // 수정여부 보기
+			,colFixedIndex :0
+			,resize:{
+				enabled : true
 			}
-			,items: [
-				{key : "refresh" , "name": "새로고침"}
-			]
-		}
-	}
-	,height : 'auto'
-	,height1:400
-	,scroll :{
-		lazyLoad : true // scroll 실시간으로 로드할지 여부 (속도에 영향으줌. )
-		,lazyLoadTime : 30 // scroll 로드 타임. 
-		,verticalWidth: 10
-		,horizontalHeight: 10
-	}
-	,autoResize : true
-	//,bigData :false
-	,bigData : {
-		enabled : true 
-		,gridCount : 20		// 화면에 한꺼번에 그리드 할 데이타 gridcount * 3 이 한꺼번에 그려진다. 
-		,spaceUnitHeight : 100000	// 그리드 공백 높이 지정
-		,horizontalEnableCount : 50
-	}
-	,message :{
-		'asdf':''
-		,empty: '데이타 없음'
-		//,empty: function (){ return '데이타 없음'}
-		
-	}
-	,page : false
-	,rowOptions :{
-		height : 50
-		,click : function (idx, item){
-			//console.log(idx, item);
-		}
-		,contextMenu :{
-			beforeSelect :function (){
-				$(this).trigger('click');
+			,contextMenu :{
+				callback: function(key,sObj) {
+					console.log('header context',this,key,sObj);
+				}
+				,items: [
+					{key : "refresh" , "name": "새로고침"}
+				]
 			}
-			,callback: function(key,sObj) {
-				console.log(this,key,sObj);
+		}
+		,height : 'auto'
+		,height1:400
+		,scroll :{
+			lazyLoad : true // scroll 실시간으로 로드할지 여부 (속도에 영향으줌. )
+			,lazyLoadTime : 30 // scroll 로드 타임. 
+			,verticalWidth: 10
+			,horizontalHeight: 10
+		}
+		,autoResize : true
+		//,bigData :false
+		,bigData : {
+			enabled : true 
+			,gridCount : 20		// 화면에 한꺼번에 그리드 할 데이타 gridcount * 3 이 한꺼번에 그려진다. 
+			,spaceUnitHeight : 100000	// 그리드 공백 높이 지정
+			,horizontalEnableCount : 50
+		}
+		,message :{
+			'asdf':''
+			,empty: '데이타 없음'
+			//,empty: function (){ return '데이타 없음'}
+			
+		}
+		,page : false
+		,rowOptions :{
+			height : 50
+			,click : function (idx, item){
+				//console.log(idx, item);
+			}
+			,contextMenu :{
+				beforeSelect :function (){
+					$(this).trigger('click');
+				}
+				,callback: function(key,sObj) {
+					console.log(this,key,sObj);
 
-				if(key =='copy'){
-					gridObj.copyData();
+					if(key =='copy'){
+						gridObj.copyData();
+					}
 				}
+				,items: [
+					{key : "refresh" , "name": "새로고침"}
+					,{key : "copy" , "name": "복사"}
+					,{key : "sql_create", "name": "sql생성" 
+						,subMenu: [
+							{ key : "selectStar","name": "select *" , mode: "selectStar"}
+							,{ key : "select","name": "select column" ,mode:"select"}
+							,{ key : "insert","name": "insert" , mode:"insert"}
+							,{ key : "update","name": "update" ,mode:"update"}
+							,{ key : "delete","name": "delete" ,mode:"delete"}
+							,{ key : "drop","name": "drop" , mode:"drop"}
+						]
+					}
+					,{key : "create_ddl","name": "DDL 보기" 
+						
+					}
+					,{key : "mybatis-sql_create","name": "mybatis Sql생성" 
+						,subMenu : [
+							{ key : "mybatis_insert","name": "insert" ,mode:"insert" ,param_yn:'Y'}
+							,{ key : "mybatis_update","name": "update" ,mode:"update" ,param_yn:'Y'}
+							,{ key : "mybatis_delete","name": "delete" ,mode:"delete",param_yn:'Y'}
+						]
+					}
+					,{key :'export', "name": "내보내기" 
+						,subMenu:[
+							{key : "export_data","name": "데이타 내보내기"}
+							,{key : "export_column","name": "컬럼정보 내보내기"}
+						]
+					}
+				]
 			}
-			,items: [
-				{key : "refresh" , "name": "새로고침"}
-				,{key : "copy" , "name": "복사"}
-				,{key : "sql_create", "name": "sql생성" 
-					,subMenu: [
-						{ key : "selectStar","name": "select *" , mode: "selectStar"}
-						,{ key : "select","name": "select column" ,mode:"select"}
-						,{ key : "insert","name": "insert" , mode:"insert"}
-						,{ key : "update","name": "update" ,mode:"update"}
-						,{ key : "delete","name": "delete" ,mode:"delete"}
-						,{ key : "drop","name": "drop" , mode:"drop"}
-					]
-				}
-				,{key : "create_ddl","name": "DDL 보기" 
-					
-				}
-				,{key : "mybatis-sql_create","name": "mybatis Sql생성" 
-					,subMenu : [
-						{ key : "mybatis_insert","name": "insert" ,mode:"insert" ,param_yn:'Y'}
-						,{ key : "mybatis_update","name": "update" ,mode:"update" ,param_yn:'Y'}
-						,{ key : "mybatis_delete","name": "delete" ,mode:"delete",param_yn:'Y'}
-					]
-				}
-				,{key :'export', "name": "내보내기" 
-					,subMenu:[
-						{key : "export_data","name": "데이타 내보내기"}
-						,{key : "export_column","name": "컬럼정보 내보내기"}
-					]
-				}
-			]
 		}
 	}
-}
-</textarea>
+	</textarea>
+			</div>
 		</div>
-	</div>
-	<div class="js-run-area">
-		<div>
-			<i class="fa fa-address-book" aria-hidden="true"></i>
-			column : <select id="columnCount">
-				<option value="5">5</option>
-				<option value="10" selected>10</option>
-				<option value="20" >20</option>
-				<option value="30">30</option>
-				<option value="40">40</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-			</select>
-			item : <select id="rowCount">
-				<option value="3">3</option>
-				<option value="0">0</option>
-				<option value="10">10</option>
-				<option value="100" selected>100</option>
-				<option value="500">500</option>
-				<option value="1000">1000</option>
-				<option value="10000">10000</option>
-				<option value="100000">100000</option>
-			</select>
-			<button type="button" onclick="fn_init()">regrid</button>
-		</div>
-		<div>
-			<button class="exceldown" type="button">excel download</button>
-			excel download시 <br/>
-			<a href="https://github.com/eligrey/FileSaver.js/"> FileSaver.js </a> ,<a href="https://github.com/exceljs/exceljs">exceljs.js</a>필요함.
-		</div>
-		<div class="grid-view-wrapper">
-			<div id="resultEl" style="height:500px"></div>
+		<div class="js-run-area">
+			<div>
+				<i class="fa fa-address-book" aria-hidden="true"></i>
+				column : <select id="columnCount">
+					<option value="5">5</option>
+					<option value="10" selected>10</option>
+					<option value="20" >20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+				item : <select id="rowCount">
+					<option value="3">3</option>
+					<option value="0">0</option>
+					<option value="10">10</option>
+					<option value="100" selected>100</option>
+					<option value="500">500</option>
+					<option value="1000">1000</option>
+					<option value="10000">10000</option>
+					<option value="100000">100000</option>
+				</select>
+				<button type="button" class="regrid">regrid</button>
+			</div>
+			<div>
+				<button class="exceldown" type="button">excel download</button>
+				excel download시 <br/>
+				<a href="https://github.com/eligrey/FileSaver.js/"> FileSaver.js </a> ,<a href="https://github.com/exceljs/exceljs">exceljs.js</a>필요함.
+			</div>
+			<div class="js-view-area">
+				<div id="resultEl" style="height:100%"></div>
+			</div>
 		</div>
 	</div>
 </div>
 
 <script>
-
-var optEditor;
-$(document).ready(function (){
-	//$.pubGrid('#asdfasdf').resizeDraw({});
-	
-	optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
-	  lineNumbers: true,
-	  matchBrackets: true,
-	  continueComments: "Enter",
-	  extraKeys: {"Ctrl-Q": "toggleComment"}
-	});
-
-	
-	
-	fn_init();
-
-	$('.exceldown').on('click', function (){
-		var sEle = $(this);
-		var mode = sEle.attr('mode');
-		var ws_name = 'downloadExcel';
-    	
-		var allDataInfo =  $.pubGrid('#resultEl').getData({dataType:'json' ,isSelect: (mode=='select'? true :false)});
-		
-		
-    	getExcelDownload({
-			header: allDataInfo.header 
-			,data :  allDataInfo.data
-			,fileName : 'pubGridExcel'
+var demoArea = {
+	optEditor :{}
+	,init :function (){
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
 		});
-	})
-});
 
-function getItem (type){
-	var colKey = [];
-	var rowItems = [];
-	var	rowount = parseInt($('#rowCount').val(),10);
-	var	columnCount = parseInt($('#columnCount').val(),10);
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		$('.exceldown').on('click', function (){
+			var sEle = $(this);
+			var mode = sEle.attr('mode');
+			var ws_name = 'downloadExcel';
 			
-	for(var i =0 ;i <rowount; i++){
-		var tmpItem = {};
-
-		for(var j =0 ; j< columnCount ;j++){
-			var colName = 'col'+j ; 
-			tmpItem[colName] =  ('cont'+i+" _ "+j) ;
-			//tmpItem[colName] = j< 30 ? ('cont'+i+" _ "+j) :'';
-		}
-
-		rowItems.push(tmpItem)
-	}
-		
-	if(rowItems.length > 0){
-		var colFirstItem = rowItems[0];
-		
-		for(var key in colFirstItem){
-			colKey.push( {
-				key :key
-				,label: key
-				,width:100
+			var allDataInfo =  $.pubGrid('#resultEl').getData({dataType:'json' ,isSelect: (mode=='select'? true :false)});
+						
+			getExcelDownload({
+				header: allDataInfo.header 
+				,data :  allDataInfo.data
+				,fileName : 'pubGridExcel'
 			});
-		}
+		});
+
+		var _this =this; 
+		$('.regrid').on('click',function (e){
+			_this.view();
+		})
 	}
-	
-	return {
-		"colKey": colKey
-		,"rowItems": rowItems
-	}; 
+	,view : function (){
+
+		var	item=this.getItem ( 2 );
+
+		var colKey =item.colKey
+			,rowItems  = item.rowItems;
+
+		var optText = this.optEditor.getValue();
+
+		var optObj = new Function('return '+ optText+';')();
+		
+		optObj.tbodyItem =rowItems;
+		optObj.tColItem =colKey;
+		
+		gridObj = $.pubGrid('#resultEl',optObj);
+	}
+	,getItem : function(type){
+		var colKey = [];
+		var rowItems = [];
+		var	rowount = parseInt($('#rowCount').val(),10);
+		var	columnCount = parseInt($('#columnCount').val(),10);
+				
+		for(var i =0 ;i <rowount; i++){
+			var tmpItem = {};
+
+			for(var j =0 ; j< columnCount ;j++){
+				var colName = 'col'+j ; 
+				tmpItem[colName] =  ('cont'+i+" _ "+j) ;
+			}
+
+			rowItems.push(tmpItem)
+		}
+			
+		if(rowItems.length > 0){
+			var colFirstItem = rowItems[0];
+			
+			for(var key in colFirstItem){
+				colKey.push( {
+					key :key
+					,label: key
+					,width:100
+				});
+			}
+		}
+		
+		return {
+			"colKey": colKey
+			,"rowItems": rowItems
+		}; 
+	}
 }
 
-
-function fn_init(){
-	
-	var	item=getItem ( 2 );
-
-	var colKey =item.colKey
-		,rowItems  = item.rowItems;
-	
-	gridDraw('#resultEl',colKey, rowItems);
-	//gridDraw('#asdfasdf1',aaa, colItem);
-}
-
-var gridObj;
-function gridDraw(selector, colKey, rowItems){
-
-	var optText = optEditor.getValue();
-
-	var optObj = new Function('return '+ optText+';')();
-	
-	optObj.tbodyItem =rowItems;
-	optObj.tColItem =colKey;
-	
-	gridObj = $.pubGrid(selector,optObj);
-}
+ 
+$(function (){
+	demoArea.init();
+})
 
 </script>
 
