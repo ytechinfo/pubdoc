@@ -1057,7 +1057,7 @@ Plugin.prototype ={
 			,vArrowWidth = _this.options.scroll.vertical.width-2
 			,hArrowWidth = _this.options.scroll.horizontal.height-2;
 	
-		return '<div class="pubGrid-wrapper" tabindex="0" style="outline: none !important;"><div id="'+_this.prefix+'_pubGrid" class="pubGrid pubGrid-noselect"  style="overflow:hidden;width:'+_this.config.container.width+'px;">'
+		return '<div class="pubGrid-wrapper"><div id="'+_this.prefix+'_pubGrid" class="pubGrid pubGrid-noselect" tabindex="0" style="outline: none !important;overflow:hidden;width:'+_this.config.container.width+'px;">'
 			+' 	<div id="'+_this.prefix+'_container" class="pubGrid-container" style="overflow:hidden;">'
 			+'    <div class="pubGrid-setting-wrapper pubGrid-layer" data-pubgrid-layer="'+_this.prefix+'"><div class="pubGrid-setting"><svg version="1.1" width="'+vArrowWidth+'px" height="'+vArrowWidth+'px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;">	'
 			+'<g><path id="'+_this.prefix+'_settingBtn" d="M51.22,21h-5.052c-0.812,0-1.481-0.447-1.792-1.197s-0.153-1.54,0.42-2.114l3.572-3.571	'
@@ -3168,12 +3168,19 @@ Plugin.prototype ={
 			_this.config.focus = true;
 		})
 		
+		_this.element.pubGrid.on('blur.'+_this.prefix,function (e){
+			_this.config.focus = false;
+		})
+		
 		// focus out
 		$(document).on('mousedown.'+_this.prefix, 'html', function (e) {
 			if(e.which !==2 && $(e.target).closest('#'+_this.prefix+'_pubGrid').length < 1){
 				_this.config.focus = false;
 			}
+			
 		});
+
+		
 		
 		// window keydown 처리.  tabindex 처리 확인 해볼것.
 		$(window).on("keydown." + _this.prefix, function (e) {
