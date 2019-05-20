@@ -1,3 +1,99 @@
+$(function (){
+	$('.toggle-btn').on('click', function (){
+		var sel = $(this);
+		var toggleSelector = sel.closest('[toggle-selector]');
+		
+		var selectorVal = toggleSelector.attr('toggle-selector'); 
+		var targetEl = $(selectorVal);
+
+		if(targetEl.is(':visible')){
+			targetEl.addClass('hidden');
+		}else{
+			targetEl.removeClass('hidden');
+		}
+	})
+})
+
+// 옵션 셋팅 값 얻기
+function getDescSettingValue(){
+	var opt = {};
+	var fullKey = '';
+	$('.option-desc-area .item-val').each(function (i , item){
+		var sel = $(this);
+		fullKey = '';
+
+		var defaultVal = sel.attr('data-default')
+			,selectVal = sel.val();
+
+		if(sel.is('input[type="radio"]')){
+			if(sel.is(':checked')){
+				if(defaultVal != 'Y'){
+					fullKey = sel.attr('data-full-key'); 
+				}
+			}
+			selectVal = Boolean(selectVal);
+		}else{
+			if(sel.is('input[type="number"]')){
+				selectVal = parseInt(selectVal ,10);
+			}
+
+			if(defaultVal != selectVal){
+				fullKey = sel.attr('data-full-key'); 
+			}
+		}
+
+		if(fullKey != ''){
+			var keyArr = fullKey.split(';');
+
+			var tmpSubObj =opt;
+			for(var j =0, len = keyArr.length; j < len; j++){
+				var tmpKey = keyArr[j];
+				if(j+1 >= len){
+					tmpSubObj[tmpKey] = selectVal;
+				}else{
+					if(typeof tmpSubObj[tmpKey] === 'undefined'){
+						tmpSubObj[tmpKey] = {};
+					}
+					
+					tmpSubObj = tmpSubObj[tmpKey];
+				}
+			}
+		}
+	})
+
+	return opt;
+}
+
+
+function objectMerge() {
+		
+	var objMergeRecursive = function (dst, src) {
+			
+		for (var p in src) {
+			if (!src.hasOwnProperty(p)) {continue;}
+			
+			var srcItem = src[p] ;
+			if (srcItem=== undefined) {continue;}
+			
+			if ( typeof srcItem!== 'object' || srcItem=== null) {
+				dst[p] = srcItem;
+			} else if (typeof dst[p]!=='object' || dst[p] === null) {
+				dst[p] = objMergeRecursive(srcItem.constructor===Array ? [] : {}, srcItem);
+			} else {
+				objMergeRecursive(dst[p], srcItem);
+			}
+		}
+		return dst;
+	}
+
+	var reval = arguments[0];
+	if (typeof reval !== 'object' || reval === null) {	return reval;}
+	for (var i = 1, il = arguments.length; i < il; i++) {
+		objMergeRecursive(reval, arguments[i]);
+	}
+	return reval;
+}
+
 
 /* exceljs ie 처리 위해 추가. */
 if (!Object.assign) {

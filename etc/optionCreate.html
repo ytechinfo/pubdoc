@@ -192,14 +192,14 @@
     
     result html
     <div id="resultSourceArea">
-        <table class="result-html-area">
+        <table class="option-desc-area">
             <thead>
                 <tr>
                     <th>옵션명</th>
                     <th>옵션값</th>
                 </tr>
             </thead>
-            <tbody id="optPreviewArea">
+            <tbody id="optDescPreviewArea">
 
             </tbody>
         </table>
@@ -214,9 +214,11 @@
 
 <script>
 var optionsChg = {
-    init : function (){
+    excludeKey : ['icon'] // 제외 키 하위 구분자 (;)
+    ,init : function (){
         this.initEvt();
     }
+    // 이벤트 초기화
     ,initEvt : function (){
         var _this =this; 
 
@@ -225,19 +227,22 @@ var optionsChg = {
 
             $('#changeHtml').val($.trim($('#resultSourceArea').html()));
         });
-
         $('.opt-change').trigger('click');
+
+
     }
+    // 옵션 변경. 
     ,change : function (){
         var optText = $('#optionText').val();
 
         var optObj = new Function('return '+ optText+';')();
 
-        var strHtm = this.getOptHtml(optObj, false ,optText);
+        var strHtm = this.getOptHtml(optObj, '', false,optText);
       
-        $('#optPreviewArea').empty().html(strHtm);
+        $('#optDescPreviewArea').empty().html(strHtm);
     }
-    ,getOptHtml : function (optObj, childFlag ,optText){
+    // option html변경. 
+    ,getOptHtml : function (optObj,parentKey, childFlag ,optText){
         var strHtm = [];
 
         if(childFlag){
@@ -246,7 +251,7 @@ var optionsChg = {
         for(var key in optObj){
             var optObjVal = optObj[key]; 
 
-            strHtm.push(this.getOptValTab(key,optObjVal,optText));
+            strHtm.push(this.getOptValTab(key, optObjVal, parentKey, optText));
         }
         if(childFlag){
             strHtm.push('</table>');
@@ -254,7 +259,8 @@ var optionsChg = {
 
         return strHtm.join('');
     }
-    ,getOptValTab : function (key,optObjVal,optText){
+    // 옵션 value html template생성. 
+    ,getOptValTab : function (key, optObjVal, parentKey, optText){
         var strHtm = [];
 
         strHtm.push('<tr>');
@@ -262,22 +268,31 @@ var optionsChg = {
 
         var reval ='';
         var isObjectFlag = false;
-        var desc = this.getDesc(key,optText); 
+        var desc = this.getDesc(key,optText);
+        
+        var fullKey = parentKey ==''? key : parentKey + ';'+ key; 
+
+
+        if(this.excludeKey.indexOf(fullKey) > -1){
+            return '';
+        }
+
         if($.isNumeric(optObjVal)){
-            reval= this.getSelectBoxVal(key,optObjVal);
+            reval ='<input type="number" data-key="'+key+'" data-full-key="'+fullKey+'" name="'+fullKey+'" class="item-val" data-default="'+(optObjVal)+'" value="'+optObjVal+'">';
+            //reval= this.getSelectBoxVal(key,fullKey, optObjVal);
         }else if(typeof optObjVal=== 'boolean'){
             var flag = optObjVal ==true;  
-            reval+='<input type="radio" data-key="'+key+'" name="'+key+'" class="item-val" value="true" '+(flag===true?'checked':'')+'>true';
-            reval+='<input type="radio" data-key="'+key+'" name="'+key+'" class="item-val" value="false" '+(flag===false?'checked':'')+'>false';
+            reval+='<input type="radio" data-key="'+key+'" data-full-key="'+fullKey+'" name="'+fullKey+'" class="item-val" data-default="'+(flag===true?'Y':'')+'" value="true" '+(flag===true?'checked':'')+'>true';
+            reval+='<input type="radio" data-key="'+key+'" data-full-key="'+fullKey+'" name="'+fullKey+'" class="item-val" data-default="'+(flag===false?'Y':'')+'" value="false" '+(flag===false?'checked':'')+'>false';
         }else if(typeof optObjVal=== 'string'){
-            reval= '<input type="text" data-key="'+key+'" name="'+key+'" class="item-val" value="'+optObjVal+'">';
+            reval= '<input type="text" data-key="'+key+'" data-full-key="'+fullKey+'" name="'+fullKey+'" class="item-val"  data-default="'+(optObjVal)+'" value="'+optObjVal+'" >';
         }else if(Array.isArray(optObjVal)){
             reval ='array value';
         }else if(typeof optObjVal=== 'function'){
             reval ='function value';
         }else if(typeof optObjVal=== 'object'){
             isObjectFlag = true; 
-            reval ='<div class="obj-desc">'+desc+'</div>'+this.getOptHtml(optObjVal,true, optText);
+            reval ='<div class="obj-desc">'+desc+'</div>'+this.getOptHtml(optObjVal, fullKey, true, optText);
         }
 
         strHtm.push('<td class="pub-option-val"><div>'+reval+'</div>'+(!isObjectFlag?'<div class="field-desc">'+desc+'</div>':'')+'</td>');
@@ -285,9 +300,10 @@ var optionsChg = {
 
         return strHtm.join('');
     }
-    ,getSelectBoxVal:function (key,optObjVal){
+    // select box value 
+    ,getSelectBoxVal:function (key,fullKey,optObjVal){
         var reval = [];
-        reval.push('<select class="item-val" data-key="'+key+'">')
+        reval.push('<select class="item-val" data-key="'+key+'" data-full-key="'+fullKey+'" data-default="'+(optObjVal)+'">')
         if(optObjVal== -1){
             reval.push('<option value="-1" selected>-1<option>');
             for(var i=1; i<= 5;i++){

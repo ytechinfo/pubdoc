@@ -2,6 +2,10 @@ html , body {
 	width:100%;
 	height:100%;
 }
+.hidden{
+	display: none;
+}
+
 .gnb-container{
 	padding:13px 26px;
 }
@@ -20,7 +24,8 @@ html , body {
     list-style: none;
 }
 .pub-sub-navbar-fixed {
-	position: relative;
+	position: fixed;
+    width: 100%;
 	height: 64px;
 	z-index: 997;
 	background-color: #7376df;
@@ -82,15 +87,19 @@ html , body {
 }
 
 
-.js-option-area{
+.js-option-desc-area{
+	border: 1px solid #dddddd;
+	padding: 0px 3px;
+	margin: 0px -10px 20px;
+}
+.js-option-desc{
 	height: 850px;
 	overflow: auto;
-	border: 1px solid #dddddd;
-	margin: 0px -10px 20px;
 }
 .js-result-area{
 	border: 1px solid #dddddd;
 	margin: 0px -10px 10px;
+	padding: 0px 3px;
 }
 .js-option-view-area{
 	border: 1px solid #dddddd;
@@ -121,14 +130,25 @@ html , body {
     max-width: 1260px;
 }
 
+@media (min-width: 1000px){
+	.toggle-btn {
+		display: none;
+	}
+}
 
 
 /* option desc area start*/
-.result-html-area thead th {
+
+.option-desc-area {
+width: 99%;
+background: #ffffff;
+}
+
+.option-desc-area thead th {
 text-align: center;
 }
 
-.result-html-area select {
+.option-desc-area select {
 height: 25px;
 line-height: 20px;
 padding: 0px;
@@ -136,40 +156,43 @@ margin: 0px;
 min-width: 50px;
 }
 
-.result-html-area input[type="text"] {
+.option-desc-area input[type="text"] {
 width: 100%;
 border-radius: 4px;
 border: 1px solid #dddddd;
 padding: 0px 5px;
 }
 
-.result-html-area .pub-option-key > div, .result-html-area .pub-option-val > div {
+.option-desc-area .pub-option-key > div, .option-desc-area .pub-option-val > div {
 padding-left: 3px;
 }
 
-.result-html-area > tbody td {
+.option-desc-area > tbody td {
 vertical-align: top;
-border: 1px solid #747272;
+border: 1px solid #ded5d5;
 background: #ffffff;
 }
 
-.result-html-area > tbody .pub-option-key {
+.option-desc-area > tbody .pub-option-key {
 width: 150px;
 }
 
-.result-html-area > tbody .pub-option-val {
+.option-desc-area > tbody .pub-option-val {
 width: calc(100% - 150px);
 }
 
-.result-html-area .pub-option-sub-tbl {
+.option-desc-area .pub-option-sub-tbl {
 width: 100%;
 }
 
-.result-html-area .pub-option-sub-tbl > tbody .pub-option-key {
+.option-desc-area .pub-option-sub-tbl > tbody .pub-option-key {
 width: 100px;
 }
 
-.result-html-area .pub-option-sub-tbl > tbody .pub-option-val {
+.option-desc-area .pub-option-sub-tbl > tbody .pub-option-val {
 width: calc(100% - 100px);
 }
+  
+  
+  
 /* option desc area end*/

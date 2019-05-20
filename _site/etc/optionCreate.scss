@@ -8,7 +8,7 @@ html, body{
     height: 100%;
     >tbody{
         th{
-            border: 1px solid #807d7d;
+            border: 1px solid #ded5d5;
             height: 20px;
             text-align: center;
         }
@@ -29,8 +29,8 @@ html, body{
     min-height:  440px;
 }
 
-.result-html-area{
-    width: 100%;
+.option-desc-area{
+    width: 99%;
     background: #ffffff;
     thead{
         th{
@@ -61,7 +61,7 @@ html, body{
     >tbody{
         td{
             vertical-align: top;
-            border: 1px solid #747272;
+            border: 1px solid #ded5d5;
             background: #ffffff;
         
         }
@@ -86,3 +86,4 @@ html, body{
         
     }
 }
+
