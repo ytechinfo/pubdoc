@@ -2052,6 +2052,7 @@ Plugin.prototype ={
 		});
 		
 		var scrollbarDragTimeer; 
+		var startTime = '';
 		// 가로 스크롤 bar drag
 		_this.element.hScrollBar.off('touchstart.pubhscroll mousedown.pubhscroll');
 		_this.element.hScrollBar.on('touchstart.pubhscroll mousedown.pubhscroll',function (e){
@@ -2065,11 +2066,22 @@ Plugin.prototype ={
 			data.pageX = oe ? oe[0].pageX : e.pageX; 
 
 			ele.addClass('active');
-
+			
 			$(document).on('touchmove.pubhscroll mousemove.pubhscroll', function (e){
-				clearTimeout(scrollbarDragTimeer)
+				
+				if(startTime==''){
+					startTime = new Date().getTime(); 
+				}
+
+				if(new Date().getTime()-5 > startTime){
+					
+				}else{
+					clearTimeout(scrollbarDragTimeer);
+				}
+
 				scrollbarDragTimeer = setTimeout(function() {
 					_this.horizontalScroll(data, e, 'move');
+					startTime = '';
 				}, 5);
 			}).on('touchend.pubhscroll mouseup.pubhscroll mouseleave.pubhscroll', function (e){
 				ele.removeClass('active');
@@ -2094,10 +2106,20 @@ Plugin.prototype ={
 			ele.addClass('active');
 
 			$(document).on('touchmove.pubvscroll mousemove.pubvscroll', function (e){
-				clearTimeout(scrollbarDragTimeer)
+				
+				if(startTime==''){
+					startTime = new Date().getTime(); 
+				}
+
+				if(new Date().getTime()-7 > startTime){
+					
+				}else{
+					clearTimeout(scrollbarDragTimeer);
+				}
+
 				scrollbarDragTimeer = setTimeout(function() {
 					_this.verticalScroll( data,e , 'move');
-
+					startTime = '';
 					if(tooltipFlag){
 						tooltipEle.text(_this.config.scroll.viewIdx+1);
 						tooltipEle.show();
