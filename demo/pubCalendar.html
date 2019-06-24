@@ -1,0 +1,169 @@
+---
+layout: sub-demo-layout
+title : Calendar
+menuKey : pubCalendar
+
+staticResources : '<link href="/assets/pub/css/pub.calendar.css" rel="stylesheet">
+<script src="/assets/pub/dist/pub.calendar.js"></script>
+<script src="/assets/js/moment/moment.min.js"></script>
+
+'
+---
+<div class="col-md-12" style="padding:5px;">
+	<div id="calendar-area">
+		<div>
+			<button type="button" class="redrawBtn btn btn-info btn-sm">redraw</button>
+		</div>
+		<div style="height:650px;">
+			<div id="full"></div>
+		</div>		
+	</div>
+</div>
+<div class="col-lg-6 col-md-12">
+	<div class="js-option-desc-area">
+		<div class="toggle-title" toggle-selector=".js-option-desc">
+			옵션 <a href="javascript:;" class="toggle-btn">접기 / 펼치기</a>
+	 	</div>
+		<div class="js-option-desc">
+
+<!--옵션 desc start-->
+<table class="option-desc-area">
+	<thead>
+		<tr>
+			<th>옵션명</th>
+			<th>옵션값</th>
+		</tr>
+	</thead>
+	<tbody id="optDescPreviewArea"><tr><td class="pub-option-key">viewMode</td><td class="pub-option-val"><div><input type="text" data-key="viewMode" data-full-key="viewMode" name="viewMode" class="item-val" data-default="full-month" value="full-month"></div><div class="field-desc">달력 모드 (mini,full-month,full-week,full-day)
+</div></td></tr><tr><td class="pub-option-key">viewDateFormat</td><td class="pub-option-val"><div><input type="text" data-key="viewDateFormat" data-full-key="viewDateFormat" name="viewDateFormat" class="item-val" data-default="YYYY-MM-DD HH:mm" value="YYYY-MM-DD HH:mm"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">customRangeDay</td><td class="pub-option-val"><div><input type="number" data-key="customRangeDay" data-full-key="customRangeDay" name="customRangeDay" class="item-val" data-default="20" value="20"></div><div class="field-desc">viewmode가 custom 일때 일자 범위 0 ~ 선택일까지
+</div></td></tr><tr><td class="pub-option-key">useLunar</td><td class="pub-option-val"><div><input type="radio" data-key="useLunar" data-full-key="useLunar" name="useLunar" class="item-val" data-default="" value="true">true<input type="radio" data-key="useLunar" data-full-key="useLunar" name="useLunar" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">음력 기념일 사용여부.
+</div></td></tr><tr><td class="pub-option-key">useYearInput</td><td class="pub-option-val"><div><input type="radio" data-key="useYearInput" data-full-key="useYearInput" name="useYearInput" class="item-val" data-default="Y" value="true" checked="">true<input type="radio" data-key="useYearInput" data-full-key="useYearInput" name="useYearInput" class="item-val" data-default="" value="false">false</div><div class="field-desc">	,useYearInput : true //year 변경시 더블클릭하면 input 박스 나타날지 여부.
+</div></td></tr><tr><td class="pub-option-key">todayDate</td><td class="pub-option-val"><div><input type="text" data-key="todayDate" data-full-key="todayDate" name="todayDate" class="item-val" data-default="2019-06-24" value="2019-06-24"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">maxEventRow</td><td class="pub-option-val"><div><input type="number" data-key="maxEventRow" data-full-key="maxEventRow" name="maxEventRow" class="item-val" data-default="3" value="3"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">useMemorialday</td><td class="pub-option-val"><div><input type="radio" data-key="useMemorialday" data-full-key="useMemorialday" name="useMemorialday" class="item-val" data-default="Y" value="true" checked="">true<input type="radio" data-key="useMemorialday" data-full-key="useMemorialday" name="useMemorialday" class="item-val" data-default="" value="false">false</div><div class="field-desc">기념일 보기 여부 
+</div></td></tr><tr><td class="pub-option-key">width</td><td class="pub-option-val"><div><input type="text" data-key="width" data-full-key="width" name="width" class="item-val" data-default="100%" value="100%"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">height</td><td class="pub-option-val"><div><input type="number" data-key="height" data-full-key="height" name="height" class="item-val" data-default="630" value="630"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">colWidth</td><td class="pub-option-val"><div><input type="number" data-key="colWidth" data-full-key="colWidth" name="colWidth" class="item-val" data-default="25" value="25"></div><div class="field-desc">달력 컬럼 넓이
+</div></td></tr><tr><td class="pub-option-key">dayViewMode</td><td class="pub-option-val"><div><input type="number" data-key="dayViewMode" data-full-key="dayViewMode" name="dayViewMode" class="item-val" data-default="2" value="2"></div><div class="field-desc">mode 1 default 양력, 2 기념일설명, 3 음력. , 4 음력/기념일. 
+</div></td></tr><tr><td class="pub-option-key">eventDisplay</td><td class="pub-option-val"><div><input type="radio" data-key="eventDisplay" data-full-key="eventDisplay" name="eventDisplay" class="item-val" data-default="Y" value="true" checked="">true<input type="radio" data-key="eventDisplay" data-full-key="eventDisplay" name="eventDisplay" class="item-val" data-default="" value="false">false</div><div class="field-desc">mini 달력일 경우만 해당
+</div></td></tr><tr><td class="pub-option-key">eventDisplayHtm</td><td class="pub-option-val"><div><input type="text" data-key="eventDisplayHtm" data-full-key="eventDisplayHtm" name="eventDisplayHtm" class="item-val" data-default="<span>O</span>" value="<span>O</span>"></div><div class="field-desc">mini 달력일 경우만 해당
+</div></td></tr><tr><td class="pub-option-key">memorialDayInfo</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"></table></div></td></tr><tr><td class="pub-option-key">eventDisplayClass</td><td class="pub-option-val"><div><input type="text" data-key="eventDisplayClass" data-full-key="eventDisplayClass" name="eventDisplayClass" class="item-val" data-default="select" value="select"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">theme</td><td class="pub-option-val"><div><input type="text" data-key="theme" data-full-key="theme" name="theme" class="item-val" data-default="pub-calendar-default" value="pub-calendar-default"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">memorialDays</td><td class="pub-option-val"><div>array value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">prefixId</td><td class="pub-option-val"><div><input type="text" data-key="prefixId" data-full-key="prefixId" name="prefixId" class="item-val" data-default="pubCID_" value="pubCID_"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">eventMoreClick</td><td class="pub-option-val"><div><input type="radio" data-key="eventMoreClick" data-full-key="eventMoreClick" name="eventMoreClick" class="item-val" data-default="" value="true">true<input type="radio" data-key="eventMoreClick" data-full-key="eventMoreClick" name="eventMoreClick" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">더보기 버튼 클릭 이벤트.
+</div></td></tr><tr><td class="pub-option-key">eventClick</td><td class="pub-option-val"><div><input type="radio" data-key="eventClick" data-full-key="eventClick" name="eventClick" class="item-val" data-default="" value="true">true<input type="radio" data-key="eventClick" data-full-key="eventClick" name="eventClick" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">일정 클릭.
+</div></td></tr><tr><td class="pub-option-key">eventDelete</td><td class="pub-option-val"><div><input type="radio" data-key="eventDelete" data-full-key="eventDelete" name="eventDelete" class="item-val" data-default="" value="true">true<input type="radio" data-key="eventDelete" data-full-key="eventDelete" name="eventDelete" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">일정 삭제.
+</div></td></tr><tr><td class="pub-option-key">eventDetail</td><td class="pub-option-val"><div><input type="radio" data-key="eventDetail" data-full-key="eventDetail" name="eventDetail" class="item-val" data-default="" value="true">true<input type="radio" data-key="eventDetail" data-full-key="eventDetail" name="eventDetail" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">일정 상세보기.
+</div></td></tr><tr><td class="pub-option-key">backgroundColor</td><td class="pub-option-val"><div><input type="text" data-key="backgroundColor" data-full-key="backgroundColor" name="backgroundColor" class="item-val" data-default="#A6C9F5" value="#A6C9F5"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">timeBackgroundColor</td><td class="pub-option-val"><div><input type="text" data-key="timeBackgroundColor" data-full-key="timeBackgroundColor" name="timeBackgroundColor" class="item-val" data-default="#E4F7F8" value="#E4F7F8"></div><div class="field-desc">시간별 일정 바탕색.
+</div></td></tr><tr><td class="pub-option-key">autoResize</td><td class="pub-option-val"><div><input type="radio" data-key="autoResize" data-full-key="autoResize" name="autoResize" class="item-val" data-default="" value="true">true<input type="radio" data-key="autoResize" data-full-key="autoResize" name="autoResize" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">dayEventSize</td><td class="pub-option-val"><div><div class="obj-desc">상세창 사이즈.
+</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">w</td><td class="pub-option-val"><div><input type="number" data-key="w" data-full-key="dayEventSize;w" name="dayEventSize;w" class="item-val" data-default="300" value="300"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">h</td><td class="pub-option-val"><div><input type="number" data-key="h" data-full-key="dayEventSize;h" name="dayEventSize;h" class="item-val" data-default="170" value="170"></div><div class="field-desc">달력 컬럼 넓이
+</div></td></tr></tbody></table></div></td></tr><tr><td class="pub-option-key">_date</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">yyyy</td><td class="pub-option-val"><div><input type="text" data-key="yyyy" data-full-key="_date;yyyy" name="_date;yyyy" class="item-val" data-default="" value=""></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">mm</td><td class="pub-option-val"><div><input type="text" data-key="mm" data-full-key="_date;mm" name="_date;mm" class="item-val" data-default="" value=""></div><div class="field-desc">설명</div></td></tr></tbody></table></div></td></tr><tr><td class="pub-option-key">lang</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">mini</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">sun</td><td class="pub-option-val"><div><input type="text" data-key="sun" data-full-key="lang;mini;sun" name="lang;mini;sun" class="item-val" data-default="일" value="일"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">mon</td><td class="pub-option-val"><div><input type="text" data-key="mon" data-full-key="lang;mini;mon" name="lang;mini;mon" class="item-val" data-default="월" value="월"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">tue</td><td class="pub-option-val"><div><input type="text" data-key="tue" data-full-key="lang;mini;tue" name="lang;mini;tue" class="item-val" data-default="화" value="화"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">wed</td><td class="pub-option-val"><div><input type="text" data-key="wed" data-full-key="lang;mini;wed" name="lang;mini;wed" class="item-val" data-default="수" value="수"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">thu</td><td class="pub-option-val"><div><input type="text" data-key="thu" data-full-key="lang;mini;thu" name="lang;mini;thu" class="item-val" data-default="목" value="목"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">fri</td><td class="pub-option-val"><div><input type="text" data-key="fri" data-full-key="lang;mini;fri" name="lang;mini;fri" class="item-val" data-default="금" value="금"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">sat</td><td class="pub-option-val"><div><input type="text" data-key="sat" data-full-key="lang;mini;sat" name="lang;mini;sat" class="item-val" data-default="토" value="토"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">year</td><td class="pub-option-val"><div><input type="text" data-key="year" data-full-key="lang;mini;year" name="lang;mini;year" class="item-val" data-default="년" value="년"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">month</td><td class="pub-option-val"><div><input type="text" data-key="month" data-full-key="lang;mini;month" name="lang;mini;month" class="item-val" data-default="월" value="월"></div><div class="field-desc">설명</div></td></tr></tbody></table></div></td></tr><tr><td class="pub-option-key">full</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">sun</td><td class="pub-option-val"><div><input type="text" data-key="sun" data-full-key="lang;full;sun" name="lang;full;sun" class="item-val" data-default="Sun" value="Sun"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">mon</td><td class="pub-option-val"><div><input type="text" data-key="mon" data-full-key="lang;full;mon" name="lang;full;mon" class="item-val" data-default="Mon" value="Mon"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">tue</td><td class="pub-option-val"><div><input type="text" data-key="tue" data-full-key="lang;full;tue" name="lang;full;tue" class="item-val" data-default="Tue" value="Tue"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">wed</td><td class="pub-option-val"><div><input type="text" data-key="wed" data-full-key="lang;full;wed" name="lang;full;wed" class="item-val" data-default="Wed" value="Wed"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">thu</td><td class="pub-option-val"><div><input type="text" data-key="thu" data-full-key="lang;full;thu" name="lang;full;thu" class="item-val" data-default="Thu" value="Thu"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">fri</td><td class="pub-option-val"><div><input type="text" data-key="fri" data-full-key="lang;full;fri" name="lang;full;fri" class="item-val" data-default="Fri" value="Fri"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">sat</td><td class="pub-option-val"><div><input type="text" data-key="sat" data-full-key="lang;full;sat" name="lang;full;sat" class="item-val" data-default="Sat" value="Sat"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">year</td><td class="pub-option-val"><div><input type="text" data-key="year" data-full-key="lang;full;year" name="lang;full;year" class="item-val" data-default="" value=""></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">month</td><td class="pub-option-val"><div><input type="text" data-key="month" data-full-key="lang;full;month" name="lang;full;month" class="item-val" data-default="" value=""></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">event_date</td><td class="pub-option-val"><div><input type="text" data-key="event_date" data-full-key="lang;full;event_date" name="lang;full;event_date" class="item-val" data-default="일시" value="일시"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">delete_btn</td><td class="pub-option-val"><div><input type="text" data-key="delete_btn" data-full-key="lang;full;delete_btn" name="lang;full;delete_btn" class="item-val" data-default="삭제" value="삭제"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">detail_btn</td><td class="pub-option-val"><div><input type="text" data-key="detail_btn" data-full-key="lang;full;detail_btn" name="lang;full;detail_btn" class="item-val" data-default="상세" value="상세"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">save_btn</td><td class="pub-option-val"><div><input type="text" data-key="save_btn" data-full-key="lang;full;save_btn" name="lang;full;save_btn" class="item-val" data-default="저장" value="저장"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">delete.confirm.msg</td><td class="pub-option-val"><div><input type="text" data-key="delete.confirm.msg" data-full-key="lang;full;delete.confirm.msg" name="lang;full;delete.confirm.msg" class="item-val" data-default="삭제하시겠습니까?" value="삭제하시겠습니까?"></div><div class="field-desc">설명</div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><td class="pub-option-key">event</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">type</td><td class="pub-option-val"><div><input type="text" data-key="type" data-full-key="event;type" name="event;type" class="item-val" data-default="local" value="local"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">colModel</td><td class="pub-option-val"><div><div class="obj-desc">설명</div><table class="pub-option-sub-tbl"><tbody><tr><td class="pub-option-key">start</td><td class="pub-option-val"><div><input type="text" data-key="start" data-full-key="event;colModel;start" name="event;colModel;start" class="item-val" data-default="start" value="start"></div><div class="field-desc">일정 시작일자.
+</div></td></tr><tr><td class="pub-option-key">end</td><td class="pub-option-val"><div><input type="text" data-key="end" data-full-key="event;colModel;end" name="event;colModel;end" class="item-val" data-default="end" value="end"></div><div class="field-desc">일정 종료일자
+</div></td></tr><tr><td class="pub-option-key">title</td><td class="pub-option-val"><div><input type="text" data-key="title" data-full-key="event;colModel;title" name="event;colModel;title" class="item-val" data-default="title" value="title"></div><div class="field-desc">일정제목
+</div></td></tr><tr><td class="pub-option-key">repeat</td><td class="pub-option-val"><div><input type="text" data-key="repeat" data-full-key="event;colModel;repeat" name="event;colModel;repeat" class="item-val" data-default="repeat" value="repeat"></div><div class="field-desc">(반복일정) y(년),m(월) , w(주) ,d(일)
+</div></td></tr><tr><td class="pub-option-key">repeatInfo</td><td class="pub-option-val"><div><input type="text" data-key="repeatInfo" data-full-key="event;colModel;repeatInfo" name="event;colModel;repeatInfo" class="item-val" data-default="repeatInfo" value="repeatInfo"></div><div class="field-desc">(반복일정) 정보
+</div></td></tr><tr><td class="pub-option-key">repeatException</td><td class="pub-option-val"><div><input type="text" data-key="repeatException" data-full-key="event;colModel;repeatException" name="event;colModel;repeatException" class="item-val" data-default="repeatException" value="repeatException"></div><div class="field-desc">(반복일정) 예외
+</div></td></tr><tr><td class="pub-option-key">startTime</td><td class="pub-option-val"><div><input type="text" data-key="startTime" data-full-key="event;colModel;startTime" name="event;colModel;startTime" class="item-val" data-default="startTime" value="startTime"></div><div class="field-desc">(반복일정) 시작 시간
+</div></td></tr><tr><td class="pub-option-key">endTime</td><td class="pub-option-val"><div><input type="text" data-key="endTime" data-full-key="event;colModel;endTime" name="event;colModel;endTime" class="item-val" data-default="endTime" value="endTime"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">days</td><td class="pub-option-val"><div><input type="text" data-key="days" data-full-key="event;colModel;days" name="event;colModel;days" class="item-val" data-default="day" value="day"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">cycle</td><td class="pub-option-val"><div><input type="text" data-key="cycle" data-full-key="event;colModel;cycle" name="event;colModel;cycle" class="item-val" data-default="cycle" value="cycle"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">color</td><td class="pub-option-val"><div><input type="text" data-key="color" data-full-key="event;colModel;color" name="event;colModel;color" class="item-val" data-default="color" value="color"></div><div class="field-desc">일정 색깔지정.
+</div></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><td class="pub-option-key">beforeCalendar</td><td class="pub-option-val"><div>function value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">afterCalendar</td><td class="pub-option-val"><div>function value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">dayClick</td><td class="pub-option-val"><div><input type="radio" data-key="dayClick" data-full-key="dayClick" name="dayClick" class="item-val" data-default="" value="true">true<input type="radio" data-key="dayClick" data-full-key="dayClick" name="dayClick" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">달력 클릭 이벤트
+</div></td></tr><tr><td class="pub-option-key">eventWrite</td><td class="pub-option-val"><div><input type="radio" data-key="eventWrite" data-full-key="eventWrite" name="eventWrite" class="item-val" data-default="" value="true">true<input type="radio" data-key="eventWrite" data-full-key="eventWrite" name="eventWrite" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">일정 쓰기
+</div></td></tr><tr><td class="pub-option-key">eventWriteCallback</td><td class="pub-option-val"><div><input type="radio" data-key="eventWriteCallback" data-full-key="eventWriteCallback" name="eventWriteCallback" class="item-val" data-default="" value="true">true<input type="radio" data-key="eventWriteCallback" data-full-key="eventWriteCallback" name="eventWriteCallback" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">일정 저장 버튼 클릭시
+</div></td></tr></tbody>
+</table>
+<!--옵션 desc end-->
+
+
+		</div>
+	</div>
+</div>
+
+<div class="col-lg-6 col-md-12">
+	
+	<div class="js-result-area">
+		<div class="toggle-title" toggle-selector=".js-option-text">
+			선택한 옵션값
+		</div>
+		<div class="js-option-text" >
+			Options
+			<div style="border:1px solid #eeeeee;">
+	<textarea id="optionCode" name="optionCode">
+			{
+				todayDate : '2016-07-13'
+				,viewMode : 'full-month'
+				,useLunar : true
+				,dayViewMode : '4'
+				,maxEventRow : 3
+				,eventWrite1 :function (writeObj){
+					console.log('eventWrite', writeObj);
+				}
+				,eventWriteCallback : function (writeInfo){
+					console.log('writeInfo : ', writeInfo);
+				}
+				,event : {
+					type :'local' //local or ajax
+					,url : 'http://www.naver.com'
+					,colModel : {
+						start : 'START_DATE'
+						,title : 'TITLE'
+						,end : 'END_DATE'
+						,startTime : 'START_HOUR'
+						,endTime :'END_HOUR'
+						,repeat:'REPEAT'
+						,repeatInfo:'REPEAT_INFO'
+					}
+				}
+			}
+	</textarea>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var demoArea = {
+	optEditor :{}
+	,init :function (){
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		var _this =this; 
+
+		$.pubCalendar.setMemorialDay([
+			{date:'1002',desc : '대체공휴일' ,isLunar: false ,holiday :  true}
+			,{date:'1006',desc : '대체공휴일' ,isLunar: false ,holiday :  true}
+		]);
+
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
+		});
+
+		var _this =this; 
+		$('.redrawBtn').on('click',function (e){
+			_this.view();
+		})
+	}
+	,view : function (){
+		console.log('1111111111');
+		
+		var optText = this.optEditor.getValue();
+
+		var optObj = new Function('return '+ optText+';')();
+
+		optObj = objectMerge(optObj,getDescSettingValue());
+
+		this.optEditor.setValue(JSON.stringify(optObj, null, '\t'));
+		
+	
+		optObj.event.calItems = this.getItem ();
+		
+		$.pubCalendar('#full' , optObj);
+	}
+	,getItem : function(type){
+		var items= [{"START_HOUR":"0900","WR_NO":"0000332","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160815","TITLE":"반복임...","START_DATE":"20160713"},{"START_HOUR":"0900","WR_NO":"0000500","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160915","TITLE":"일정오호후....","START_DATE":"20160801"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"0000259","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"99991231","TITLE":"제목11없음","START_DATE":"20160713","REPEAT_INFO":"{\"cycle\":\"3\",\"START_HOUR\":\"2400\",\"END_HOUR\":\"2400\",\"day\":\"0\",\"infinite\":\"Y\"}"},{"START_HOUR":"0900","REPEAT":null,"WR_NO":"000056","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160705","TITLE":"222","START_DATE":"20160705","REPEAT_INFO":"{}"},{"START_HOUR":"0530","REPEAT":null,"WR_NO":"000057","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160706","TITLE":"제목없음1","START_DATE":"20160706","REPEAT_INFO":"{}"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"000060","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"99991231","TITLE":"0일뒤","START_DATE":"20160713","REPEAT_INFO":"{\"cycle\":\"1\",\"START_HOUR\":\"2400\",\"END_HOUR\":\"2400\",\"day\":\"0\",\"infinite\":\"Y\"}"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"000061","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"99991231","TITLE":"111123","START_DATE":"20160705","REPEAT_INFO":"{\"cycle\":\"1\",\"START_HOUR\":\"2400\",\"END_HOUR\":\"2400\",\"day\":\"1\",\"infinite\":\"Y\"}"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"000062","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"99991231","TITLE":"1","START_DATE":"20160720","REPEAT_INFO":"{\"cycle\":\"1\",\"sun\":1,\"mon\":1,\"START_HOUR\":\"2400\",\"END_HOUR\":\"2400\",\"day\":\"1\",\"infinite\":\"Y\"}"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"000003","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160708","TITLE":"year 한글","START_DATE":"20160708","REPEAT_INFO":"{\"cycle\":\"1\",\"START_HOUR\":\"2400\",\"END_HOUR\":\"2400\",\"day\":\"1\"}"},{"START_HOUR":"0900","REPEAT":null,"WR_NO":"000063","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160707","TITLE":"제목없음333","START_DATE":"20160707","REPEAT_INFO":"{}"},{"START_HOUR":"0900","REPEAT":null,"WR_NO":"000064","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"20160707","TITLE":"test111","START_DATE":"20160707","REPEAT_INFO":"{}"},{"START_HOUR":"0800","REPEAT":null,"WR_NO":"000065","END_HOUR":"1230","MOD_ID":"31007117","END_DATE":"20160720","TITLE":"제목없음","START_DATE":"20160720","REPEAT_INFO":"{}"},{"START_HOUR":"0700","REPEAT":null,"WR_NO":"000066","END_HOUR":"1030","MOD_ID":"31007117","END_DATE":"20160720","TITLE":"제목없음","START_DATE":"20160720","REPEAT_INFO":"{}"},{"START_HOUR":"0630","REPEAT":null,"WR_NO":"000090","END_HOUR":"1330","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음asdf","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0630","REPEAT":null,"WR_NO":"000068","END_HOUR":"1000","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0700","REPEAT":null,"WR_NO":"000069","END_HOUR":"0930","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0730","REPEAT":null,"WR_NO":"000091","END_HOUR":"1400","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음asdf","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0700","REPEAT":null,"WR_NO":"000071","END_HOUR":"0830","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0700","REPEAT":null,"WR_NO":"000072","END_HOUR":"0830","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0830","REPEAT":null,"WR_NO":"000073","END_HOUR":"1030","MOD_ID":"31007117","END_DATE":"20160718","TITLE":"제목없음","START_DATE":"20160718","REPEAT_INFO":"{}"},{"START_HOUR":"0930","REPEAT":null,"WR_NO":"000074","END_HOUR":"1100","MOD_ID":"31007117","END_DATE":"20160721","TITLE":"제목없음","START_DATE":"20160721","REPEAT_INFO":"{}"},{"START_HOUR":"0830","REPEAT":null,"WR_NO":"000075","END_HOUR":"1100","MOD_ID":"31007117","END_DATE":"20160722","TITLE":"제목없음","START_DATE":"20160722","REPEAT_INFO":"{}"},{"START_HOUR":"1030","REPEAT":null,"WR_NO":"000092","END_HOUR":"1130","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음asd","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"0930","REPEAT":null,"WR_NO":"000083","END_HOUR":"1230","MOD_ID":"31007117","END_DATE":"20160717","TITLE":"제목없음","START_DATE":"20160717","REPEAT_INFO":"{}"},{"START_HOUR":"1200","REPEAT":null,"WR_NO":"000093","END_HOUR":"1300","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"1000","REPEAT":null,"WR_NO":"000094","END_HOUR":"1100","MOD_ID":"31007117","END_DATE":"20160719","TITLE":"제목없음","START_DATE":"20160719","REPEAT_INFO":"{}"},{"START_HOUR":"1030","REPEAT":null,"WR_NO":"000080","END_HOUR":"1300","MOD_ID":"31007117","END_DATE":"20160718","TITLE":"제목없음","START_DATE":"20160718","REPEAT_INFO":"{}"},{"START_HOUR":"1200","REPEAT":null,"WR_NO":"000084","END_HOUR":"1330","MOD_ID":"31007117","END_DATE":"20160721","TITLE":"제목없음","START_DATE":"20160721","REPEAT_INFO":"{}"},{"START_HOUR":"1200","REPEAT":null,"WR_NO":"000085","END_HOUR":"1330","MOD_ID":"31007117","END_DATE":"20160722","TITLE":"제목없음","START_DATE":"20160722","REPEAT_INFO":"{}"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"000095","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"99991231","TITLE":"화  수  목  금  토 시간\t     1  일뒤  ","START_DATE":"20160701","REPEAT_INFO":"{\"cycle\":\"1\",\"wed\":1,\"thu\":1,\"fri\":1,\"START_HOUR\":\"0900\",\"END_HOUR\":\"1800\",\"day\":\"1\",\"infinite\":\"Y\"}"},{"START_HOUR":"0900","REPEAT":"week","WR_NO":"000095","END_HOUR":"1800","MOD_ID":"31007117","END_DATE":"99991231","TITLE":"화  수  목  금  토 시간\t     1  일뒤  ","START_DATE":"20160701","REPEAT_INFO":"{\"cycle\":\"1\",\"wed\":1,\"thu\":1,\"fri\":1,\"START_HOUR\":\"0900\",\"END_HOUR\":\"1800\",\"day\":\"1\",\"infinite\":\"Y\"}"}]
+		return items; 
+	}
+}
+
+ 
+$(function (){
+	demoArea.init();
+})
+
+</script>
