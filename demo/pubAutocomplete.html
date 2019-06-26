@@ -1,0 +1,169 @@
+---
+layout: sub-demo-layout
+title : 자동완성
+menuKey : pubAutocomplete
+
+staticResources : '
+<link href="/assets/pub/css/pub.ep.css" rel="stylesheet">
+<script src="/assets/pub/dist/pub.autocomplete.js"></script>
+
+'
+---
+<div class="col-lg-6 col-md-12">
+	<div class="js-option-desc-area">
+		<div class="toggle-title" toggle-selector=".js-option-desc">
+			옵션 <a href="javascript:;" class="toggle-btn">접기 / 펼치기</a>
+	 	</div>
+		<div class="js-option-desc">
+
+<!--옵션 desc start-->
+<table class="option-desc-area">
+	<thead>
+		<tr>
+			<th>옵션명</th>
+			<th>옵션값</th>
+		</tr>
+	</thead>
+	<tbody id="optDescPreviewArea"><tr><td class="pub-option-key">_currMode</td><td class="pub-option-val"><div><input type="text" data-key="_currMode" data-full-key="_currMode" name="_currMode" class="item-val" data-default="default" value="default"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">viewAreaSelector</td><td class="pub-option-val"><div><input type="radio" data-key="viewAreaSelector" data-full-key="viewAreaSelector" name="viewAreaSelector" class="item-val" data-default="" value="true">true<input type="radio" data-key="viewAreaSelector" data-full-key="viewAreaSelector" name="viewAreaSelector" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">autocomplete 보여질 selector
+</div></td></tr><tr><td class="pub-option-key">showHideSelector</td><td class="pub-option-val"><div><input type="radio" data-key="showHideSelector" data-full-key="showHideSelector" name="showHideSelector" class="item-val" data-default="" value="true">true<input type="radio" data-key="showHideSelector" data-full-key="showHideSelector" name="showHideSelector" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">보이기, 숨기기 할  selector
+</div></td></tr><tr><td class="pub-option-key">useFilter</td><td class="pub-option-val"><div><input type="radio" data-key="useFilter" data-full-key="useFilter" name="useFilter" class="item-val" data-default="Y" value="true" checked="">true<input type="radio" data-key="useFilter" data-full-key="useFilter" name="useFilter" class="item-val" data-default="" value="false">false</div><div class="field-desc">filter 사용여부. 
+</div></td></tr><tr><td class="pub-option-key">minLength</td><td class="pub-option-val"><div><input type="number" data-key="minLength" data-full-key="minLength" name="minLength" class="item-val" data-default="1" value="1"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">autoClose</td><td class="pub-option-val"><div><input type="radio" data-key="autoClose" data-full-key="autoClose" name="autoClose" class="item-val" data-default="Y" value="true" checked="">true<input type="radio" data-key="autoClose" data-full-key="autoClose" name="autoClose" class="item-val" data-default="" value="false">false</div><div class="field-desc">자동으로 창닫을지 여부. 
+</div></td></tr><tr><td class="pub-option-key">itemkey</td><td class="pub-option-val"><div><input type="text" data-key="itemkey" data-full-key="itemkey" name="itemkey" class="item-val" data-default="title" value="title"></div><div class="field-desc">검색결과가 object인경우 검색할 object key 
+</div></td></tr><tr><td class="pub-option-key">height</td><td class="pub-option-val"><div><input type="number" data-key="height" data-full-key="height" name="height" class="item-val" data-default="200" value="200"></div><div class="field-desc">max height
+	,selectCls : 'selected'		// 선택시 표시될 클래스
+</div></td></tr><tr><td class="pub-option-key">selectCls</td><td class="pub-option-val"><div><input type="text" data-key="selectCls" data-full-key="selectCls" name="selectCls" class="item-val" data-default="selected" value="selected"></div><div class="field-desc">선택시 표시될 클래스
+</div></td></tr><tr><td class="pub-option-key">emptyMessage</td><td class="pub-option-val"><div><input type="text" data-key="emptyMessage" data-full-key="emptyMessage" name="emptyMessage" class="item-val" data-default="no data" value="no data"></div><div class="field-desc">결과 없을때 보여줄 메시지
+</div></td></tr><tr><td class="pub-option-key">searchDelay</td><td class="pub-option-val"><div><input type="number" data-key="searchDelay" data-full-key="searchDelay" name="searchDelay" class="item-val" data-default="-1" value="-1"></div><div class="field-desc">검색 지연 시간. 
+</div></td></tr><tr><td class="pub-option-key">zIndex</td><td class="pub-option-val"><div><input type="number" data-key="zIndex" data-full-key="zIndex" name="zIndex" class="item-val" data-default="99999" value="99999"></div><div class="field-desc">z-index 값
+</div></td></tr><tr><td class="pub-option-key">items</td><td class="pub-option-val"><div>array value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">charZeroConfig</td><td class="pub-option-val"><div><input type="radio" data-key="charZeroConfig" data-full-key="charZeroConfig" name="charZeroConfig" class="item-val" data-default="" value="true">true<input type="radio" data-key="charZeroConfig" data-full-key="charZeroConfig" name="charZeroConfig" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">아무것도 없을때 보여줄것이 있는경우. 
+</div></td></tr><tr><td class="pub-option-key">alwaysSourceCheck</td><td class="pub-option-val"><div><input type="radio" data-key="alwaysSourceCheck" data-full-key="alwaysSourceCheck" name="alwaysSourceCheck" class="item-val" data-default="" value="true">true<input type="radio" data-key="alwaysSourceCheck" data-full-key="alwaysSourceCheck" name="alwaysSourceCheck" class="item-val" data-default="Y" value="false" checked="">false</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">filter</td><td class="pub-option-val"><div>function value</div><div class="field-desc">검색 필터. 
+</div></td></tr><tr><td class="pub-option-key">source</td><td class="pub-option-val"><div>function value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">select</td><td class="pub-option-val"><div>function value</div><div class="field-desc">선택시 이벤트
+</div></td></tr><tr><td class="pub-option-key">focus</td><td class="pub-option-val"><div>function value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">renderItem</td><td class="pub-option-val"><div>function value</div><div class="field-desc">아이템 html 입힐때 사용.
+</div></td></tr><tr><td class="pub-option-key">hilightTemplate</td><td class="pub-option-val"><div><input type="text" data-key="hilightTemplate" data-full-key="hilightTemplate" name="hilightTemplate" class="item-val" data-default="<b>$1</b>" value="<b>$1</b>"></div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">autocompleteTemplate</td><td class="pub-option-val"><div>function value</div><div class="field-desc">설명</div></td></tr><tr><td class="pub-option-key">initTemplateElementEvent</td><td class="pub-option-val"><div>function value</div><div class="field-desc">설명</div></td></tr></tbody>
+</table>
+<!--옵션 desc end-->
+
+
+		</div>
+	</div>
+</div>
+
+<div class="col-lg-6 col-md-12">
+	
+	<div class="js-result-area">
+		<div class="js-run-area">
+			<h2>데모</h2>
+			<div style="padding:10px 0px;">
+				다시 그리기 : <button type="button" class="redrawBtn btn btn-info btn-sm">redraw</button>
+			</div>
+			<div class="js-view-area">
+				<div id="resultEl" style="height:100%">
+					자동 완성 <input type="text" class="asdf" name="autocompleteEl" id="autocompleteEl" value=""/>
+				</div>
+			</div>
+		</div>
+		<div class="toggle-title" toggle-selector=".js-option-text">
+			선택한 옵션값
+		</div>
+		<div class="js-option-text" >
+			Options
+			<div style="border:1px solid #eeeeee;">
+	<textarea id="optionCode" name="optionCode">
+		{
+			minLength : 0 // 최소 글자수 체크. 
+			,height: 160	// max height
+			,autoClose : false	// 자동으로 창닫을지 여부. 
+			,addSelector : false // autocomplete 넣을 위치의 select
+			,itemkey : 'title'	// 검색결과가 object인경우 검색할 object key 
+			,selectCls : 'selected'	// 선택시 표시될 클래스
+			,emptyMessage : 'no data'	// 결과 없을때 보여줄 메시지
+			// 검색 필터. 
+			,filter : function (itemVal , searchVal) {	
+				searchVal = searchVal.toLowerCase();
+				return ~(itemVal).toLowerCase().indexOf(searchVal);
+			}
+			// 검색할 item
+			,items :[]
+			// 아무것도 없을때 보여줄것이 있는경우. 
+			,charZeroConfig : { 
+				items :[]
+				,init : function (){
+					return 'asdfasdf';
+				}
+			}
+			//items 구할때 사용. 
+			,source: function (request, response){
+				response(this.items);
+			}
+			// 선택시 이벤트
+			,select : function (event,item){
+				console.log('onSelect : ' + item);
+			}
+			// 아이템 html 입힐때 사용.
+			,renderItem : function (matchData,item){
+				return matchData;				
+			}
+			// 검색 하이라이트 처리. 
+			,hilightTemplate : '<b>$1</b>'
+			// autocomplete template 디자인 관련
+			,autocompleteTemplate : function (baseHtml){
+				return '<div class="">'+baseHtml+'</div>';
+			}
+			// autocompleteTemplate 입혔을경우 입힌 template에 이벤트 등록시 사용. 
+			,initTemplateElementEvent : function (){
+				
+			}
+			,items: ['Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br']
+		}
+	</textarea>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var demoArea = {
+	optEditor :{}
+	,init :function (){
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
+		});
+
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		var _this =this; 
+		$('.redrawBtn').on('click',function (e){
+			_this.view();
+		})
+	}
+	,view : function (){
+
+		var	item=this.getItem ();
+
+	
+		var optText = this.optEditor.getValue();
+
+		var optObj = new Function('return '+ optText+';')();
+
+		optObj = objectMerge(optObj,getDescSettingValue());
+
+		optObj.items =item;
+		
+		$.pubAutocomplete('#autocompleteEl',optObj);
+	}
+	,getItem : function(type){
+		return ['Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br'];
+	}
+}
+
+ 
+$(function (){
+	demoArea.init();
+})
+
+</script>
