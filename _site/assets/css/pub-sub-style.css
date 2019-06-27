@@ -196,3 +196,9 @@ width: calc(100% - 100px);
   
   
 /* option desc area end*/
+
+
+
+.help-message{
+	padding-top: 10px;
+  }
