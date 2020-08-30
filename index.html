@@ -11,14 +11,22 @@ title : Pub-js
     <!-- Page Heading -->
     <h1 class="my-4">Pub <small>jQuery Plugins </small></h1>
 
-    <div class="row" id="pubjs-plugin">
+		<div class="row" id="pubjs-plugin">
+			<div class="col-lg-12" style="text-align: center;margin: 10px;">
+				<div style="text-align:ceter;">
+					<button class="btn btn-default" type="button" style="background: #7376df;">
+						<a href="{{site.data.siteInfo.githubSite}}" style="color: #fff;" target="_blank"><i class="fa fa-github"></i><span style="padding-left:10px;">Download from Github</span></a>
+					</button>
+				</div>
+			</div>
+		
+		
     	{% 	for menuObj in site.data.menu 	%}
 			{% assign menu = menuObj[1] %}
 			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
 				<div class="card h-100">
 					<div class="card-body">
 						<h4 class="card-title">{{ menu.name }}</h4>
-						<div><a href="{{menu.api_url}}">{{i18lang.label.api}}</a></div>
 						<div><a href="{{menu.demo_url}}">{{i18lang.label.demo}}</a></div>
 						<div><a href="{{menu.git_url}}">{{i18lang.label.download}}<i class="fa fa-download"></i></a></div>
 						<p class="card-text">{{menu.desc}}</p>

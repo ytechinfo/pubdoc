@@ -3,5 +3,5 @@ main :
 
 label : 
   api : Api
-  demo : Demo
+  demo : Api & Demo
   download : Download

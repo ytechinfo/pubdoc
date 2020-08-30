@@ -32,10 +32,10 @@
 			<div id="nav-menu-container">
 				<ul class="nav-menu">
 					<li class="nav-item">
-						<a class="nav-link" href="">Demo</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="">API</a>
+						<a class="nav-link" href="https://github.com/ytechinfo/pub" style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+							<i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i> <span>Star</span>
+						</a>
+						
 					</li>
 				</ul>
 			</div>
@@ -124,7 +124,7 @@
 			<div style="border:1px solid #eeeeee;">
 	<textarea id="optionCode" name="optionCode">
 			{
-				todayDate : '2016-07-13'
+				todayDate : moment(). format('YYYY-MM-DD')
 				,viewMode : 'full-month'
 				,useLunar : true
 				,dayViewMode : '4'
@@ -183,8 +183,7 @@ var demoArea = {
 		})
 	}
 	,view : function (){
-		console.log('1111111111');
-		
+				
 		var optText = this.optEditor.getValue();
 
 		var optObj = new Function('return '+ optText+';')();

@@ -81,7 +81,7 @@ staticResources : '<link href="/assets/pub/css/pub.calendar.css" rel="stylesheet
 			<div style="border:1px solid #eeeeee;">
 	<textarea id="optionCode" name="optionCode">
 			{
-				todayDate : '2016-07-13'
+				todayDate : moment(). format('YYYY-MM-DD')
 				,viewMode : 'full-month'
 				,useLunar : true
 				,dayViewMode : '4'
@@ -140,8 +140,7 @@ var demoArea = {
 		})
 	}
 	,view : function (){
-		console.log('1111111111');
-		
+				
 		var optText = this.optEditor.getValue();
 
 		var optObj = new Function('return '+ optText+';')();
