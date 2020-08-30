@@ -1,42 +1,42 @@
 pubGrid :
-  name : "pubGrid"
+  name : "Grid"
   git_url : https://github.com/ytechinfo/pub
   api_url : /api/apiPubGrid.html
   demo_url : /demo/pubGrid.html
-  desc :  대용량 데이터용 그리드
+  desc :  그리드 
 autocomplete :
-  name : "autocomplete"
+  name : "Autocomplete"
   git_url : "https://github.com/ytechinfo/pub"
   api_url : /api/apiPubAutocomplete.html
   demo_url : /demo/pubAutocomplete.html
   desc : 자동완성
 calendar :  
-  name : calendar
+  name : Calendar
   git_url : https://github.com/ytechinfo/pub
   api_url : /api/apiPubCalendar.html
   demo_url : /demo/pubCalendar.html
-  desc : 당력
+  desc : 달력
 context :
-  name : context
+  name : Context menu
   git_url : https://github.com/ytechinfo/pub
   api_url : /api/apiPubContext.html
   demo_url : /demo/pubContext.html
   desc : 컨텍스트 메뉴
 multiselect : 
-  name : multiselect
+  name : Multi selection
   git_url : https://github.com/ytechinfo/pub
   api_url : /api/apiPubMultiselect.html
   demo_url : /demo/pubMultiselect.html
-  desc : multi select 모듈
+  desc : 다중 선택 
 tab :
-  name : tab
+  name : Tab
   git_url : https://github.com/ytechinfo/pub
   api_url : /api/apiPubTab.html
   demo_url : /demo/pubTab.html
   desc :  탭 
 tree :
-  name : tree
+  name : Tree
   git_url : https://github.com/ytechinfo/pub
   api_url : /api/apiPubTree.html
   demo_url : /demo/pubTree.html
-  desc :  java script truee 
+  desc :  tree 
