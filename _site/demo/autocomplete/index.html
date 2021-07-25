@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html class="loading" lang="en">
+
+<head>
+	<title>자동완성</title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/codemirror.css" rel="stylesheet">
+<link href="/assets/pub/css/pub.all.min.css" rel="stylesheet">
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/codemirror/codemirror.js"></script>
+<script src="/assets/js/codemirror/javascript.js"></script>
+<script src="/assets/js/demo.js"></script>
+
+ <link href="/assets/pub/css/pub.ep.css" rel="stylesheet"> <script src="/assets/pub/dist/pub.autocomplete.js"></script>
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Autocomplete</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+
+
+	<div class="main-demo-wrapper container">
+		<!-- content-->
+		<div class="main-content row">
+			<div class="col-lg-6 col-md-12">
+				<div class="js-option-desc-area">
+					<div class="toggle-title" toggle-selector=".js-option-desc">
+						옵션 <a href="javascript:;" class="toggle-btn">접기 / 펼치기</a>
+					</div>
+					<div class="js-option-desc">
+						<!--옵션 desc start-->
+						<table class="option-desc-area">
+							<thead>
+								<tr>
+									<th>옵션명</th>
+									<th>옵션값</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								
+								
+								<tr>
+									<td>_currMode</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="_currMode" data-full-key="_currMode" name="_currMode" class="item-val"  data-default="default" value="default">
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>viewAreaSelector</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="viewAreaSelector" data-full-key="viewAreaSelector" name="viewAreaSelector" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="viewAreaSelector" data-full-key="viewAreaSelector" name="viewAreaSelector" class="item-val" data-default="false" value="false" checked>false
+    <div>결과가 보여질 element</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>useFilter</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="useFilter" data-full-key="useFilter" name="useFilter" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="useFilter" data-full-key="useFilter" name="useFilter" class="item-val" data-default="true" value="false" >false
+    <div>필터 사용여부.</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>minLength</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="minLength" data-full-key="minLength" name="minLength" class="item-val" data-default="1" value="1">
+    <div>최소 사이즈</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>autoClose</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="autoClose" data-full-key="autoClose" name="autoClose" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="autoClose" data-full-key="autoClose" name="autoClose" class="item-val" data-default="true" value="false" >false
+    <div>자동 닫힘 여부</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>itemkey</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="itemkey" data-full-key="itemkey" name="itemkey" class="item-val"  data-default="title" value="title">
+    <div>string , function</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>height</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="height" data-full-key="height" name="height" class="item-val" data-default="200" value="200">
+    <div>높이 값</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>selectCls</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="selectCls" data-full-key="selectCls" name="selectCls" class="item-val"  data-default="selected" value="selected">
+    <div>select css class name</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>emptyMessage</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="emptyMessage" data-full-key="emptyMessage" name="emptyMessage" class="item-val"  data-default="no data" value="no data">
+    <div>데이터 없을때 값</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>searchDelay</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="searchDelay" data-full-key="searchDelay" name="searchDelay" class="item-val" data-default="-1" value="-1">
+    <div>검색 delay</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>items</td>
+									<td>
+										
+
+
+
+
+    array value
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>charZeroConfig</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="charZeroConfig" data-full-key="charZeroConfig" name="charZeroConfig" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="charZeroConfig" data-full-key="charZeroConfig" name="charZeroConfig" class="item-val" data-default="false" value="false" checked>false
+    <div>글자 없을때 설정</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>filter</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>검색 데이터 처리 필터</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>source</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>data 호출</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>select</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>select</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>focus</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>foucs 시 이벤트</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>renderItem</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>표시 할 데이터 처리</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>hilightTemplate</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="hilightTemplate" data-full-key="hilightTemplate" name="hilightTemplate" class="item-val"  data-default="<b>$1</b>" value="<b>$1</b>">
+    <div>하이라이트 처리</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>autocompleteTemplate</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>자동 완성 템플릿</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>initTemplateElementEvent</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>template event 처리</div>
+
+									</td>
+
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12">
+				<div class="js-result-area">
+	<div class="js-run-area">
+		<h2>데모</h2>
+		<div style="padding:10px 0px;">
+			다시 그리기 : <button type="button" class="redrawBtn btn btn-info btn-sm">redraw</button>
+		</div>
+		<div class="js-view-area">
+			<div id="resultEl" style="height:100%">
+				자동 완성 <input type="text" class="asdf" name="autocompleteEl" id="autocompleteEl" value=""/>
+			</div>
+		</div>
+	</div>
+	<div class="toggle-title" toggle-selector=".js-option-text">
+		선택한 옵션값
+	</div>
+	<div class="js-option-text" >
+		Options
+		<div style="border:1px solid #eeeeee;">
+<textarea id="optionCode" name="optionCode">
+	{
+		minLength : 0 // 최소 글자수 체크. 
+		,height: 160	// max height
+		,autoClose : false	// 자동으로 창닫을지 여부. 
+		,addSelector : false // autocomplete 넣을 위치의 select
+		,itemkey : 'title'	// 검색결과가 object인경우 검색할 object key 
+		,selectCls : 'selected'	// 선택시 표시될 클래스
+		,emptyMessage : 'no data'	// 결과 없을때 보여줄 메시지
+		// 검색 필터. 
+		,filter : function (itemVal , searchVal) {	
+			searchVal = searchVal.toLowerCase();
+			return ~(itemVal).toLowerCase().indexOf(searchVal);
+		}
+		// 검색할 item
+		,items :[]
+		// 아무것도 없을때 보여줄것이 있는경우. 
+		,charZeroConfig : { 
+			items :[]
+			,init : function (){
+				return 'asdfasdf';
+			}
+		}
+		//items 구할때 사용. 
+		,source: function (request, response){
+			response(this.items);
+		}
+		// 선택시 이벤트
+		,select : function (event,item){
+			console.log('onSelect : ' + item);
+		}
+		// 아이템 html 입힐때 사용.
+		,renderItem : function (matchData,item){
+			return matchData;				
+		}
+		// 검색 하이라이트 처리. 
+		,hilightTemplate : '<b>$1</b>'
+		// autocomplete template 디자인 관련
+		,autocompleteTemplate : function (baseHtml){
+			return '<div class="">'+baseHtml+'</div>';
+		}
+		// autocompleteTemplate 입혔을경우 입힌 template에 이벤트 등록시 사용. 
+		,initTemplateElementEvent : function (){
+			
+		}
+		,items: ['Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br']
+	}
+</textarea>
+		</div>
+	</div>
+</div>
+
+
+<script>
+var demoArea = {
+	optEditor :{}
+	,init :function (){
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
+		});
+
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		var _this =this; 
+		$('.redrawBtn').on('click',function (e){
+			_this.view();
+		})
+	}
+	,view : function (){
+
+		var	item=this.getItem ();
+
+	
+		var optText = this.optEditor.getValue();
+
+		var optObj = new Function('return '+ optText+';')();
+
+		optObj = objectMerge(optObj,getDescSettingValue());
+
+		optObj.items =item;
+		
+		$.pubAutocomplete('#autocompleteEl',optObj);
+	}
+	,getItem : function(type){
+		return ['Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br','Australia', 'au', 'Austria', 'at', 'Brasil', 'br'];
+	}
+}
+
+ 
+$(function (){
+	demoArea.init();
+})
+
+</script>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

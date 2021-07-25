@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Splitter</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			
+
+			
+
+			<!-- detail options -->
+			<div class="all-options">
+				
+				<div id="mode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">mode</span> 
+						<span class="opt-default">default (simple)</span> 
+					</div>
+					<pre class="opt-desc">wrapper</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="orientation" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">orientation</span> 
+						<span class="opt-default">default (vertical)</span> 
+					</div>
+					<pre class="opt-desc">splitter 방향  default vertical</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="border" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">border</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">splitter border</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="initAutoSize" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">initAutoSize</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useButton" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useButton</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">click 으로 이동.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="minSize" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">minSize</span> 
+						<span class="opt-default">default (0)</span> 
+					</div>
+					<pre class="opt-desc">default pixel</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="percent" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">percent</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">position % 여부 true , false , {vertical : false, horizontal : false}</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useHelper" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useHelper</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">위치 조정시 helper 사용여부.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useOverray" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useOverray</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">위치 조정시 helper 사용여부.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="theme" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">theme</span> 
+						<span class="opt-default">default (light)</span> 
+					</div>
+					<pre class="opt-desc">테마  light , dark</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="handleSize" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">handleSize</span> 
+						<span class="opt-default">default (6)</span> 
+					</div>
+					<pre class="opt-desc">handle size</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="start" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">start</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">start event callback</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="move" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">move</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">move event callback</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="stop" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">stop</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">stop event callback</pre>
+
+					
+
+					
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

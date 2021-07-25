@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Grid</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			
+
+			
+
+			<!-- detail options -->
+			<div class="all-options">
+				
+				<div id="blankSpaceWidth" class="options-area">
+					<div><span class="opt-name">blankSpaceWidth</span> <span class="opt-default">default (1)</span> </div>
+					<pre>오른쪽 끝 공백 값
+</pre>
+
+					
+
+					
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

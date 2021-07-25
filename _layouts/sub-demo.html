@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="loading" lang="en">
+
+<head>
+	<title>{{page.title}}</title>
+	{% include sub_demo_head.html %}
+
+	{% assign selMenuNode = site.data.menu[page.menuKey] %}
+
+</head>
+
+<body class="api">
+	{% include sub-template/sub_header.html %}
+
+
+	<div class="main-demo-wrapper container">
+		<!-- content-->
+		<div class="main-content row">
+			<div class="col-lg-6 col-md-12">
+				<div class="js-option-desc-area">
+					<div class="toggle-title" toggle-selector=".js-option-desc">
+						옵션 <a href="javascript:;" class="toggle-btn">접기 / 펼치기</a>
+					</div>
+					<div class="js-option-desc">
+						<!--옵션 desc start-->
+						<table class="option-desc-area">
+							<thead>
+								<tr>
+									<th>옵션명</th>
+									<th>옵션값</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% assign descData = site.data[page.folder][page.fileName] %}
+								{% for menuObj in descData %}
+								
+								<tr>
+									<td>{{menuObj.name}}</td>
+									<td>
+										{% include fn_htmlInput.html optInfo=menuObj %}
+									</td>
+
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12">
+				{{ content }}
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<!-- SCRIPTS-->
+{% include sub-template/sub_scripts.html %}
+<!-- _includes에 정의된 scripts -->

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Calendar</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			
+
+			
+
+			<!-- detail options -->
+			<div class="all-options">
+				
+				<div id="viewMode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">viewMode</span> 
+						<span class="opt-default">default (full-month)</span> 
+					</div>
+					<pre class="opt-desc">달력 모드 (mini,full-month,full-week,full-day)</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="viewDateFormat" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">viewDateFormat</span> 
+						<span class="opt-default">default (YYYY-MM-DD HH:mm)</span> 
+					</div>
+					<pre class="opt-desc">날짜 포멧</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="customRangeDay" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">customRangeDay</span> 
+						<span class="opt-default">default (20)</span> 
+					</div>
+					<pre class="opt-desc">viewmode가 custom 일때 일자 범위 0 ~ 선택일까지</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useLunar" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useLunar</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">음력 기념일 사용여부.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useYearInput" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useYearInput</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">,useYearInput : true //year 변경시 더블클릭하면 input 박스 나타날지 여부.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="todayDate" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">todayDate</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">현재일 지정</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="maxEventRow" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">maxEventRow</span> 
+						<span class="opt-default">default (3)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useMemorialday" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useMemorialday</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">기념일 보기 여부</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="width" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">width</span> 
+						<span class="opt-default">default (100%)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="height" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">height</span> 
+						<span class="opt-default">default (630)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="colWidth" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">colWidth</span> 
+						<span class="opt-default">default (25)</span> 
+					</div>
+					<pre class="opt-desc">달력 컬럼 넓이</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="dayViewMode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">dayViewMode</span> 
+						<span class="opt-default">default (2)</span> 
+					</div>
+					<pre class="opt-desc">mode 1 default 양력, 2 기념일설명, 3 음력. , 4 음력/기념일.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventDisplay" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventDisplay</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">mini 달력일 경우만 해당</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventDisplayHtm" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventDisplayHtm</span> 
+						<span class="opt-default">default (<span>O</span>)</span> 
+					</div>
+					<pre class="opt-desc">mini 달력일 경우만 해당</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="memorialDayInfo" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">memorialDayInfo</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="eventDisplayClass" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventDisplayClass</span> 
+						<span class="opt-default">default (select)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="theme" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">theme</span> 
+						<span class="opt-default">default (pub-calendar-default)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="memorialDays" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">memorialDays</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="prefixId" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">prefixId</span> 
+						<span class="opt-default">default (pubCID_)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventMoreClick" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventMoreClick</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">더보기 버튼 클릭 이벤트.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventClick" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventClick</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">일정 클릭.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventDelete" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventDelete</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">일정 삭제.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventDetail" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventDetail</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">일정 상세보기.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="backgroundColor" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">backgroundColor</span> 
+						<span class="opt-default">default (#A6C9F5)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="timeBackgroundColor" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">timeBackgroundColor</span> 
+						<span class="opt-default">default (#E4F7F8)</span> 
+					</div>
+					<pre class="opt-desc">시간별 일정 바탕색.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="autoResize" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">autoResize</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="dayEventSize" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">dayEventSize</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">상세창 사이즈.</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>w</td>
+							<td>number</td>
+							<td>300</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>h</td>
+							<td>number</td>
+							<td>170</td>
+							<td>달력 컬럼 넓이</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="_date" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">_date</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>yyyy</td>
+							<td>string</td>
+							<td></td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>mm</td>
+							<td>string</td>
+							<td></td>
+							<td>설명</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="lang" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">lang</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">다국어 설정</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>mini</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>sun</td>
+										<td>string</td>
+										<td>일</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>mon</td>
+										<td>string</td>
+										<td>월</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>tue</td>
+										<td>string</td>
+										<td>화</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>wed</td>
+										<td>string</td>
+										<td>수</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>thu</td>
+										<td>string</td>
+										<td>목</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>fri</td>
+										<td>string</td>
+										<td>금</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>sat</td>
+										<td>string</td>
+										<td>토</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>year</td>
+										<td>string</td>
+										<td>년</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>month</td>
+										<td>string</td>
+										<td>월</td>
+										<td>설명</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>full</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>sun</td>
+										<td>string</td>
+										<td>Sun</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>mon</td>
+										<td>string</td>
+										<td>Mon</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>tue</td>
+										<td>string</td>
+										<td>Tue</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>wed</td>
+										<td>string</td>
+										<td>Wed</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>thu</td>
+										<td>string</td>
+										<td>Thu</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>fri</td>
+										<td>string</td>
+										<td>Fri</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>sat</td>
+										<td>string</td>
+										<td>Sat</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>year</td>
+										<td>string</td>
+										<td></td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>month</td>
+										<td>string</td>
+										<td></td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>event_date</td>
+										<td>string</td>
+										<td>일시</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>delete_btn</td>
+										<td>string</td>
+										<td>삭제</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>detail_btn</td>
+										<td>string</td>
+										<td>상세</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>save_btn</td>
+										<td>string</td>
+										<td>저장</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>delete.confirm.msg</td>
+										<td>string</td>
+										<td>삭제하시겠습니까?</td>
+										<td>설명</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="event" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">event</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>type</td>
+							<td>string</td>
+							<td>local</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>colModel</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>start</td>
+										<td>string</td>
+										<td>start</td>
+										<td>일정 시작일자.</td>
+									</tr>
+									
+									<tr>
+										<td>end</td>
+										<td>string</td>
+										<td>end</td>
+										<td>일정 종료일자</td>
+									</tr>
+									
+									<tr>
+										<td>title</td>
+										<td>string</td>
+										<td>title</td>
+										<td>일정제목</td>
+									</tr>
+									
+									<tr>
+										<td>repeat</td>
+										<td>string</td>
+										<td>repeat</td>
+										<td>(반복일정) y(년),m(월) , w(주) ,d(일)</td>
+									</tr>
+									
+									<tr>
+										<td>repeatInfo</td>
+										<td>string</td>
+										<td>repeatInfo</td>
+										<td>(반복일정) 정보</td>
+									</tr>
+									
+									<tr>
+										<td>repeatException</td>
+										<td>string</td>
+										<td>repeatException</td>
+										<td>(반복일정) 예외</td>
+									</tr>
+									
+									<tr>
+										<td>startTime</td>
+										<td>string</td>
+										<td>startTime</td>
+										<td>(반복일정) 시작 시간</td>
+									</tr>
+									
+									<tr>
+										<td>endTime</td>
+										<td>string</td>
+										<td>endTime</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>days</td>
+										<td>string</td>
+										<td>day</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>cycle</td>
+										<td>string</td>
+										<td>cycle</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>color</td>
+										<td>string</td>
+										<td>color</td>
+										<td>일정 색깔지정.</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="beforeCalendar" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">beforeCalendar</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="afterCalendar" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">afterCalendar</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="dayClick" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">dayClick</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">달력 클릭 이벤트</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventWrite" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventWrite</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">일정 쓰기</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="eventWriteCallback" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">eventWriteCallback</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">일정 저장 버튼 클릭시</pre>
+
+					
+
+					
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

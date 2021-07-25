@@ -1,0 +1,100 @@
+[
+    {
+        "name": "mode",
+        "desc": "wrapper",
+        "default": "simple",
+        "fullKey": "mode",
+        "type": "string"
+    },
+    {
+        "name": "orientation",
+        "desc": "splitter 방향  default vertical",
+        "default": "vertical",
+        "fullKey": "orientation",
+        "type": "string"
+    },
+    {
+        "name": "border",
+        "desc": "splitter border",
+        "default": false,
+        "fullKey": "border",
+        "type": "boolean"
+    },
+    {
+        "name": "initAutoSize",
+        "desc": "설명",
+        "default": true,
+        "fullKey": "initAutoSize",
+        "type": "boolean"
+    },
+    {
+        "name": "useButton",
+        "desc": "click 으로 이동.",
+        "default": false,
+        "fullKey": "useButton",
+        "type": "boolean"
+    },
+    {
+        "name": "minSize",
+        "desc": "default pixel",
+        "default": 0,
+        "fullKey": "minSize",
+        "type": "number"
+    },
+    {
+        "name": "percent",
+        "desc": "position % 여부 true , false , {vertical : false, horizontal : false}",
+        "default": true,
+        "fullKey": "percent",
+        "type": "boolean"
+    },
+    {
+        "name": "useHelper",
+        "desc": "위치 조정시 helper 사용여부.",
+        "default": true,
+        "fullKey": "useHelper",
+        "type": "boolean"
+    },
+    {
+        "name": "useOverray",
+        "desc": "위치 조정시 helper 사용여부.",
+        "default": true,
+        "fullKey": "useOverray",
+        "type": "boolean"
+    },
+    {
+        "name": "theme",
+        "desc": "테마  light , dark",
+        "default": "light",
+        "fullKey": "theme",
+        "type": "string"
+    },
+    {
+        "name": "handleSize",
+        "desc": "handle size",
+        "default": 6,
+        "fullKey": "handleSize",
+        "type": "number"
+    },
+    {
+        "name": "start",
+        "desc": "start event callback",
+        "default": "function",
+        "fullKey": "start",
+        "type": "function"
+    },
+    {
+        "name": "move",
+        "desc": "move event callback",
+        "default": "function",
+        "fullKey": "move",
+        "type": "function"
+    },
+    {
+        "name": "stop",
+        "desc": "stop event callback",
+        "default": "function",
+        "fullKey": "stop",
+        "type": "function"
+    }
+]

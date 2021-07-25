@@ -1,0 +1,9 @@
+[
+    {
+        "name": "blankSpaceWidth",
+        "desc": "오른쪽 끝 공백 값\n",
+        "default": 1,
+        "type": "number"
+    }
+   
+]

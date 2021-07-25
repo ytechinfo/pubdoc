@@ -1,0 +1,285 @@
+[
+    {
+        "name": "width",
+        "desc": "설명",
+        "default": "auto",
+        "fullKey": "width",
+        "type": "string"
+    },
+    {
+        "name": "itemMaxWidth",
+        "desc": "tab max width",
+        "default": -1,
+        "fullKey": "itemMaxWidth",
+        "type": "number"
+    },
+    {
+        "name": "activeFirstItem",
+        "desc": ",activeFirstItem : true\t//로드시 첫번째 item 활성화 여부",
+        "default": true,
+        "fullKey": "activeFirstItem",
+        "type": "boolean"
+    },
+    {
+        "name": "enableClickEventChange",
+        "desc": "click event item 변경시에만 활성화",
+        "default": false,
+        "fullKey": "enableClickEventChange",
+        "type": "boolean"
+    },
+    {
+        "name": "itemPadding",
+        "desc": "item padding 값",
+        "default": 5,
+        "fullKey": "itemPadding",
+        "type": "number"
+    },
+    {
+        "name": "height",
+        "desc": "tab height",
+        "default": "22px",
+        "fullKey": "height",
+        "type": "string"
+    },
+    {
+        "name": "leftMargin",
+        "desc": "왼쪽에 item 있을경우 더 이동할 space",
+        "default": 30,
+        "fullKey": "leftMargin",
+        "type": "number"
+    },
+    {
+        "name": "overItemViewMode",
+        "desc": "over item  보여질 방법.",
+        "default": "drop",
+        "fullKey": "overItemViewMode",
+        "type": "string"
+    },
+    {
+        "name": "dropItemHeight",
+        "desc": "설명",
+        "default": "auto",
+        "fullKey": "dropItemHeight",
+        "type": "string"
+    },
+    {
+        "name": "dropItemWidth",
+        "desc": "설명",
+        "default": "auto",
+        "fullKey": "dropItemWidth",
+        "type": "string"
+    },
+    {
+        "name": "moveZIndex",
+        "desc": "move 영역 z- index",
+        "default": 9,
+        "fullKey": "moveZIndex",
+        "type": "number"
+    },
+    {
+        "name": "titleIcon",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "titleIcon",
+        "type": "object",
+        "options": [
+            {
+                "name": "left",
+                "desc": "설명",
+                "default": null,
+                "fullKey": "titleIcon;left",
+                "type": "object",
+                "options": [
+                    {
+                        "name": "overview",
+                        "desc": "mouseover icon view  여부",
+                        "default": true,
+                        "fullKey": "titleIcon;left;overview",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "visible",
+                        "desc": "설명",
+                        "default": true,
+                        "fullKey": "titleIcon;left;visible",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "html",
+                        "desc": "활성시 추가할 html",
+                        "default": "",
+                        "fullKey": "titleIcon;left;html",
+                        "type": "string"
+                    },
+                    {
+                        "name": "click",
+                        "desc": "클릭 이벤트.",
+                        "default": false,
+                        "fullKey": "titleIcon;left;click",
+                        "type": "boolean"
+                    }
+                ]
+            },
+            {
+                "name": "right",
+                "desc": "설명",
+                "default": null,
+                "fullKey": "titleIcon;right",
+                "type": "object",
+                "options": [
+                    {
+                        "name": "overview",
+                        "desc": "mouseover icon view  여부",
+                        "default": true,
+                        "fullKey": "titleIcon;right;overview",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "visible",
+                        "desc": "설명",
+                        "default": true,
+                        "fullKey": "titleIcon;right;visible",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "html",
+                        "desc": "활성시 추가할 html",
+                        "default": "",
+                        "fullKey": "titleIcon;right;html",
+                        "type": "string"
+                    },
+                    {
+                        "name": "click",
+                        "desc": "클릭 이벤트.",
+                        "default": false,
+                        "fullKey": "titleIcon;right;click",
+                        "type": "boolean"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "contextMenu",
+        "desc": "설명",
+        "default": false,
+        "fullKey": "contextMenu",
+        "type": "boolean"
+    },
+    {
+        "name": "addClass",
+        "desc": "tab li 추가 클래스",
+        "default": "service_menu_tab",
+        "fullKey": "addClass",
+        "type": "string"
+    },
+    {
+        "name": "items",
+        "desc": "설명",
+        "default": [],
+        "fullKey": "items",
+        "type": "array"
+    },
+    {
+        "name": "click",
+        "desc": "클릭 이벤트.",
+        "default": "function",
+        "fullKey": "click",
+        "type": "function"
+    },
+    {
+        "name": "removeItem",
+        "desc": "remove callback 옵션",
+        "default": false,
+        "fullKey": "removeItem",
+        "type": "boolean"
+    },
+    {
+        "name": "blinkClass",
+        "desc": "설명",
+        "default": "blinkcss",
+        "fullKey": "blinkClass",
+        "type": "string"
+    },
+    {
+        "name": "itemKey",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "itemKey",
+        "type": "object",
+        "options": [
+            {
+                "name": "title",
+                "desc": "설명",
+                "default": "name",
+                "fullKey": "itemKey;title",
+                "type": "string"
+            },
+            {
+                "name": "id",
+                "desc": "설명",
+                "default": "_tabid",
+                "fullKey": "itemKey;id",
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "name": "beforeUpdate",
+        "desc": "before update item callback",
+        "default": "function",
+        "fullKey": "beforeUpdate",
+        "type": "function"
+    },
+    {
+        "name": "afterUpdate",
+        "desc": "after update item callback",
+        "default": "function",
+        "fullKey": "afterUpdate",
+        "type": "function"
+    },
+    {
+        "name": "drag",
+        "desc": "drag  이동",
+        "default": null,
+        "fullKey": "drag",
+        "type": "object",
+        "options": [
+            {
+                "name": "enabled",
+                "desc": "활성 여부",
+                "default": false,
+                "fullKey": "drag;enabled",
+                "type": "boolean"
+            },
+            {
+                "name": "dragStart",
+                "desc": "drag start",
+                "default": "function",
+                "fullKey": "drag;dragStart",
+                "type": "function"
+            },
+            {
+                "name": "dragEnter",
+                "desc": "drag enter",
+                "default": "function",
+                "fullKey": "drag;dragEnter",
+                "type": "function"
+            },
+            {
+                "name": "dragDrop",
+                "desc": "drag enter",
+                "default": "function",
+                "fullKey": "drag;dragDrop",
+                "type": "function"
+            },
+            {
+                "name": "dragEnd",
+                "desc": "drag enter",
+                "default": "function",
+                "fullKey": "drag;dragEnd",
+                "type": "function"
+            }
+        ]
+    }
+]

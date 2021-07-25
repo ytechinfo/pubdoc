@@ -4,15 +4,15 @@
 <title>{{site.data.lang.main.title}}</title>
 {% include meta.html %} 
 <head>
-{% include main_head.html %} 
+{% include main-template/main_incldueResource.html %} 
 </head>
-<body>
+<body class="main-body">
    <!-- Navigation -->
    	<div class="fixed-top pub-top-nav-bar pub-bar-bg">
    		<div class="container">
 		    <nav class="navbar navbar-expand-lg">
 		        <a class="navbar-brand" href="/">{{page.title}}</a>
-		        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		            <span class="navbar-toggler-icon"></span>
 		        </button>
 		        <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -39,8 +39,8 @@
 	</div>
 	
     {{ content }} <!-- 여기에 Post의 내용이 주입된다. -->
-    {% include main_footer.html %} 
-    {% include main_scripts.html %}
+    {% include main-template/main_footer.html %} 
+    {% include main-template/main_scripts.html %}
 </body>
 </html>
 

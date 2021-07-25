@@ -1,0 +1,202 @@
+---
+layout: sub-demo
+title : 다중 선택
+menuKey : multiselect
+folder : options
+fileName : multiselectOptions
+
+staticResources : '
+<link href="/assets/pub/css/pub.ep.css" rel="stylesheet">
+<script src="/assets/pub/dist/pub.multiselect.js"></script>
+'
+---
+
+<div class="js-result-area">
+	<div class="js-run-area">
+		<h2>데모</h2>
+		<div style="padding:10px 0px;">
+			다시 그리기 : <button type="button" class="redrawBtn btn btn-info btn-sm">redraw</button>
+		</div>
+		<div class="js-view-area">
+			<div id="resultEl" style="height:100%;border: 1px solid rgb(128, 125, 125)">
+				<table width="100%" class="exampleTbl">
+					<colgroup>
+						<col width="200px">
+						<col width="50px">
+						<col width="200px">
+					</colgroup>
+					<tr>
+						<td colspan="10">
+							* 목록을 마우스로 드래그앤 드롭하거나 더블클릭 하세요.
+							<div class="mbottom-10"></div>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<div class="top-select mbottom-10 fb tl mRight-20" style="width:265px;">source</div>
+						</th>
+						<th></th>
+						<th>
+							<div class="top-select mbottom-10 fb tl mRight-20" style="width:265px;">target</div>
+				
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<ul id="source" class="pub-select-source pub-multiselect-area" style="height: 200px;width: 265px;">
+				
+								</ul>
+							</div>
+						</td>
+						<td>
+							<a href="javascript:;" class="add-item">>></a>
+							<br />
+							<a href="javascript:;" class="cancle-item">
+								<<</a> </td> <td>
+									<ul id="target" class="pub-select-target pub-multiselect-area" style="height: 200px;width: 265px;">
+				
+									</ul>
+						</td>
+						
+					</tr>
+				
+					<tr>
+						<td colspan="3" align="right">
+							<a href="javascript:;" class="item-move" mode="up">위</a>
+							<span style="padding-left:10px;"></span>
+							<a href="javascript:;" class="item-move" mode="down">아래</a>
+							<span style="padding-right:10px;"></span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="toggle-title" toggle-selector=".js-option-text">
+		선택한 옵션값
+	</div>
+	<div class="js-option-text" >
+		Options
+		<div style="border:1px solid #eeeeee;">
+<textarea id="optionCode" name="optionCode">
+		{
+			targetSelector : '#target'
+			,addItemClass:'text_selected'
+			,containment :'.exampleTbl'
+			,useMultiSelect : true
+			,pageInfo :{
+				max :9 
+			}
+			,maxSize :20
+			,maxSizeMsg :'20개 까지 등록 가능합니다.'
+			,duplicateCheck : true
+			,sourceItem : {
+				optVal : 'LINK_ID'
+				,optTxt : 'LINK_NAME'
+				,items : []
+			}
+			,targetItem : {
+				optVal : 'LINK_ID'
+				,optTxt : 'LINK_NAME'
+				,items : []
+				,click: function (e, sEle){
+					//console.log(e,sEle);
+				}
+				,dblclick : function (e, sEle){
+					console.log(e,sEle);
+				}
+				,render: function (sItem){
+					//console.log('render', sItem);
+					return '<span  style="color:'+sItem.item.STYLE+'">'+sItem.text+'</span>';
+				}
+			}
+			,compleateTargetMove : function (addItem){
+				alert(addItem);
+			}
+			,compleateSourceMove : function (delItem){
+				console.log(delItem);
+			}
+		}
+</textarea>
+		</div>
+	</div>
+</div>
+
+<script>
+
+var demoArea = {
+	optEditor :{}
+	,selectObj :{}
+	,init :function (){
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
+		});
+
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		var _this =this; 
+		$('.redrawBtn').on('click',function (e){
+			_this.view();
+		})
+
+			//추가
+		$('.add-item').on('click',function (){
+			_this.selectObj.sourceMove();
+		});
+		//취소
+		$('.cancle-item').on('click',function (){
+			_this.selectObj.targetMove();
+		});
+
+		//아래위 이동
+		$('.item-move').on('click',function (){
+			_this.selectObj.move($(this).attr('mode'));
+		});
+
+	}
+	,view : function (){
+
+		var	item=this.getItem ();
+
+		var optText = this.optEditor.getValue();
+
+		var optObj = new Function('return '+ optText+';')();
+
+		optObj = objectMerge(optObj,getDescSettingValue());
+
+		optObj.sourceItem.items= item.source;
+		optObj.targetItem.items= item.target;
+			
+		this.selectObj = $.pubMultiselect('#source',optObj);
+	}
+	,getItem : function(type){
+		var paramSourceItem=[];
+		for(var i = 0 ;i <20; i++){
+			paramSourceItem.push({LINK_ID :'0000'+i ,LINK_NAME:'name'+i});
+		}
+
+		var paramTargetItem = []; 
+		var idxArr = [1,3,5,6,8]
+		for(var i = 0 ;i <idxArr.length; i++){
+			var idx = idxArr[i];
+			paramTargetItem.push({LINK_ID :'0000'+idx ,LINK_NAME:'name'+idx});
+		}
+
+		return {
+			source : paramSourceItem
+			,target : paramTargetItem
+		}
+	}
+}
+ 
+$(function (){
+	demoArea.init();
+})
+
+</script>

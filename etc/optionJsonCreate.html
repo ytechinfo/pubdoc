@@ -1,0 +1,195 @@
+<!doctype html>
+
+<html>
+<title>옵션생성</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/pub-style.css" rel="stylesheet">
+<link href="./optionCreate.css" rel="stylesheet">
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/mustache/mustache.min.js"></script>
+        
+</head>
+
+<body>
+    <table class="content-body">
+        <tr>
+            <th style="width:50%;">
+             옵션   
+            </th>
+            <th style="width:50%;">
+                <a href="javascript:;" class="opt-change">html 변경.</a> 
+            </th>
+        </tr>
+        <tr>
+            <td>
+<textarea id="optionText">
+    {
+		fadeSpeed: 100				// 숨김 속도 
+		,mode : 'simple'			// wrapper
+		,orientation: 'vertical'	// splitter 방향  default vertical
+		,border: false				// splitter border 
+		,initAutoSize :true			// panel width fix
+		,useButton : false			// click 으로 이동. 
+		,minSize : 0				// default pixel
+		,percent: true			// position % 여부 true , false , {vertical : false, horizontal : false}
+		,useHelper: true		// 위치 조정시 helper 사용여부.
+		,useOverray: true		// 위치 조정시 helper 사용여부.
+		,theme: 'light'			// 테마  light , dark
+		,handleSize: 6			// handle size
+		,start: function (splitterEle, splitterConf, moveData){}	// start event callback
+		,move: function (splitterEle, splitterConf, moveData){}	// move event callback
+		,stop: function (splitterEle, splitterConf, moveData){}	// stop event callback
+	}
+</textarea>
+            </td>
+            <td>
+<div class="result-area">
+    result code
+    <textarea id="changeHtml" style="width:100%;" rows="4"></textarea>
+    
+    result html
+    <pre id="optDescPreviewArea">
+
+    </pre>
+</div>
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
+
+<script>
+var optionsChg = {
+    excludeKey : ['icon'] // 제외 키 하위 구분자 (;)
+    ,init : function (){
+        this.initEvt();
+    }
+    // 이벤트 초기화
+    ,initEvt : function (){
+        var _this =this; 
+
+        $('.opt-change').on('click',function (){
+            _this.change();
+
+            $('#changeHtml').val($.trim($('#optDescPreviewArea').html()));
+        });
+        $('.opt-change').trigger('click');
+
+
+    }
+    // 옵션 변경. 
+    ,change : function (){
+        var optText = $('#optionText').val();
+
+        var optObj = new Function('return '+ optText+';')();
+
+        var strHtm = this.getOptHtml(optObj, '', false,optText);
+      
+        $('#optDescPreviewArea').empty().html(strHtm);
+    }
+    // option html변경. 
+    ,getOptHtml : function (optObj,parentKey, childFlag ,optText){
+        var strHtm = [];
+        
+        for(var key in optObj){
+            var optObjVal = optObj[key]; 
+            strHtm.push(this.getOptValTab(key, optObjVal, parentKey, optText));
+        }
+        if(childFlag){
+            return strHtm;
+        }else{
+            return JSON.stringify(strHtm, null,4);
+        }
+    }
+    // 옵션 value html template생성. 
+    ,getOptValTab : function (key, optObjVal, parentKey, optText){
+        
+        var reval ='';
+        var isObjectFlag = false;
+        var desc = this.getDesc(key,optText);
+
+        var fullKey = parentKey ==''? key : parentKey + ';'+ key; 
+
+        var optInfo = {
+            name : key 
+            ,desc : desc
+            ,default : null
+            ,fullKey : fullKey
+        };
+
+        if(this.excludeKey.indexOf(fullKey) > -1){
+            return '';
+        }
+
+        if($.isNumeric(optObjVal)){
+            optInfo.type = 'number';
+            optInfo.default = optObjVal;
+        }else if(typeof optObjVal=== 'boolean'){
+            optInfo.type= 'boolean';
+            optInfo.default = optObjVal;
+        }else if(typeof optObjVal=== 'string'){
+            optInfo.type= 'string';
+            optInfo.default = optObjVal;
+        }else if(Array.isArray(optObjVal)){
+            optInfo.type= 'array';
+            optInfo.default = optObjVal;
+        }else if(typeof optObjVal=== 'function'){
+            optInfo.type= 'function';
+            optInfo.default = 'function';
+        }else if(typeof optObjVal=== 'object'){
+            optInfo.type= 'object';
+            optInfo.options = this.getOptHtml(optObjVal, fullKey, true, optText)
+        }
+
+        return optInfo;
+    }
+    // select box value 
+    ,getSelectBoxVal:function (key,fullKey,optObjVal){
+        var reval = [];
+        reval.push('<select class="item-val" data-key="'+key+'" data-full-key="'+fullKey+'" data-default="'+(optObjVal)+'">')
+        if(optObjVal== -1){
+            reval.push('<option value="-1" selected>-1<option>');
+            for(var i=1; i<= 5;i++){
+                var val = i*1000;
+                reval.push('<option value="'+val+'">'+val+'</option>');
+            }
+        }else{
+            for(var i=0; i<= 10;i++){
+                var val = i;
+                reval.push('<option value="'+val+'" '+(i==optObjVal?'selected':'')+'>'+val+'</option>');
+            }
+        }
+        reval.push('<select>')
+
+        return reval.join('');
+    }
+    // 설명 추출
+    ,getDesc : function (key,optText){
+        
+        var regStr = '.*('+key+'|'+key+"\\s):\\s.*//.*\n";
+        var regExp = new RegExp(regStr, "gm");
+        var matches = regExp.exec(optText); 
+ 
+        var remarks ='설명';
+        if(matches && matches.length > 0){
+            remarks = matches[0].replace(/.*\/\/\s/,'')
+        }
+
+        //console.log(regStr,matches,remarks,optText)
+        return $.trim(remarks);
+
+    }
+}
+
+optionsChg.init();
+</script>
+
+

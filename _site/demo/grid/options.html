@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Grid</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			
+
+			
+
+			<!-- detail options -->
+			<div class="all-options">
+				
+				<div id="blankSpaceWidth" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">blankSpaceWidth</span> 
+						<span class="opt-default">default (1)</span> 
+					</div>
+					<pre class="opt-desc">오른쪽 끝 공백 값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="copyMode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">copyMode</span> 
+						<span class="opt-default">default (single)</span> 
+					</div>
+					<pre class="opt-desc">copy mode	single, multiple, none</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="colFixedIndex" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">colFixedIndex</span> 
+						<span class="opt-default">default (0)</span> 
+					</div>
+					<pre class="opt-desc">고정 컬럼</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="widthFixed" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">widthFixed</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">넓이 고정 여부.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useDefaultFormatter" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useDefaultFormatter</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">기본 포멧터 사용여부</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="editable" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">editable</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="selectionMode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">selectionMode</span> 
+						<span class="opt-default">default (multiple-cell)</span> 
+					</div>
+					<pre class="opt-desc">cell 선택 모드 row, cell, multiple-row, multiple-cell</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="showTooltip" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">showTooltip</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">tooltip flag</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="theme" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">theme</span> 
+						<span class="opt-default">default (light)</span> 
+					</div>
+					<pre class="opt-desc">테마 값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="height" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">height</span> 
+						<span class="opt-default">default (auto)</span> 
+					</div>
+					<pre class="opt-desc">높이 값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="width" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">width</span> 
+						<span class="opt-default">default (auto)</span> 
+					</div>
+					<pre class="opt-desc">넓이값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="itemMaxCount" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">itemMaxCount</span> 
+						<span class="opt-default">default (-1)</span> 
+					</div>
+					<pre class="opt-desc">add시 item max로 유지할 카운트</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="colOptions" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">colOptions</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">컬럼 옵션</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>minWidth</td>
+							<td>number</td>
+							<td>50</td>
+							<td>컬럼 최소 넓이</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>maxWidth</td>
+							<td>number</td>
+							<td>-1</td>
+							<td>컬럼 최대 넓이</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="rowOptions" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">rowOptions</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>height</td>
+							<td>number</td>
+							<td>22</td>
+							<td>높이 값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>click</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>row(tr) click event</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>contextMenu</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>row(tr) contextmenu event</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>addStyle</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>추가할 style method</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>dblClick</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>row dblclick event</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>dblClickCheck</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>double click row checkbox checked true 여부.</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>pasteBefore</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>pasteAfter</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>설명</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="formatter" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">formatter</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">보여질 값을 처리.</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>money</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>prefix</td>
+										<td>string</td>
+										<td>$</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>suffix</td>
+										<td>string</td>
+										<td>원</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>fixed</td>
+										<td>number</td>
+										<td>0</td>
+										<td>money 설정 prefix : 앞에 붙일 문구 , suffix : 마지막에 붙일 문구 , fixed : 소수점</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>number</td>
+							<td colspan="3">
+								number 값 설정
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>prefix</td>
+										<td>string</td>
+										<td></td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>suffix</td>
+										<td>string</td>
+										<td></td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>fixed</td>
+										<td>number</td>
+										<td>0</td>
+										<td>money 설정 prefix : 앞에 붙일 문구 , suffix : 마지막에 붙일 문구 , fixed : 소수점</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="autoResize" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">autoResize</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">리사이즈 설정</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>enabled</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>활성화여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>responsive</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>반응형 여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>threshold</td>
+							<td>number</td>
+							<td>150</td>
+							<td>설명</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="headerOptions" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">headerOptions</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>view</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>header 보기 여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>height</td>
+							<td>number</td>
+							<td>25</td>
+							<td>높이 값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>sort</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>초기에 정렬할 값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>redraw</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>초기에 옵션 들어오면 새로 그릴지 여부.</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>resize</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>enabled</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>활성화여부</td>
+									</tr>
+									
+									<tr>
+										<td>cursor</td>
+										<td>string</td>
+										<td>col-resize</td>
+										<td>커서 모양</td>
+									</tr>
+									
+									<tr>
+										<td>update</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>변경시 콜랙 함수</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>isColSelectAll</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>전체 선택 여부.</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>scrollEnabled</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>마우스 휠로 가로 스크롤 이동할지 여부.</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>oneCharWidth</td>
+							<td>number</td>
+							<td>7</td>
+							<td>char 의 넓이값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>viewAllLabel</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>contextMenu</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>row(tr) contextmenu event</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>helpBtn</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>enabled</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>활성화여부</td>
+									</tr>
+									
+									<tr>
+										<td>title</td>
+										<td>string</td>
+										<td></td>
+										<td>tooltip</td>
+									</tr>
+									
+									<tr>
+										<td>click</td>
+										<td>function</td>
+										<td>function</td>
+										<td>row(tr) click event</td>
+									</tr>
+									
+									<tr>
+										<td>dblclick</td>
+										<td>function</td>
+										<td>function</td>
+										<td>double click event</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="setting" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">setting</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">그리드 설정</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>mode</td>
+							<td>string</td>
+							<td>simple</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>enabled</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>활성화여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>enableColumnFix</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>고정 컬럼 활성여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>click</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>row(tr) click event</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>speedMaxVal</td>
+							<td>number</td>
+							<td>10</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>callback</td>
+							<td>function</td>
+							<td>function</td>
+							<td>페이지 콜백</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>configVal</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>search</td>
+										<td>object</td>
+										<td></td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>speed</td>
+										<td>number</td>
+										<td>-1</td>
+										<td>스크롤 스피드 row 1</td>
+									</tr>
+									
+									<tr>
+										<td>fixColumnPosition</td>
+										<td>number</td>
+										<td>-1</td>
+										<td>fixed col position</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>util</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>searchFilter</td>
+										<td>function</td>
+										<td>function</td>
+										<td>검색 필터</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="asideOptions" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">asideOptions</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>lineNumber</td>
+							<td colspan="3">
+								번호
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>enabled</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>활성화여부</td>
+									</tr>
+									
+									<tr>
+										<td>key</td>
+										<td>string</td>
+										<td>lineNumber</td>
+										<td>key</td>
+									</tr>
+									
+									<tr>
+										<td>charWidth</td>
+										<td>number</td>
+										<td>9</td>
+										<td>char width</td>
+									</tr>
+									
+									<tr>
+										<td>name</td>
+										<td>string</td>
+										<td></td>
+										<td>컬럼명</td>
+									</tr>
+									
+									<tr>
+										<td>width</td>
+										<td>number</td>
+										<td>40</td>
+										<td>넓이값</td>
+									</tr>
+									
+									<tr>
+										<td>styleCss</td>
+										<td>string</td>
+										<td></td>
+										<td>css</td>
+									</tr>
+									
+									<tr>
+										<td>isSelectRow</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>설명</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>rowSelector</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>enabled</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>활성화여부</td>
+									</tr>
+									
+									<tr>
+										<td>key</td>
+										<td>string</td>
+										<td>checkbox</td>
+										<td>key</td>
+									</tr>
+									
+									<tr>
+										<td>name</td>
+										<td>string</td>
+										<td>V</td>
+										<td>컬럼명</td>
+									</tr>
+									
+									<tr>
+										<td>width</td>
+										<td>number</td>
+										<td>25</td>
+										<td>넓이값</td>
+									</tr>
+									
+									<tr>
+										<td>click</td>
+										<td>function</td>
+										<td>function</td>
+										<td>row(tr) click event</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>modifyInfo</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>enabled</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>활성화여부</td>
+									</tr>
+									
+									<tr>
+										<td>key</td>
+										<td>string</td>
+										<td>modify</td>
+										<td>key</td>
+									</tr>
+									
+									<tr>
+										<td>name</td>
+										<td>string</td>
+										<td>modify</td>
+										<td>컬럼명</td>
+									</tr>
+									
+									<tr>
+										<td>width</td>
+										<td>number</td>
+										<td>10</td>
+										<td>넓이값</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="bodyOptions" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">bodyOptions</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">body option</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>cellDblClick</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>body td click</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>keyNavHandler</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>arrows key handler function</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="scroll" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">scroll</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>isStopPropagation</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>이벤트 전파 여부.</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>vertical</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>width</td>
+										<td>number</td>
+										<td>14</td>
+										<td>넓이값</td>
+									</tr>
+									
+									<tr>
+										<td>bgDelay</td>
+										<td>number</td>
+										<td>100</td>
+										<td>스크롤 빈공간 mousedown delay</td>
+									</tr>
+									
+									<tr>
+										<td>btnDelay</td>
+										<td>number</td>
+										<td>100</td>
+										<td>방향키 mousedown delay</td>
+									</tr>
+									
+									<tr>
+										<td>dragDelay</td>
+										<td>number</td>
+										<td>5</td>
+										<td>스크롤 bar drag delay</td>
+									</tr>
+									
+									<tr>
+										<td>speed</td>
+										<td>number</td>
+										<td>1</td>
+										<td>스크롤 스피드 row 1</td>
+									</tr>
+									
+									<tr>
+										<td>onUpdate</td>
+										<td>function</td>
+										<td>function</td>
+										<td>스크롤 업데이트.</td>
+									</tr>
+									
+									<tr>
+										<td>tooltip</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>item count tooltip</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>horizontal</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>height</td>
+										<td>number</td>
+										<td>14</td>
+										<td>높이 값</td>
+									</tr>
+									
+									<tr>
+										<td>bgDelay</td>
+										<td>number</td>
+										<td>100</td>
+										<td>스크롤 빈공간 mousedown delay</td>
+									</tr>
+									
+									<tr>
+										<td>btnDelay</td>
+										<td>number</td>
+										<td>100</td>
+										<td>방향키 mousedown delay</td>
+									</tr>
+									
+									<tr>
+										<td>dragDelay</td>
+										<td>number</td>
+										<td>7</td>
+										<td>스크롤 bar drag delay</td>
+									</tr>
+									
+									<tr>
+										<td>speed</td>
+										<td>number</td>
+										<td>1</td>
+										<td>스크롤 스피드 row 1</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="tColItem" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">tColItem</span> 
+						<span class="opt-default">default ([])</span> 
+					</div>
+					<pre class="opt-desc">head item</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>key</td>
+							<td>string</td>
+							<td></td>
+							<td>key</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>label</td>
+							<td>string</td>
+							<td></td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>width</td>
+							<td>number</td>
+							<td>100</td>
+							<td>넓이값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>sort</td>
+							<td>boolean</td>
+							<td>true</td>
+							<td>초기에 정렬할 값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>align</td>
+							<td>string</td>
+							<td></td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>type</td>
+							<td>string</td>
+							<td></td>
+							<td>input type : text, select, textarea, number, custom</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>render</td>
+							<td>string</td>
+							<td></td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>formatter</td>
+							<td>function</td>
+							<td>function</td>
+							<td>보여질 값을 처리.</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>defaultValue</td>
+							<td>string</td>
+							<td></td>
+							<td>add item default value</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>colClick</td>
+							<td>function</td>
+							<td>function</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>styleClass</td>
+							<td>function</td>
+							<td>function</td>
+							<td>cell add class</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>tooltip</td>
+							<td colspan="3">
+								item count tooltip
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>show</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>툴팁 보일지 여부.</td>
+									</tr>
+									
+									<tr>
+										<td>formatter</td>
+										<td>function</td>
+										<td>function</td>
+										<td>보여질 값을 처리.</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>editor</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>type</td>
+										<td>string</td>
+										<td>text</td>
+										<td>text, select, textarea, number, custom</td>
+									</tr>
+									
+									<tr>
+										<td>editorBtn</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>버튼 보일지 여부.</td>
+									</tr>
+									
+									<tr>
+										<td>editorBtnOver</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>오버시 버튼 보이기</td>
+									</tr>
+									
+									<tr>
+										<td>items</td>
+										<td>array</td>
+										<td></td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>validator</td>
+										<td>function</td>
+										<td>function</td>
+										<td>설명</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="theadGroup" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">theadGroup</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">head group</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="tbodyItem" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">tbodyItem</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">body item</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="tbodyGroup" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">tbodyGroup</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">body group</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="tfootItem" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">tfootItem</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">foot item</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="navigation" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">navigation</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>usePaging</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>페이지 사용여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>status</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>height</td>
+							<td>number</td>
+							<td>35</td>
+							<td>높이 값</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>callback</td>
+							<td>function</td>
+							<td>function</td>
+							<td>페이지 콜백</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="page" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">page</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">paging info</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="message" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">message</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>empty</td>
+							<td>string</td>
+							<td>no data</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>pageStatus</td>
+							<td>function</td>
+							<td>function</td>
+							<td>설명</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="i18n" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">i18n</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>setting.label</td>
+							<td>string</td>
+							<td>설정</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>search.button</td>
+							<td>string</td>
+							<td>검색</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>setting.speed.label</td>
+							<td>string</td>
+							<td>스크롤속도</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>setting.column.fixed.label</td>
+							<td>string</td>
+							<td>고정컬럼</td>
+							<td>설명</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="operators" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">operators</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">setting condition operator</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+					</table>
+					
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

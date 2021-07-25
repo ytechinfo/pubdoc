@@ -1,0 +1,360 @@
+[
+    {
+        "name": "targetSelector",
+        "desc": "타켓 selector",
+        "default": false,
+        "fullKey": "targetSelector",
+        "type": "boolean"
+    },
+    {
+        "name": "maxSize",
+        "desc": "추가 가능한 max size",
+        "default": -1,
+        "fullKey": "maxSize",
+        "type": "number"
+    },
+    {
+        "name": "maxSizeMsg",
+        "desc": "추가 가능한 max size가 넘었을경우 메시지",
+        "default": false,
+        "fullKey": "maxSizeMsg",
+        "type": "boolean"
+    },
+    {
+        "name": "useMultiSelect",
+        "desc": "ctrl , shift key 이용해서 다중 선택하기 여부",
+        "default": false,
+        "fullKey": "useMultiSelect",
+        "type": "boolean"
+    },
+    {
+        "name": "containment",
+        "desc": "경계 영역",
+        "default": "",
+        "fullKey": "containment",
+        "type": "string"
+    },
+    {
+        "name": "useDragMove",
+        "desc": "drag해서 이동할지 여부.",
+        "default": true,
+        "fullKey": "useDragMove",
+        "type": "boolean"
+    },
+    {
+        "name": "useDragSort",
+        "desc": "target drag 해서 정렬할지 여부.",
+        "default": true,
+        "fullKey": "useDragSort",
+        "type": "boolean"
+    },
+    {
+        "name": "addPosition",
+        "desc": "추가 되는 방향키로 추가시 어디를 추가할지. ex(source, last)",
+        "default": "last",
+        "fullKey": "addPosition",
+        "type": "string"
+    },
+    {
+        "name": "duplicateCheck",
+        "desc": "중복 추가 여부.",
+        "default": true,
+        "fullKey": "duplicateCheck",
+        "type": "boolean"
+    },
+    {
+        "name": "pageInfo",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "pageInfo",
+        "type": "object",
+        "options": [
+            {
+                "name": "max",
+                "desc": "max page 값",
+                "default": 1,
+                "fullKey": "pageInfo;max",
+                "type": "number"
+            },
+            {
+                "name": "currPage",
+                "desc": "현재 값",
+                "default": 1,
+                "fullKey": "pageInfo;currPage",
+                "type": "number"
+            },
+            {
+                "name": "selector",
+                "desc": "page element",
+                "default": "#page_area",
+                "fullKey": "pageInfo;selector",
+                "type": "string"
+            },
+            {
+                "name": "pageNumKey",
+                "desc": "page number key",
+                "default": "pageNo",
+                "fullKey": "pageInfo;pageNumKey",
+                "type": "string"
+            },
+            {
+                "name": "emptyMessage",
+                "desc": "item 없을때 메시지",
+                "default": "더블클릭해서 추가하세요",
+                "fullKey": "pageInfo;emptyMessage",
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "name": "itemSelector",
+        "desc": "설명",
+        "default": ".pub-select-item",
+        "fullKey": "itemSelector",
+        "type": "string"
+    },
+    {
+        "name": "addItemClass",
+        "desc": "설명",
+        "default": "selected",
+        "fullKey": "addItemClass",
+        "type": "string"
+    },
+    {
+        "name": "selectClass",
+        "desc": "select item class",
+        "default": "selected",
+        "fullKey": "selectClass",
+        "type": "string"
+    },
+    {
+        "name": "handleClass",
+        "desc": "item 선택 클래스.",
+        "default": "pub-handle",
+        "fullKey": "handleClass",
+        "type": "string"
+    },
+    {
+        "name": "items",
+        "desc": "item",
+        "default": [],
+        "fullKey": "items",
+        "type": "array"
+    },
+    {
+        "name": "sourceItem",
+        "desc": "source item",
+        "default": null,
+        "fullKey": "sourceItem",
+        "type": "object",
+        "options": [
+            {
+                "name": "optVal",
+                "desc": "opt id key",
+                "default": "CODE_ID",
+                "fullKey": "sourceItem;optVal",
+                "type": "string"
+            },
+            {
+                "name": "optTxt",
+                "desc": "opt value key",
+                "default": "CODE_NM",
+                "fullKey": "sourceItem;optTxt",
+                "type": "string"
+            },
+            {
+                "name": "useHtmlData",
+                "desc": "html element 를 직접사용할경우.",
+                "default": false,
+                "fullKey": "sourceItem;useHtmlData",
+                "type": "boolean"
+            },
+            {
+                "name": "searchAttrName",
+                "desc": "search item name attribute",
+                "default": "_name",
+                "fullKey": "sourceItem;searchAttrName",
+                "type": "string"
+            },
+            {
+                "name": "searchAttrKey",
+                "desc": "search item key attribute",
+                "default": "",
+                "fullKey": "sourceItem;searchAttrKey",
+                "type": "string"
+            },
+            {
+                "name": "emptyMessage",
+                "desc": "item 없을때 메시지",
+                "default": "",
+                "fullKey": "sourceItem;emptyMessage",
+                "type": "string"
+            },
+            {
+                "name": "items",
+                "desc": "item",
+                "default": [],
+                "fullKey": "sourceItem;items",
+                "type": "array"
+            },
+            {
+                "name": "click",
+                "desc": "클릭시 이벤트",
+                "default": false,
+                "fullKey": "sourceItem;click",
+                "type": "boolean"
+            },
+            {
+                "name": "render",
+                "desc": "아이템 추가될 템플릿.",
+                "default": "function",
+                "fullKey": "sourceItem;render",
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "name": "targetItem",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "targetItem",
+        "type": "object",
+        "options": [
+            {
+                "name": "optVal",
+                "desc": "opt id key",
+                "default": "CODE_ID",
+                "fullKey": "targetItem;optVal",
+                "type": "string"
+            },
+            {
+                "name": "optTxt",
+                "desc": "opt value key",
+                "default": "CODE_NM",
+                "fullKey": "targetItem;optTxt",
+                "type": "string"
+            },
+            {
+                "name": "useHtmlData",
+                "desc": "html element 를 직접사용할경우.",
+                "default": false,
+                "fullKey": "targetItem;useHtmlData",
+                "type": "boolean"
+            },
+            {
+                "name": "items",
+                "desc": "item",
+                "default": [],
+                "fullKey": "targetItem;items",
+                "type": "array"
+            },
+            {
+                "name": "emptyMessage",
+                "desc": "item 없을때 메시지",
+                "default": "",
+                "fullKey": "targetItem;emptyMessage",
+                "type": "string"
+            },
+            {
+                "name": "click",
+                "desc": "클릭시 이벤트",
+                "default": false,
+                "fullKey": "targetItem;click",
+                "type": "boolean"
+            },
+            {
+                "name": "dblclick",
+                "desc": "설명",
+                "default": false,
+                "fullKey": "targetItem;dblclick",
+                "type": "boolean"
+            },
+            {
+                "name": "render",
+                "desc": "아이템 추가될 템플릿.",
+                "default": "function",
+                "fullKey": "targetItem;render",
+                "type": "function"
+            }
+        ]
+    },
+    {
+        "name": "message",
+        "desc": "방향키 있을때 메시지",
+        "default": null,
+        "fullKey": "message",
+        "type": "object",
+        "options": [
+            {
+                "name": "addEmpty",
+                "desc": "설명",
+                "default": false,
+                "fullKey": "message;addEmpty",
+                "type": "boolean"
+            },
+            {
+                "name": "delEmpty",
+                "desc": "설명",
+                "default": false,
+                "fullKey": "message;delEmpty",
+                "type": "boolean"
+            },
+            {
+                "name": "duplicate",
+                "desc": "설명",
+                "default": false,
+                "fullKey": "message;duplicate",
+                "type": "boolean"
+            }
+        ]
+    },
+    {
+        "name": "beforeMove",
+        "desc": "이동전 이벤트",
+        "default": false,
+        "fullKey": "beforeMove",
+        "type": "boolean"
+    },
+    {
+        "name": "beforeItemMove",
+        "desc": "이동전 이벤트",
+        "default": false,
+        "fullKey": "beforeItemMove",
+        "type": "boolean"
+    },
+    {
+        "name": "afterSourceMove",
+        "desc": "source 이동후 이벤트",
+        "default": false,
+        "fullKey": "afterSourceMove",
+        "type": "boolean"
+    },
+    {
+        "name": "compleateSourceMove",
+        "desc": "source 이동 완료 이벤트",
+        "default": false,
+        "fullKey": "compleateSourceMove",
+        "type": "boolean"
+    },
+    {
+        "name": "beforeTargetMove",
+        "desc": "target 이동전  이벤트",
+        "default": false,
+        "fullKey": "beforeTargetMove",
+        "type": "boolean"
+    },
+    {
+        "name": "afterTargetMove",
+        "desc": "target 이동후  이벤트",
+        "default": false,
+        "fullKey": "afterTargetMove",
+        "type": "boolean"
+    },
+    {
+        "name": "compleateTargetMove",
+        "desc": "target 이동 완료  이벤트",
+        "default": false,
+        "fullKey": "compleateTargetMove",
+        "type": "boolean"
+    }
+]

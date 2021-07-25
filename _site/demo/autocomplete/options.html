@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Autocomplete</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			
+
+			
+
+			<!-- detail options -->
+			<div class="all-options">
+				
+				<div id="_currMode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">_currMode</span> 
+						<span class="opt-default">default (default)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="viewAreaSelector" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">viewAreaSelector</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">결과가 보여질 element</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="useFilter" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">useFilter</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">필터 사용여부.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="minLength" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">minLength</span> 
+						<span class="opt-default">default (1)</span> 
+					</div>
+					<pre class="opt-desc">최소 사이즈</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="autoClose" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">autoClose</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">자동 닫힘 여부</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="itemkey" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">itemkey</span> 
+						<span class="opt-default">default (title)</span> 
+					</div>
+					<pre class="opt-desc">string , function</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="height" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">height</span> 
+						<span class="opt-default">default (200)</span> 
+					</div>
+					<pre class="opt-desc">높이 값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="selectCls" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">selectCls</span> 
+						<span class="opt-default">default (selected)</span> 
+					</div>
+					<pre class="opt-desc">select css class name</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="emptyMessage" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">emptyMessage</span> 
+						<span class="opt-default">default (no data)</span> 
+					</div>
+					<pre class="opt-desc">데이터 없을때 값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="searchDelay" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">searchDelay</span> 
+						<span class="opt-default">default (-1)</span> 
+					</div>
+					<pre class="opt-desc">검색 delay</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="items" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">items</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="charZeroConfig" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">charZeroConfig</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">글자 없을때 설정</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="filter" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">filter</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">검색 데이터 처리 필터</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="source" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">source</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">data 호출</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="select" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">select</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">select</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="focus" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">focus</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">foucs 시 이벤트</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="renderItem" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">renderItem</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">표시 할 데이터 처리</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="hilightTemplate" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">hilightTemplate</span> 
+						<span class="opt-default">default (<b>$1</b>)</span> 
+					</div>
+					<pre class="opt-desc">하이라이트 처리</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="autocompleteTemplate" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">autocompleteTemplate</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">자동 완성 템플릿</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="initTemplateElementEvent" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">initTemplateElementEvent</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">template event 처리</pre>
+
+					
+
+					
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

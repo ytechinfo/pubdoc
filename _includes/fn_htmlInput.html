@@ -1,0 +1,39 @@
+{% assign firstOptName = include.optInfo.name %}
+{% assign firstOptVal = include.optInfo.default %}
+{% assign fullKey = include.optInfo.fullKey %}
+{% assign type = include.optInfo.type %}
+{% if type == 'number' %}
+    <input type="number" data-key="{{firstOptName}}" data-full-key="{{fullKey}}" name="{{fullKey}}" class="item-val" data-default="{{firstOptVal}}" value="{{firstOptVal}}">
+    <div>{{include.optInfo.desc}}</div>
+{% elsif type == 'boolean' %}
+    <input type="radio" data-key="{{firstOptName}}" data-full-key="{{fullKey}}" name="{{fullKey}}" class="item-val" data-default="{{firstOptVal}}" value="true" {% if firstOptVal %}checked{% endif %}>true
+    <input type="radio" data-key="{{firstOptName}}" data-full-key="{{fullKey}}" name="{{fullKey}}" class="item-val" data-default="{{firstOptVal}}" value="false" {% unless firstOptVal %}checked{% endunless  %}>false
+    <div>{{include.optInfo.desc}}</div>
+{% elsif type == 'string' %}
+    <input type="text" data-key="{{firstOptName}}" data-full-key="{{fullKey}}" name="{{fullKey}}" class="item-val"  data-default="{{firstOptVal}}" value="{{firstOptVal}}">
+    <div>{{include.optInfo.desc}}</div>
+{% elsif type == 'array' %}
+    array value
+    <div>{{include.optInfo.desc}}</div>
+{% elsif type == 'function' %}
+    function value
+    <div>{{include.optInfo.desc}}</div>
+{% elsif type == 'object' %}
+    <div>{{include.optInfo.desc}}</div>
+    <table class="pub-option-sub-tbl">
+        <tbody>
+            {% assign opts = include.optInfo.options %}
+            {% for optItem in opts %}
+                <tr>
+                    <td class="pub-option-key">{{optItem.name}}</td>
+                    <td class="pub-option-val">
+                        {% include fn_htmlInput.html optInfo=optItem  %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+
+{% endif %}

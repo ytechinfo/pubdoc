@@ -1,13 +1,13 @@
 /**
  * pubMultiselect v0.0.1
  * ========================================================================
- * Copyright 2016 ytkim
+ * Copyright 2016-2021 ytkim
  * Licensed under MIT
  * http://www.opensource.org/licenses/mit-license.php
  * url : https://github.com/ytechinfo/pub
  * demo : http://pub.moaview.com/
 */
-;(function ($, window, document, undefined) {
+;(function ($, window, document) {
 if (!Object.keys) {
   Object.keys = function(obj) {
     var keys = [];
@@ -30,63 +30,65 @@ var pluginName = "pubMultiselect"
 	,maxSize : -1	// 추가 가능한 max size
 	,maxSizeMsg : false	// 추가 가능한 max size가 넘었을경우 메시지
 	,useMultiSelect : false	// ctrl , shift key 이용해서 다중 선택하기 여부
-	,containment : ''
-	,useDragMove : true	// drag해서 이동할지 여부.  
+	,containment : ''		// 경계 영역
+	,useDragMove : true	// drag해서 이동할지 여부.
 	,useDragSort : true // target drag 해서 정렬할지 여부.
 	,addPosition : 'last'	// 추가 되는 방향키로 추가시 어디를 추가할지. ex(source, last)
-	,pageInfo :{	// 다중으로 관리할경우 처리. 
-		max : 1
-		,currPage : 1
-		,selector : '#page_area'
-		,pageNumKey : 'pageNo'
-		,emptyMessage : '더블클릭해서 추가하세요'
+	,duplicateCheck : true	// 중복 추가 여부.
+	,pageInfo :{	// 다중으로 관리할경우 처리.
+		max : 1		// max page 값
+		,currPage : 1	// 현재 값
+		,selector : '#page_area'	// page element
+		,pageNumKey : 'pageNo'	// page number key 
+		,emptyMessage : '더블클릭해서 추가하세요'	// item 없을때 메시지
 	}
-	,itemSelector :'.pub-select-item'
+	,itemSelector :'.pub-select-item'	// select item selector
 	,addItemClass :'selected'	// add item class
-	,selectClass : 'selected'
+	,selectClass : 'selected'	// select item class
 	,handleClass : 'pub-handle'	// item 선택 클래스.
-	,items :[]
-	,sourceItem : {
-		optVal : 'CODE_ID'
-		,optTxt : 'CODE_NM'
-		,useHtmlData : false // html element 를 직접사용할경우. 
-		,searchAttrName : '_name'
-		,searchAttrKey : ''
-		,emptyMessage:''
-		,items: []
+	,items :[]					// item
+	,sourceItem : {	// source item
+		optVal : 'CODE_ID' 	// opt id key
+		,optTxt : 'CODE_NM' // opt value key
+		,useHtmlData : false // html element 를 직접사용할경우.
+		,searchAttrName : '_name'	// search item name attribute
+		,searchAttrKey : '' // search item key attribute
+		,emptyMessage:''	// message
+		,items: []			// item
 		,click : false	// 클릭시 이벤트
 		,render: function (item){	// 아이템 추가될 템플릿.
 			return '<span>'+item.text+'</span>'
 		}
 	}
 	,targetItem : {
-		optVal : 'CODE_ID'
-		,optTxt : 'CODE_NM'
-		,useHtmlData : false // html element 를 직접사용할경우. 
-		,items: []
-		,emptyMessage:''
-		,click : false
+		optVal : 'CODE_ID' // opt id key
+		,optTxt : 'CODE_NM' // opt value key
+		,useHtmlData : false // html element 를 직접사용할경우.
+		,items: []			// item
+		,emptyMessage:'' 	// message
+		,click : false	// 클릭시 이벤트
 		,dblclick : false
 		,render: function (item){	// 아이템 추가될 템플릿.
 			return '<span>'+item.text+'</span>'
 		}
 	}
-	,message : { // 방향키 있을때 메시지 
+	,message : { // 방향키 있을때 메시지
 		addEmpty : false
 		,delEmpty : false
+		,duplicate :false
 	}
-	,beforeMove : false 
-	,beforeItemMove : false 
-	,afterSourceMove : false
-	,compleateSourceMove : false
-	,beforeTargetMove : false
-	,afterTargetMove : false
-	,compleateTargetMove : false
+	,beforeMove : false		// 이동전 이벤트
+	,beforeItemMove : false	 // 이동전 이벤트
+	,afterSourceMove : false	// source 이동후 이벤트
+	,compleateSourceMove : false	// source 이동 완료 이벤트
+	,beforeTargetMove : false	// target 이동전  이벤트
+	,afterTargetMove : false	// target 이동후  이벤트
+	,compleateTargetMove : false	// target 이동 완료  이벤트
 };
 
 function objectMerge() {
 	var dst = {},src ,p ,args = [].splice.call(arguments, 0);
-	
+
 	while (args.length > 0) {
 		src = args.splice(0, 1)[0];
 		if (Object.prototype.toString.call(src) == '[object Object]') {
@@ -103,9 +105,9 @@ function objectMerge() {
 	}
 	return dst;
 }
-        
+
 function Plugin(sourceSelector, options) {
-	
+
 	this.elePrefix = pluginName+'-'+new Date().getTime();
 
 	this.options = objectMerge({}, defaults, options);
@@ -123,7 +125,7 @@ function Plugin(sourceSelector, options) {
 			sourceIdx :{}
 		}
 	};
-	
+
 	this.init();
 
 	return sourceSelector;
@@ -133,7 +135,7 @@ Plugin.prototype ={
 	/**
 	 * @method init
 	 * @description 자동완성 초기화
-	 */	
+	 */
 	init :function(){
 		var _this = this;
 
@@ -145,24 +147,24 @@ Plugin.prototype ={
 	/**
 	 * @method initEvt
 	 * @description 이벤트 초기화
-	 */	
+	 */
 	,initEvt : function (){
 		var _this = this;
-		
+
 		_this.initSourceEvt();
 		_this.initTargetEvt();
-		
+
 	}/**
 	 * @method _initPageInfo
 	 * @description 페이지 정보 초기화
-	 */	
+	 */
 	,_initPageInfo : function (){
 		var _this =this
-			,opts = _this.options; 
+			,opts = _this.options;
 
 		if(opts.pageInfo.max > 1){
 			var pageHtm = [];
-		
+
 			for(var i = 1 ;i <=opts.pageInfo.max; i++){
 				_this.config.pageNumInfo[i+''] =[];
 				_this.addItemList[i+''] ={};
@@ -170,7 +172,7 @@ Plugin.prototype ={
 			}
 
 			$(opts.pageInfo.selector).addClass(_this.elePrefix).empty().html(pageHtm.join(''));
-						
+
 			$('.'+_this.elePrefix+' .page-num').on('click',function (e){
 				var currEle = $(this);
 				var beforeEle = $('.'+_this.elePrefix+' .page-num.selected');
@@ -180,16 +182,16 @@ Plugin.prototype ={
 					_this.config.pageNumInfo[beforeEle.attr('data-page')].push(selectObj.targetElement.clone().html());
 
 					if(currEle.hasClass('selected')){
-						return false; 
+						return false;
 					}
 				}
-				
+
 				beforeEle.removeClass('selected');
 				currEle.addClass('selected');
 
 				var currPageNo = currEle.attr('data-page');
 
-				_this.config.currPage = currPageNo; 
+				_this.config.currPage = currPageNo;
 
 				if(opts.pageInfo.emptyMessage !== false && _this.config.pageNumInfo[currPageNo].length < 1){
 					selectObj.targetElement.empty().html(_this.getEmptyMessage());
@@ -202,11 +204,11 @@ Plugin.prototype ={
 	}
 	/**
 	 * @method _initItem
-	 * @description selectbox 정보 초기화 
-	 */	
+	 * @description selectbox 정보 초기화
+	 */
 	,_initItem : function (){
 		var _this = this
-		
+
 		_this.setItem('target',_this.options.targetItem.items);
 		_this.setItem('source',_this.options.sourceItem.items);
 	}
@@ -215,22 +217,22 @@ Plugin.prototype ={
 	 * @param type {String} selectbox 타입(source or target)
 	 * @param items {Array} items array
 	 * @description item 그리기.
-	 */		
+	 */
 	,setItem :  function (type , items){
 		var _this = this
 			,_opts = _this.options
 			,tmpSourceItem = _opts.sourceItem
 			,strHtm = []
 			,tmpItem;
-		
-		var len ,valKey ,txtKey 
+
+		var len ,valKey ,txtKey
 			,searchAttrName = tmpSourceItem.searchAttrName
 			,searchAttrKey = tmpSourceItem.searchAttrKey == '' ? txtKey : tmpSourceItem.searchAttrKey;
 
 		if(type=='source'){
 			valKey = tmpSourceItem.optVal;
 			txtKey = tmpSourceItem.optTxt;
-				
+
 			if(tmpSourceItem.useHtmlData===true){
 				tmpSourceItem.items=[];
 				_this.sourceElement.find(_opts.itemSelector).each(function (i ,item){
@@ -240,34 +242,34 @@ Plugin.prototype ={
 					addItem[valKey] = sObj.attr('data-val');
 					addItem[txtKey] = sObj.attr('data-text')||sObj.text();
 					addItem[searchAttrName] = sObj.attr(searchAttrName);
-												
+
 					if(_this.addItemList[_this.config.currPage][addItem[valKey]]){
 						sObj.addClass(_opts.addItemClass);
 					}
-					
+
 					tmpSourceItem.items.push(addItem);
 					_this.config.itemKey.sourceIdx[addItem[valKey]] = i;
 				});
 
 				items = tmpSourceItem.items;
 			}
-			
+
 			tmpSourceItem.items = items;
 			len = tmpSourceItem.items.length;
-			var pageMaxVal = _opts.pageInfo.max; 
-			
+			var pageMaxVal = _opts.pageInfo.max;
+
 			if(len > 0){
 				for(var i=0 ;i < len; i++){
 					tmpItem = tmpSourceItem.items[i];
-					var tmpSelctOptVal = tmpItem[valKey]; 
-					var selectFlag = false; 
+					var tmpSelctOptVal = tmpItem[valKey];
+					var selectFlag = false;
 					for(var j = 1 ;j <=pageMaxVal; j++){
 						if(typeof _this.addItemList[j][tmpSelctOptVal] !=='undefined') {
-							selectFlag = true; 
-							continue; 
+							selectFlag = true;
+							continue;
 						}
 					}
-	
+
 					strHtm.push(_this.getItemHtml(type,tmpSelctOptVal, tmpItem , selectFlag));
 					_this.config.itemKey.sourceIdx[tmpSelctOptVal] = i;
 				}
@@ -275,7 +277,7 @@ Plugin.prototype ={
 				strHtm.push(_this.getEmptyMessage(tmpSourceItem.emptyMessage));
 			}
 			_this.sourceElement.empty().html(strHtm.join(''));
-			
+
 			_this._setDragOpt();
 		}else{
 			var tmpTargetItem= _opts.targetItem;
@@ -284,11 +286,11 @@ Plugin.prototype ={
 			len = tmpTargetItem.items.length;
 			valKey = tmpTargetItem.optVal;
 			txtKey = tmpTargetItem.optTxt;
-							
+
 			if(tmpTargetItem.useHtmlData===true){
 				tmpTargetItem.items=[];
-				var idx = 0; 
-				
+				var idx = 0;
+
 				_this.targetElement.find(_opts.itemSelector).each(function (i ,item){
 					var sObj = $(this);
 					var addItem = {};
@@ -296,20 +298,20 @@ Plugin.prototype ={
 					addItem[valKey] = sObj.val();
 					addItem[txtKey] = sObj.attr('data-text')||sObj.text();
 					addItem[searchAttrName] = sObj.attr(searchAttrName);
-					
-					var _key = addItem[valKey]; 
+
+					var _key = addItem[valKey];
 					addItem['_CU'] = 'U';
 
-					_this.addItemList[_this.config.currPage][_key]=addItem; 
+					_this.addItemList[_this.config.currPage][_key]=addItem;
 					tmpTargetItem.items.push(addItem);
-					
+
 					_this.addSourceItemSelecClass(_opts, addItem[valKey] );
 					++idx;
 				});
-				
+
 				_this.sourceItemSelectCheck(_opts);
 
-				len = idx; 
+				len = idx;
 
 				items = tmpTargetItem.items;
 			}
@@ -327,17 +329,17 @@ Plugin.prototype ={
 			if(len > 0){
 				for(var i=0 ;i < len; i++){
 					tmpItem = tmpTargetItem.items[i];
-					
-					var tmpSelctOptVal = tmpItem[valKey]; 
-					
+
+					var tmpSelctOptVal = tmpItem[valKey];
+
 					if(typeof _this.config.pageNumInfo[tmpItem[pageNumKey]||_this.config.currPage] ==='undefined'){
 						_this.config.pageNumInfo[tmpItem[pageNumKey]||_this.config.currPage] = [];
 					}
 
 					if(typeof _this.addItemList[tmpItem[pageNumKey]||_this.config.currPage] ==='undefined'){
-						throw 'pageInfo undefined '+ pageNumKey+' :'+tmpItem[pageNumKey]+' '; 
+						throw 'pageInfo undefined '+ pageNumKey+' :'+tmpItem[pageNumKey]+' ';
 					}
-					
+
 					tmpItem['_CU'] = 'U';
 					_this.addItemList[tmpItem[pageNumKey]||_this.config.currPage][tmpSelctOptVal] =tmpItem;
 
@@ -345,7 +347,7 @@ Plugin.prototype ={
 
 					_this.addSourceItemSelecClass(_opts, tmpSelctOptVal);
 				}
-				
+
 				_this.sourceItemSelectCheck(_opts);
 
 				if(_this.config.pageNumInfo[_this.config.currPage].length > 0){
@@ -366,7 +368,7 @@ Plugin.prototype ={
 	// source 체크 된 item unselect
 	,sourceItemSelectCheck: function (_opts){
 		this.sourceElement.find(_opts.itemSelector).each(function (){
-			var sEle = $(this); 
+			var sEle = $(this);
 			if(!sEle.hasClass('target-check')){
 				sEle.removeClass(_opts.addItemClass);
 			}
@@ -378,11 +380,11 @@ Plugin.prototype ={
 	/**
 	 * @method initSourceEvt
 	 * @description source 소스 이벤트 초기화
-	 */	
+	 */
 	,initSourceEvt : function (){
 		var _this = this
 			,opts = _this.options;
-		
+
 		_this.sourceElement.addClass(_this.elePrefix+'source pub-multiselect-area');
 
 		_this.sourceElement.on('click.pub-multiselect',opts.itemSelector, function (e){
@@ -391,17 +393,17 @@ Plugin.prototype ={
 
 		_this.sourceElement.on('dblclick.pub-multiselect',opts.itemSelector, function (e){
 			_this.sourceMove();
-			return ; 
+			return ;
 		})
 
 		_this.sourceElement.on('selectstart',function(){ return false; });
-		
+
 		_this.targetElement.sortable({
 			 scroll: true
 			,containment : "parent"
 			,cancel: ((opts.useDragSort !== false) ?'li:not(.'+opts.selectClass+')' :'li')
 			,start:function(e,ui){
-				
+
 				try{
 					var uiItem = $(ui.item);
 					if(!uiItem.hasClass('ui-draggable')){
@@ -409,7 +411,7 @@ Plugin.prototype ={
 
 						if( $.inArray(opts.selectClass,e.currentTarget.classList) < 0 || selectItem.length < 1) {
 							//return false;
-						}	
+						}
 					}
 				}catch(e){
 					console.log(e);
@@ -433,7 +435,7 @@ Plugin.prototype ={
 	,_setDragOpt : function (){
 		var _this = this
 			,opts = _this.options;
-		
+
 		if(opts.useDragMove !== false){
 
 			_this.sourceElement.find(opts.itemSelector).draggable({
@@ -446,15 +448,15 @@ Plugin.prototype ={
 				}
 				,helper: function (event){
 					var selectItem = _this.getSelectElement(_this.sourceElement);
-										
+
 					if(selectItem.length  < 1){
-						return '<div></div>'; 
+						return '<div></div>';
 					}
-					
+
 					var strHtm = [];
 					$.each(selectItem, function (i ,item ){
 						strHtm.push('<div class="pub-multi-add-item">'+$(item).html()+'</div>')
-					}); 	
+					});
 
 					return '<div class="pub-multi-add-helper-wrapper">'+strHtm.join('')+'</div>';
 				}
@@ -464,11 +466,11 @@ Plugin.prototype ={
 					if( $.inArray(opts.selectClass,e.currentTarget.classList) < 0 || selectItem.length < 1) {
 						e.preventDefault();
 						e.stopPropagation();
-						return false; 
-					}	
+						return false;
+					}
 				}
 				,stop : function (e,ui){
-					return true; 	
+					return true;
 				}
 			});
 		}
@@ -476,11 +478,11 @@ Plugin.prototype ={
 	/**
 	 * @method initTargetEvt
 	 * @description target 소스 이벤트 초기화
-	 */	
+	 */
 	,initTargetEvt : function (){
 		var _this = this
-			,opts = _this.options; 
-		
+			,opts = _this.options;
+
 		_this.targetElement.addClass(_this.elePrefix+'target pub-multiselect-area');
 
 		_this.targetElement.on('click',opts.itemSelector, function (e){
@@ -489,14 +491,14 @@ Plugin.prototype ={
 
 		_this.targetElement.on('dblclick.pub-multiselect',opts.itemSelector, function (e){
 			if($.isFunction(_this.options.targetItem.dblclick)){
-				
+
 				if(_this.options.targetItem.dblclick.call($(this),e, _this.addItemList[_this.config.currPage][_this.getItemVal($(this))]) ===false){
 					return false;
 				};
 			}
 			_this.targetElement.find(opts.itemSelector).removeClass(opts.addItemClass);
 			$(this).addClass(opts.addItemClass);
-			_this.targetMove();				
+			_this.targetMove();
 		})
 		//_this.targetElement.on('selectstart',function(){ return false; });
 	}
@@ -506,7 +508,7 @@ Plugin.prototype ={
 	 * @param selectType {String} source, target
 	 * @param sEle {Element} 선택된 element
 	 * @description target 소스 이벤트 초기화
-	 */	
+	 */
 	,_setClickEvent : function (e,selectType, sEle){
 		var _this = this
 			,opts = _this.options
@@ -521,16 +523,16 @@ Plugin.prototype ={
 			selectItem = opts.targetItem;
 		}
 
-		var evt =window.event || e; 
+		var evt =window.event || e;
 
-		var lastClickEle = evtElement.find(opts.itemSelector+'[data-last-click="Y"]'); 
-		var onlyClickFlag = false; 
+		var lastClickEle = evtElement.find(opts.itemSelector+'[data-last-click="Y"]');
+		var onlyClickFlag = false;
 		if(opts.useMultiSelect ===true){
 			if (evt.shiftKey){
-				var allItem = evtElement.find(opts.itemSelector); 
+				var allItem = evtElement.find(opts.itemSelector);
 				var beforeIdx = allItem.index(lastClickEle)
 					,currIdx = allItem.index(sEle);
-				
+
 				var source = Math.min(beforeIdx, currIdx)
 					,last = Math.max(beforeIdx, currIdx);
 
@@ -548,30 +550,30 @@ Plugin.prototype ={
 						sEle.addClass(opts.selectClass);
 					}
 				}else{
-					onlyClickFlag=true; 
+					onlyClickFlag=true;
 				}
 			}
 		}else{
-			onlyClickFlag = true; 
+			onlyClickFlag = true;
 		}
 
 		if(onlyClickFlag){
 			if($.isFunction(selectItem.click)){
-				selectItem.click.call(sEle , e, _this.addItemList[_this.config.currPage][_this.getItemVal(sEle)]); 
+				selectItem.click.call(sEle , e, _this.addItemList[_this.config.currPage][_this.getItemVal(sEle)]);
 			}
-			evtElement.find(opts.itemSelector+'.'+ opts.selectClass).removeClass(opts.selectClass);	
+			evtElement.find(opts.itemSelector+'.'+ opts.selectClass).removeClass(opts.selectClass);
 			sEle.addClass(opts.selectClass);
 		}
 
-		sEle.attr('data-last-click','Y');	
+		sEle.attr('data-last-click','Y');
 	}
 	/**
 	 * @method getTargetItem
 	 * @description 추가된 아이템 구하기.
-	 */	
+	 */
 	,getTargetItem : function (itemKey, pageNum){
 		var  _this = this;
-		
+
 		if(itemKey){
 			if(typeof pageNum ==='undefined'){
 				return _this.addItemList[_this.config.currPage][itemKey];
@@ -580,27 +582,27 @@ Plugin.prototype ={
 			}
 		}else{
 			var reInfo =[];
-			
+
 			var currEle = $('.'+_this.elePrefix+' .page-num.selected');
 			_this.config.pageNumInfo[currEle.attr('data-page')||_this.config.currPage] =[];
 			_this.config.pageNumInfo[currEle.attr('data-page')||_this.config.currPage].push(_this.targetElement.clone().html());
 
 			var pageNumHtm = _this.config.pageNumInfo;
-			
+
 			for(var pageHtmKey in pageNumHtm){
-				
+
 				var tmpHtmInfo = pageNumHtm[pageHtmKey].join('');
-				
-				var tmpHtmInfoEle = $(tmpHtmInfo); 
-				
-				if(tmpHtmInfoEle.hasClass("empty-message")) continue; 
+
+				var tmpHtmInfoEle = $(tmpHtmInfo);
+
+				if(tmpHtmInfoEle.hasClass("empty-message")) continue;
 
 				tmpHtmInfoEle.each(function (i ,item){
-				
+
 					var tmpPageNo = $(item).attr('data-pageno');
 					var addItem = _this.addItemList[tmpPageNo][$(item).attr('data-val')];
 					addItem['_pageNum'] = tmpPageNo;
-					reInfo.push(addItem); 
+					reInfo.push(addItem);
 				})
 			}
 			return reInfo;
@@ -609,7 +611,7 @@ Plugin.prototype ={
 	/**
 	 * @method getSelectElement
 	 * @description 선택된 html eleement 얻기.
-	 */	
+	 */
 	,getSelectElement : function (evtElement){
 		return 	evtElement ? evtElement.find(this.options.itemSelector+'.'+ this.options.selectClass) : this.targetElement.find(this.options.itemSelector+'.'+ this.options.selectClass);
 	}
@@ -620,9 +622,9 @@ Plugin.prototype ={
 	 * @method addItemStausUpdate
 	 * @param itemKey {String} 아이템 key
 	 * @description 등록된 아이템 상태 업데이트.
-	 */	
+	 */
 	,addItemStausUpdate : function (itemKey){
-		var tmpItem = this.addItemList[this.config.currPage][itemKey]; 
+		var tmpItem = this.addItemList[this.config.currPage][itemKey];
 		if(typeof tmpItem !=='undefined'){
 			tmpItem['_CU'] = 'CU';
 			this.getElement(itemKey).replaceWith(this.getItemHtml('target',itemKey,tmpItem));
@@ -642,13 +644,13 @@ Plugin.prototype ={
 	 * @description 아래위 이동
 	 */
 	,move :function (type){
-		var _this = this; 
+		var _this = this;
 		var selectElement =_this.getSelectElement(_this.targetElement);
-		var selectLen = selectElement.length;  
+		var selectLen = selectElement.length;
 
-		if(selectLen < 1) return ; 
-		
-		var selectClass =this.options.selectClass; 
+		if(selectLen < 1) return ;
+
+		var selectClass =this.options.selectClass;
 		if(type=='up'){
 			for(var i =0 ;i <selectLen ;i++){
 				var currItem = $(selectElement[i])
@@ -676,12 +678,12 @@ Plugin.prototype ={
 	 */
 	,sourceMove : function (returnFlag){
 		var _this = this
-			,opts = _this.options; 
+			,opts = _this.options;
 		var selectVal =_this.getSelectElement(_this.sourceElement);
-		
+
 		if($.isFunction(opts.beforeMove)){
 			if(opts.beforeMove('source') === false){
-				return ; 
+				return ;
 			};
 		}
 
@@ -691,59 +693,87 @@ Plugin.prototype ={
 
 			var addItemCount = _this.targetElement.find(opts.itemSelector+':not(.ui-draggable)').length;
 
-			_this.targetElement.find('.empty-message').remove();
-
 			var addItemKey = [];
+			var addElements = [];
+			var addItemMap = {};
+			var dupChkFlag = true;
 
 			selectVal.each(function (i, item){
 				tmpObj = $(item);
-				tmpVal=_this.getItemVal(tmpObj); 
-				
-				if(opts.duplicateCheck===true && _this.addItemList[_this.config.currPage][tmpVal]){
-					return ;
+				tmpVal=_this.getItemVal(tmpObj);
+
+				var addChkFlag = typeof _this.addItemList[_this.config.currPage][tmpVal] ==='undefined';
+				if(dupChkFlag && addChkFlag){
+					dupChkFlag = false;
 				}
-				
+
+				if(!addChkFlag) return true;
+
 				if($.isFunction(opts.beforeItemMove)){
 					if(opts.beforeItemMove(tmpObj) === false){
-						return false; 
-					}; 
+						return false;
+					};
 				}
 
 				if(opts.maxSize != -1  && addItemCount >= opts.maxSize){
-					
+
 					if($.isFunction(opts.maxSizeMsg)){
 						opts.maxSizeMsg.call();
 					}else{
 						alert(opts.maxSizeMsg);
 					}
 					if(returnFlag===true){
-						return false; 
+						return false;
 					}
-					
-					return false; 
+
+					return false;
 				}
 				addItemCount+=1;
 
-				var selectItem = opts.sourceItem.items[_this.config.itemKey.sourceIdx[tmpVal]]; 
+				var selectItem = opts.sourceItem.items[_this.config.itemKey.sourceIdx[tmpVal]];
 				var _addItem = $.extend(true , {}, selectItem);
 				_addItem['_CU'] = 'C';
 
 
 				addItemKey.push(tmpVal);
 
-				_this.addItemList[_this.config.currPage][tmpVal] =_addItem;
+				addItemMap[tmpVal] =_addItem;
 
 				strHtm.push(_this.getItemHtml('target',tmpVal ,selectItem ));
-				
-				tmpObj.addClass(opts.addItemClass);
-									
+
+				addElements.push(tmpObj);
+
 				if($.isFunction(opts.afterSourceMove)){
-					opts.afterSourceMove(tmpObj); 
+					opts.afterSourceMove(tmpObj);
 				}
 			});
 
+			if(addItemKey.length  < 1){
+				return ;
+			}
+
+			if(opts.duplicateCheck===true && dupChkFlag){
+			  if($.isFunction(opts.message.duplicate)){
+					opts.message.duplicate.call();
+				}else if(opts.message.duplicate !== false){
+					alert(opts.message.duplicate);
+				}
+
+				return false;
+			}
+
 			if($.isFunction(opts.compleateSourceMove)){
-				opts.compleateSourceMove(addItemKey); 
+				if(opts.compleateSourceMove(addItemKey)===false) return false;
+			}
+
+			_this.targetElement.find('.empty-message').remove();
+
+			for(var i =0; i <addElements.length; i++){
+				addElements[i].addClass(opts.addItemClass);
+			}
+
+			for(var key in addItemMap){
+				_this.addItemList[_this.config.currPage][key] =addItemMap[key];
 			}
 
 			if(returnFlag===true){
@@ -770,32 +800,32 @@ Plugin.prototype ={
 	 * @description value 구하기.
 	 */
 	,targetMove : function (){
-		var _this = this; 
+		var _this = this;
 		var selectVal = _this.getSelectElement(_this.targetElement);
-		
+
 		if($.isFunction(_this.options.beforeMove)){
 			if(_this.options.beforeMove('target') === false){
-				return ; 
+				return ;
 			};
 		}
 
 		if(selectVal.length >0){
-			var removeItem; 
+			var removeItem;
 			var deleteItemKey = [];
 			selectVal.each(function (i, item){
-				var tmpKey = $(item).attr('data-val'); 
+				var tmpKey = $(item).attr('data-val');
 				removeItem = _this.options.sourceItem.items[_this.config.itemKey.sourceIdx[tmpKey]];
 
 				if($.isFunction(_this.options.beforeTargetMove)){
-					_this.options.beforeTargetMove($(item)); 
+					if(_this.options.beforeTargetMove($(item))===false) return false;
 				}
-				
-				var removeFlag = false; 
+
+				var removeFlag = false;
 
 				for(var tmpPageNo in _this.addItemList){
 					if(_this.config.currPage != tmpPageNo){
 						if(typeof _this.addItemList[tmpPageNo][tmpKey] !=='undefined'){
-							removeFlag = true ; 
+							removeFlag = true ;
 							break;
 						}
 					}
@@ -808,11 +838,11 @@ Plugin.prototype ={
 				$(item).remove();
 
 				deleteItemKey.push(tmpKey);
-				
+
 				delete _this.addItemList[_this.config.currPage][tmpKey];
-				
+
 				if($.isFunction(_this.options.afterTargetMove)){
-					_this.options.afterTargetMove(removeItem); 
+					_this.options.afterTargetMove(removeItem);
 				}
 			});
 
@@ -821,7 +851,7 @@ Plugin.prototype ={
 			}
 
 			if($.isFunction(_this.options.compleateTargetMove)){
-				_this.options.compleateTargetMove(deleteItemKey); 
+				_this.options.compleateTargetMove(deleteItemKey);
 			}
 		}else{
 			if(_this.options.message.delEmpty !== false){
@@ -833,7 +863,7 @@ Plugin.prototype ={
 	/**
 	 * @method getEmptyMessage
 	 * @description empty item message
-	 */	
+	 */
 	,getEmptyMessage : function (msg){
 		return '<li class="empty-message">'+(msg||this.options.pageInfo.emptyMessage)+'</li>';
 	}
@@ -843,7 +873,7 @@ Plugin.prototype ={
 	 * @param seletVal {String} source , target
 	 * @param tmpItem {Object} select item
 	 * @description 선택된 html 얻기.
-	 */	
+	 */
 	,getItemHtml: function (type  , seletVal , tmpItem, selectFlag){
 		var _this = this
 			, _opts = _this.options
@@ -856,16 +886,16 @@ Plugin.prototype ={
 		if(type=='source'){
 			var styleClass ='';
 			if(_this.addItemList[_this.config.currPage][seletVal]){
-				styleClass += ' '+_opts.addItemClass; 
+				styleClass += ' '+_opts.addItemClass;
 			}
-			
+
 			if($.isFunction(sourceItem.render)){
 				renderTemplate = sourceItem.render.call(sourceItem,{text : tmpItem[txtKey] , item : tmpItem});
 			}else{
 				renderTemplate = tmpItem[txtKey];
 			}
 
-			return '<li data-val="'+seletVal+'" '+searchAttrName+'="'+escape(tmpItem[searchAttrKey])+'" class="pub-select-item '+(selectFlag==true?_opts.addItemClass+' ' :'')+styleClass+'">'+renderTemplate+'</li>'; 
+			return '<li data-val="'+seletVal+'" '+searchAttrName+'="'+escape(tmpItem[searchAttrKey])+'" class="pub-select-item '+(selectFlag==true?_opts.addItemClass+' ' :'')+styleClass+'">'+renderTemplate+'</li>';
 		}else{
 			if($.isFunction(_opts.targetItem.render)){
 				renderTemplate = _opts.targetItem.render.call(sourceItem,{text : tmpItem[txtKey] , item : tmpItem});
@@ -873,18 +903,18 @@ Plugin.prototype ={
 				renderTemplate = tmpItem[txtKey];
 			}
 
-			return '<li data-pageno="'+(tmpItem[_opts.pageInfo.pageNumKey]||_this.config.currPage)+'" data-val="'+seletVal+'" '+searchAttrName+'="'+escape(tmpItem[searchAttrKey])+'" class="pub-select-item">'+renderTemplate+'</li>'; 
+			return '<li data-pageno="'+(tmpItem[_opts.pageInfo.pageNumKey]||_this.config.currPage)+'" data-val="'+seletVal+'" '+searchAttrName+'="'+escape(tmpItem[searchAttrKey])+'" class="pub-select-item">'+renderTemplate+'</li>';
 		}
 	}
 	/**
 	 * @method lSearch
 	 * @param type {String} 검색할 문자열
-	 * @description 왼쪽 아이템 조회. 
-	 */	
+	 * @description 왼쪽 아이템 조회.
+	 */
 	,lSearch : function (val){
 		var _this = this
-			,_opts = _this.options;  
-		
+			,_opts = _this.options;
+
 		var tmpVal = val;
 		var searchAttr = _opts.sourceItem.searchAttrName;
 
@@ -919,44 +949,44 @@ Plugin.prototype ={
 	 * @param item {Object} item
 	 * @param hilightTemplate {String} hilight template
 	 * @description hilight template 정보 얻기.
-	 */	
-	
+	 */
+
 };
 
 $[ pluginName ] = function (selector,options) {
 
 	if(!selector){
-		return ; 
+		return ;
 	}
 
 	var _cacheObject = _datastore[selector];
 
 	if(typeof options === 'undefined'){
-		return _cacheObject||{}; 
+		return _cacheObject||{};
 	}
-	
+
 	if(!_cacheObject){
 		_cacheObject = new Plugin(selector, options);
 		_datastore[selector] = _cacheObject;
-		return _cacheObject; 
+		return _cacheObject;
 	}else if(typeof options==='object'){
 		_cacheObject = new Plugin(selector, options);
 		_datastore[selector] = _cacheObject;
-		return _cacheObject; 
+		return _cacheObject;
 	}
 
 	if(typeof options === 'string'){
-		var callObj =_cacheObject[options]; 
+		var callObj =_cacheObject[options];
 		if(typeof callObj ==='undefined'){
 			return options+' not found';
 		}else if(typeof callObj==='function'){
 			return _cacheObject[options].apply(_cacheObject,args);
 		}else {
-			return typeof callObj==='function'; 
+			return typeof callObj==='function';
 		}
 	}
 
-	return _cacheObject;	
+	return _cacheObject;
 };
 
 })(jQuery, window, document);

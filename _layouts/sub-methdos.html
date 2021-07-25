@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>{{page.title}}</title>
+	{% include sub-template/sub_incldueResource.html %}
+
+	{% assign selMenuNode = site.data.menu[page.menuKey] %}
+
+</head>
+
+<body class="api">
+	{% include sub-template/sub_header.html %}
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			{% assign descData = site.data[page.folder][page.fileName] %}
+
+			{% comment %}
+				{% for menuObj in descData %}
+				<div class="options-summary">
+					<a href="#{{menuObj.name}}">{{ menuObj.name }}</a> default ({{ menuObj.default }}) {{ menuObj.desc }}
+				</div>
+				{% endfor %}
+			{% endcomment %}
+
+			<!-- detail options -->
+			<div class="all-options">
+				{% for menuObj in descData %}
+				<div id="{{menuObj.name}}" class="options-area">
+					<div><span class="opt-name">{{ menuObj.name }}</span> <span class="opt-default">default ({{
+							menuObj.default }})</span> </div>
+					<pre>{{ menuObj.desc }}</pre>
+
+					{% assign firstOpt = menuObj.options %}
+
+					{% if firstOpt != null %}
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						{% for optItem in firstOpt %}
+						{% assign secondOpt = optItem.options %}
+
+						{% if secondOpt == null %}
+						<tr>
+							<td>{{ optItem.name }}</td>
+							<td>{{ optItem.type }}</td>
+							<td>{{ optItem.default }}</td>
+							<td>{{ optItem.desc }}</td>
+						</tr>
+						{% else %}
+						<tr>
+							<td>{{ optItem.name }}</td>
+							<td colspan="3">
+								{{ optItem.desc }}
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									{% for opt2Item in secondOpt %}
+									<tr>
+										<td>{{ opt2Item.name }}</td>
+										<td>{{ opt2Item.type }}</td>
+										<td>{{ opt2Item.default }}</td>
+										<td>{{ opt2Item.desc }}</td>
+									</tr>
+									{% endfor %}
+								</table>
+							</td>
+						</tr>
+						{% endif %}
+						{% endfor %}
+					</table>
+					{% endif %}
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+{% include sub-template/sub_scripts.html %}
+<!-- _includes에 정의된 scripts -->

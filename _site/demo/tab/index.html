@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html class="loading" lang="en">
+
+<head>
+	<title>탭</title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/codemirror.css" rel="stylesheet">
+<link href="/assets/pub/css/pub.all.min.css" rel="stylesheet">
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/codemirror/codemirror.js"></script>
+<script src="/assets/js/codemirror/javascript.js"></script>
+<script src="/assets/js/demo.js"></script>
+
+ <script src="/assets/pub/dist/pub.tab.js"></script> 
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Tab</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+
+
+	<div class="main-demo-wrapper container">
+		<!-- content-->
+		<div class="main-content row">
+			<div class="col-lg-6 col-md-12">
+				<div class="js-option-desc-area">
+					<div class="toggle-title" toggle-selector=".js-option-desc">
+						옵션 <a href="javascript:;" class="toggle-btn">접기 / 펼치기</a>
+					</div>
+					<div class="js-option-desc">
+						<!--옵션 desc start-->
+						<table class="option-desc-area">
+							<thead>
+								<tr>
+									<th>옵션명</th>
+									<th>옵션값</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								
+								
+								<tr>
+									<td>width</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="width" data-full-key="width" name="width" class="item-val"  data-default="auto" value="auto">
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>itemMaxWidth</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="itemMaxWidth" data-full-key="itemMaxWidth" name="itemMaxWidth" class="item-val" data-default="-1" value="-1">
+    <div>tab max width</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>activeFirstItem</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="activeFirstItem" data-full-key="activeFirstItem" name="activeFirstItem" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="activeFirstItem" data-full-key="activeFirstItem" name="activeFirstItem" class="item-val" data-default="true" value="false" >false
+    <div>,activeFirstItem : true	//로드시 첫번째 item 활성화 여부</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>enableClickEventChange</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="enableClickEventChange" data-full-key="enableClickEventChange" name="enableClickEventChange" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="enableClickEventChange" data-full-key="enableClickEventChange" name="enableClickEventChange" class="item-val" data-default="false" value="false" checked>false
+    <div>click event item 변경시에만 활성화</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>itemPadding</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="itemPadding" data-full-key="itemPadding" name="itemPadding" class="item-val" data-default="5" value="5">
+    <div>item padding 값</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>height</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="height" data-full-key="height" name="height" class="item-val"  data-default="22px" value="22px">
+    <div>tab height</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>leftMargin</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="leftMargin" data-full-key="leftMargin" name="leftMargin" class="item-val" data-default="30" value="30">
+    <div>왼쪽에 item 있을경우 더 이동할 space</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>overItemViewMode</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="overItemViewMode" data-full-key="overItemViewMode" name="overItemViewMode" class="item-val"  data-default="drop" value="drop">
+    <div>over item  보여질 방법.</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>dropItemHeight</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="dropItemHeight" data-full-key="dropItemHeight" name="dropItemHeight" class="item-val"  data-default="auto" value="auto">
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>dropItemWidth</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="dropItemWidth" data-full-key="dropItemWidth" name="dropItemWidth" class="item-val"  data-default="auto" value="auto">
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>moveZIndex</td>
+									<td>
+										
+
+
+
+
+    <input type="number" data-key="moveZIndex" data-full-key="moveZIndex" name="moveZIndex" class="item-val" data-default="9" value="9">
+    <div>move 영역 z- index</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>titleIcon</td>
+									<td>
+										
+
+
+
+
+    <div>설명</div>
+    <table class="pub-option-sub-tbl">
+        <tbody>
+            
+            
+                <tr>
+                    <td class="pub-option-key">left</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <div>설명</div>
+    <table class="pub-option-sub-tbl">
+        <tbody>
+            
+            
+                <tr>
+                    <td class="pub-option-key">overview</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="overview" data-full-key="titleIcon;left;overview" name="titleIcon;left;overview" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="overview" data-full-key="titleIcon;left;overview" name="titleIcon;left;overview" class="item-val" data-default="true" value="false" >false
+    <div>mouseover icon view  여부</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">visible</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="visible" data-full-key="titleIcon;left;visible" name="titleIcon;left;visible" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="visible" data-full-key="titleIcon;left;visible" name="titleIcon;left;visible" class="item-val" data-default="true" value="false" >false
+    <div>설명</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">html</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="text" data-key="html" data-full-key="titleIcon;left;html" name="titleIcon;left;html" class="item-val"  data-default="" value="">
+    <div>활성시 추가할 html</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">click</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="click" data-full-key="titleIcon;left;click" name="titleIcon;left;click" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="click" data-full-key="titleIcon;left;click" name="titleIcon;left;click" class="item-val" data-default="false" value="false" checked>false
+    <div>클릭 이벤트.</div>
+
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">right</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <div>설명</div>
+    <table class="pub-option-sub-tbl">
+        <tbody>
+            
+            
+                <tr>
+                    <td class="pub-option-key">overview</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="overview" data-full-key="titleIcon;right;overview" name="titleIcon;right;overview" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="overview" data-full-key="titleIcon;right;overview" name="titleIcon;right;overview" class="item-val" data-default="true" value="false" >false
+    <div>mouseover icon view  여부</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">visible</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="visible" data-full-key="titleIcon;right;visible" name="titleIcon;right;visible" class="item-val" data-default="true" value="true" checked>true
+    <input type="radio" data-key="visible" data-full-key="titleIcon;right;visible" name="titleIcon;right;visible" class="item-val" data-default="true" value="false" >false
+    <div>설명</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">html</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="text" data-key="html" data-full-key="titleIcon;right;html" name="titleIcon;right;html" class="item-val"  data-default="" value="">
+    <div>활성시 추가할 html</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">click</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="click" data-full-key="titleIcon;right;click" name="titleIcon;right;click" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="click" data-full-key="titleIcon;right;click" name="titleIcon;right;click" class="item-val" data-default="false" value="false" checked>false
+    <div>클릭 이벤트.</div>
+
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>contextMenu</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="contextMenu" data-full-key="contextMenu" name="contextMenu" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="contextMenu" data-full-key="contextMenu" name="contextMenu" class="item-val" data-default="false" value="false" checked>false
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>addClass</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="addClass" data-full-key="addClass" name="addClass" class="item-val"  data-default="service_menu_tab" value="service_menu_tab">
+    <div>tab li 추가 클래스</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>items</td>
+									<td>
+										
+
+
+
+
+    array value
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>click</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>클릭 이벤트.</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>removeItem</td>
+									<td>
+										
+
+
+
+
+    <input type="radio" data-key="removeItem" data-full-key="removeItem" name="removeItem" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="removeItem" data-full-key="removeItem" name="removeItem" class="item-val" data-default="false" value="false" checked>false
+    <div>remove callback 옵션</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>blinkClass</td>
+									<td>
+										
+
+
+
+
+    <input type="text" data-key="blinkClass" data-full-key="blinkClass" name="blinkClass" class="item-val"  data-default="blinkcss" value="blinkcss">
+    <div>설명</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>itemKey</td>
+									<td>
+										
+
+
+
+
+    <div>설명</div>
+    <table class="pub-option-sub-tbl">
+        <tbody>
+            
+            
+                <tr>
+                    <td class="pub-option-key">title</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="text" data-key="title" data-full-key="itemKey;title" name="itemKey;title" class="item-val"  data-default="name" value="name">
+    <div>설명</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">id</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="text" data-key="id" data-full-key="itemKey;id" name="itemKey;id" class="item-val"  data-default="_tabid" value="_tabid">
+    <div>설명</div>
+
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>beforeUpdate</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>before update item callback</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>afterUpdate</td>
+									<td>
+										
+
+
+
+
+    function value
+    <div>after update item callback</div>
+
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>drag</td>
+									<td>
+										
+
+
+
+
+    <div>drag  이동</div>
+    <table class="pub-option-sub-tbl">
+        <tbody>
+            
+            
+                <tr>
+                    <td class="pub-option-key">enabled</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    <input type="radio" data-key="enabled" data-full-key="drag;enabled" name="drag;enabled" class="item-val" data-default="false" value="true" >true
+    <input type="radio" data-key="enabled" data-full-key="drag;enabled" name="drag;enabled" class="item-val" data-default="false" value="false" checked>false
+    <div>활성 여부</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">dragStart</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    function value
+    <div>drag start</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">dragEnter</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    function value
+    <div>drag enter</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">dragDrop</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    function value
+    <div>drag enter</div>
+
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td class="pub-option-key">dragEnd</td>
+                    <td class="pub-option-val">
+                        
+
+
+
+
+    function value
+    <div>drag enter</div>
+
+                    </td>
+                </tr>
+            
+        </tbody>
+    </table>
+
+
+									</td>
+
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12">
+				<div class="js-result-area">
+	<div class="js-run-area">
+		<h2>데모</h2>
+		<div style="padding:10px 0px;">
+			다시 그리기 : <button type="button" class="redrawBtn btn btn-info btn-sm">redraw</button>
+		</div>
+		<div class="js-view-area">
+			<div id="resultEl" style="height:100%;border: 1px solid rgb(128, 125, 125)">
+				<div id="tabEl1"></div>
+
+				<div class="help-message">
+					tab에 마우스 휠로 좌우 이동 가능
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="toggle-title" toggle-selector=".js-option-text">
+		선택한 옵션값
+	</div>
+	<div class="js-option-text" >
+		Options
+		<div style="border:1px solid #eeeeee;">
+<textarea id="optionCode" name="optionCode">
+	{
+		items :[]
+		,width:'300'
+		,itemMaxWidth:80
+		,dropItemWidth : '50px'
+		,titleIcon :{
+			left :{
+				overview : false		// mouseover icon view  여부
+				,visible : false
+				,html : '<i class="fa fa-refresh">R</i>'
+				,click : function (item, idx){
+					console.log(item, idx)
+				}
+			}
+			,right : {
+				overview : true		// mouseover icon view  여부
+				,html : '<i class="">X</i>'				// 활성시 추가할 html
+				,click : function (item, idx){
+					console.log('right', item, idx)
+				}
+			}
+		}
+		,click : function (item){
+			console.log(item);
+		}
+		,itemKey :{							// item key mapping
+			title :'title'
+			,id: 'id'
+		}
+	}
+</textarea>
+		</div>
+	</div>
+</div>
+
+
+<script>
+
+var demoArea = {
+	optEditor :{}
+	,selectObj :{}
+	,init :function (){
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
+		});
+
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		var _this =this; 
+		$('.redrawBtn').on('click',function (e){
+			_this.view();
+		})
+
+			//추가
+		$('.add-item').on('click',function (){
+			_this.selectObj.sourceMove();
+		});
+		//취소
+		$('.cancle-item').on('click',function (){
+			_this.selectObj.targetMove();
+		});
+
+		//아래위 이동
+		$('.item-move').on('click',function (){
+			_this.selectObj.move($(this).attr('mode'));
+		});
+
+	}
+	,view : function (){
+
+		var	item=this.getItem ();
+
+		var optText = this.optEditor.getValue();
+
+		var optObj = new Function('return '+ optText+';')();
+
+		optObj = objectMerge(optObj,getDescSettingValue());
+
+		optObj.items= item;
+			
+		this.selectObj = $.pubTab('#tabEl1',optObj);
+	}
+	,getItem : function(type){
+		var tabItemArr = 'Tables	Views	Pr--ocedures	Fun--ctions	Trigger	Index	Package'.split('\t');
+		
+		var itemArr = [];
+		for(var i =0 ;i <tabItemArr.length; i++){
+			itemArr.push({
+				title : tabItemArr[i]
+				,id : 'test_'+i
+			});
+		}
+		
+
+		return itemArr
+	}
+}
+ 
+$(function (){
+	demoArea.init();
+})
+
+</script>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

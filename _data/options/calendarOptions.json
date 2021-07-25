@@ -1,0 +1,556 @@
+[
+    {
+        "name": "viewMode",
+        "desc": "달력 모드 (mini,full-month,full-week,full-day)",
+        "default": "full-month",
+        "fullKey": "viewMode",
+        "type": "string"
+    },
+    {
+        "name": "viewDateFormat",
+        "desc": "날짜 포멧",
+        "default": "YYYY-MM-DD HH:mm",
+        "fullKey": "viewDateFormat",
+        "type": "string"
+    },
+    {
+        "name": "customRangeDay",
+        "desc": "viewmode가 custom 일때 일자 범위 0 ~ 선택일까지",
+        "default": 20,
+        "fullKey": "customRangeDay",
+        "type": "number"
+    },
+    {
+        "name": "useLunar",
+        "desc": "음력 기념일 사용여부.",
+        "default": false,
+        "fullKey": "useLunar",
+        "type": "boolean"
+    },
+    {
+        "name": "useYearInput",
+        "desc": ",useYearInput : true //year 변경시 더블클릭하면 input 박스 나타날지 여부.",
+        "default": true,
+        "fullKey": "useYearInput",
+        "type": "boolean"
+    },
+    {
+        "name": "todayDate",
+        "desc": "현재일 지정",
+        "default": "",
+        "fullKey": "todayDate",
+        "type": "string"
+    },
+    {
+        "name": "maxEventRow",
+        "desc": "설명",
+        "default": 3,
+        "fullKey": "maxEventRow",
+        "type": "number"
+    },
+    {
+        "name": "useMemorialday",
+        "desc": "기념일 보기 여부",
+        "default": true,
+        "fullKey": "useMemorialday",
+        "type": "boolean"
+    },
+    {
+        "name": "width",
+        "desc": "설명",
+        "default": "100%",
+        "fullKey": "width",
+        "type": "string"
+    },
+    {
+        "name": "height",
+        "desc": "설명",
+        "default": 630,
+        "fullKey": "height",
+        "type": "number"
+    },
+    {
+        "name": "colWidth",
+        "desc": "달력 컬럼 넓이",
+        "default": 25,
+        "fullKey": "colWidth",
+        "type": "number"
+    },
+    {
+        "name": "dayViewMode",
+        "desc": "mode 1 default 양력, 2 기념일설명, 3 음력. , 4 음력/기념일.",
+        "default": 2,
+        "fullKey": "dayViewMode",
+        "type": "number"
+    },
+    {
+        "name": "eventDisplay",
+        "desc": "mini 달력일 경우만 해당",
+        "default": true,
+        "fullKey": "eventDisplay",
+        "type": "boolean"
+    },
+    {
+        "name": "eventDisplayHtm",
+        "desc": "mini 달력일 경우만 해당",
+        "default": "<span>O</span>",
+        "fullKey": "eventDisplayHtm",
+        "type": "string"
+    },
+    {
+        "name": "memorialDayInfo",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "memorialDayInfo",
+        "type": "object",
+        "options": []
+    },
+    {
+        "name": "eventDisplayClass",
+        "desc": "설명",
+        "default": "select",
+        "fullKey": "eventDisplayClass",
+        "type": "string"
+    },
+    {
+        "name": "theme",
+        "desc": "설명",
+        "default": "pub-calendar-default",
+        "fullKey": "theme",
+        "type": "string"
+    },
+    {
+        "name": "memorialDays",
+        "desc": "설명",
+        "default": [],
+        "fullKey": "memorialDays",
+        "type": "array"
+    },
+    {
+        "name": "prefixId",
+        "desc": "설명",
+        "default": "pubCID_",
+        "fullKey": "prefixId",
+        "type": "string"
+    },
+    {
+        "name": "eventMoreClick",
+        "desc": "더보기 버튼 클릭 이벤트.",
+        "default": false,
+        "fullKey": "eventMoreClick",
+        "type": "boolean"
+    },
+    {
+        "name": "eventClick",
+        "desc": "일정 클릭.",
+        "default": false,
+        "fullKey": "eventClick",
+        "type": "boolean"
+    },
+    {
+        "name": "eventDelete",
+        "desc": "일정 삭제.",
+        "default": false,
+        "fullKey": "eventDelete",
+        "type": "boolean"
+    },
+    {
+        "name": "eventDetail",
+        "desc": "일정 상세보기.",
+        "default": false,
+        "fullKey": "eventDetail",
+        "type": "boolean"
+    },
+    {
+        "name": "backgroundColor",
+        "desc": "설명",
+        "default": "#A6C9F5",
+        "fullKey": "backgroundColor",
+        "type": "string"
+    },
+    {
+        "name": "timeBackgroundColor",
+        "desc": "시간별 일정 바탕색.",
+        "default": "#E4F7F8",
+        "fullKey": "timeBackgroundColor",
+        "type": "string"
+    },
+    {
+        "name": "autoResize",
+        "desc": "설명",
+        "default": false,
+        "fullKey": "autoResize",
+        "type": "boolean"
+    },
+    {
+        "name": "dayEventSize",
+        "desc": "상세창 사이즈.",
+        "default": null,
+        "fullKey": "dayEventSize",
+        "type": "object",
+        "options": [
+            {
+                "name": "w",
+                "desc": "설명",
+                "default": 300,
+                "fullKey": "dayEventSize;w",
+                "type": "number"
+            },
+            {
+                "name": "h",
+                "desc": "달력 컬럼 넓이",
+                "default": 170,
+                "fullKey": "dayEventSize;h",
+                "type": "number"
+            }
+        ]
+    },
+    {
+        "name": "_date",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "_date",
+        "type": "object",
+        "options": [
+            {
+                "name": "yyyy",
+                "desc": "설명",
+                "default": "",
+                "fullKey": "_date;yyyy",
+                "type": "string"
+            },
+            {
+                "name": "mm",
+                "desc": "설명",
+                "default": "",
+                "fullKey": "_date;mm",
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "name": "lang",
+        "desc": "다국어 설정",
+        "default": null,
+        "fullKey": "lang",
+        "type": "object",
+        "options": [
+            {
+                "name": "mini",
+                "desc": "설명",
+                "default": null,
+                "fullKey": "lang;mini",
+                "type": "object",
+                "options": [
+                    {
+                        "name": "sun",
+                        "desc": "설명",
+                        "default": "일",
+                        "fullKey": "lang;mini;sun",
+                        "type": "string"
+                    },
+                    {
+                        "name": "mon",
+                        "desc": "설명",
+                        "default": "월",
+                        "fullKey": "lang;mini;mon",
+                        "type": "string"
+                    },
+                    {
+                        "name": "tue",
+                        "desc": "설명",
+                        "default": "화",
+                        "fullKey": "lang;mini;tue",
+                        "type": "string"
+                    },
+                    {
+                        "name": "wed",
+                        "desc": "설명",
+                        "default": "수",
+                        "fullKey": "lang;mini;wed",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thu",
+                        "desc": "설명",
+                        "default": "목",
+                        "fullKey": "lang;mini;thu",
+                        "type": "string"
+                    },
+                    {
+                        "name": "fri",
+                        "desc": "설명",
+                        "default": "금",
+                        "fullKey": "lang;mini;fri",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sat",
+                        "desc": "설명",
+                        "default": "토",
+                        "fullKey": "lang;mini;sat",
+                        "type": "string"
+                    },
+                    {
+                        "name": "year",
+                        "desc": "설명",
+                        "default": "년",
+                        "fullKey": "lang;mini;year",
+                        "type": "string"
+                    },
+                    {
+                        "name": "month",
+                        "desc": "설명",
+                        "default": "월",
+                        "fullKey": "lang;mini;month",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "name": "full",
+                "desc": "설명",
+                "default": null,
+                "fullKey": "lang;full",
+                "type": "object",
+                "options": [
+                    {
+                        "name": "sun",
+                        "desc": "설명",
+                        "default": "Sun",
+                        "fullKey": "lang;full;sun",
+                        "type": "string"
+                    },
+                    {
+                        "name": "mon",
+                        "desc": "설명",
+                        "default": "Mon",
+                        "fullKey": "lang;full;mon",
+                        "type": "string"
+                    },
+                    {
+                        "name": "tue",
+                        "desc": "설명",
+                        "default": "Tue",
+                        "fullKey": "lang;full;tue",
+                        "type": "string"
+                    },
+                    {
+                        "name": "wed",
+                        "desc": "설명",
+                        "default": "Wed",
+                        "fullKey": "lang;full;wed",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thu",
+                        "desc": "설명",
+                        "default": "Thu",
+                        "fullKey": "lang;full;thu",
+                        "type": "string"
+                    },
+                    {
+                        "name": "fri",
+                        "desc": "설명",
+                        "default": "Fri",
+                        "fullKey": "lang;full;fri",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sat",
+                        "desc": "설명",
+                        "default": "Sat",
+                        "fullKey": "lang;full;sat",
+                        "type": "string"
+                    },
+                    {
+                        "name": "year",
+                        "desc": "설명",
+                        "default": "",
+                        "fullKey": "lang;full;year",
+                        "type": "string"
+                    },
+                    {
+                        "name": "month",
+                        "desc": "설명",
+                        "default": "",
+                        "fullKey": "lang;full;month",
+                        "type": "string"
+                    },
+                    {
+                        "name": "event_date",
+                        "desc": "설명",
+                        "default": "일시",
+                        "fullKey": "lang;full;event_date",
+                        "type": "string"
+                    },
+                    {
+                        "name": "delete_btn",
+                        "desc": "설명",
+                        "default": "삭제",
+                        "fullKey": "lang;full;delete_btn",
+                        "type": "string"
+                    },
+                    {
+                        "name": "detail_btn",
+                        "desc": "설명",
+                        "default": "상세",
+                        "fullKey": "lang;full;detail_btn",
+                        "type": "string"
+                    },
+                    {
+                        "name": "save_btn",
+                        "desc": "설명",
+                        "default": "저장",
+                        "fullKey": "lang;full;save_btn",
+                        "type": "string"
+                    },
+                    {
+                        "name": "delete.confirm.msg",
+                        "desc": "설명",
+                        "default": "삭제하시겠습니까?",
+                        "fullKey": "lang;full;delete.confirm.msg",
+                        "type": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "event",
+        "desc": "설명",
+        "default": null,
+        "fullKey": "event",
+        "type": "object",
+        "options": [
+            {
+                "name": "type",
+                "desc": "설명",
+                "default": "local",
+                "fullKey": "event;type",
+                "type": "string"
+            },
+            {
+                "name": "colModel",
+                "desc": "설명",
+                "default": null,
+                "fullKey": "event;colModel",
+                "type": "object",
+                "options": [
+                    {
+                        "name": "start",
+                        "desc": "일정 시작일자.",
+                        "default": "start",
+                        "fullKey": "event;colModel;start",
+                        "type": "string"
+                    },
+                    {
+                        "name": "end",
+                        "desc": "일정 종료일자",
+                        "default": "end",
+                        "fullKey": "event;colModel;end",
+                        "type": "string"
+                    },
+                    {
+                        "name": "title",
+                        "desc": "일정제목",
+                        "default": "title",
+                        "fullKey": "event;colModel;title",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repeat",
+                        "desc": "(반복일정) y(년),m(월) , w(주) ,d(일)",
+                        "default": "repeat",
+                        "fullKey": "event;colModel;repeat",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repeatInfo",
+                        "desc": "(반복일정) 정보",
+                        "default": "repeatInfo",
+                        "fullKey": "event;colModel;repeatInfo",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repeatException",
+                        "desc": "(반복일정) 예외",
+                        "default": "repeatException",
+                        "fullKey": "event;colModel;repeatException",
+                        "type": "string"
+                    },
+                    {
+                        "name": "startTime",
+                        "desc": "(반복일정) 시작 시간",
+                        "default": "startTime",
+                        "fullKey": "event;colModel;startTime",
+                        "type": "string"
+                    },
+                    {
+                        "name": "endTime",
+                        "desc": "설명",
+                        "default": "endTime",
+                        "fullKey": "event;colModel;endTime",
+                        "type": "string"
+                    },
+                    {
+                        "name": "days",
+                        "desc": "설명",
+                        "default": "day",
+                        "fullKey": "event;colModel;days",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cycle",
+                        "desc": "설명",
+                        "default": "cycle",
+                        "fullKey": "event;colModel;cycle",
+                        "type": "string"
+                    },
+                    {
+                        "name": "color",
+                        "desc": "일정 색깔지정.",
+                        "default": "color",
+                        "fullKey": "event;colModel;color",
+                        "type": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "beforeCalendar",
+        "desc": "설명",
+        "default": "function",
+        "fullKey": "beforeCalendar",
+        "type": "function"
+    },
+    {
+        "name": "afterCalendar",
+        "desc": "설명",
+        "default": "function",
+        "fullKey": "afterCalendar",
+        "type": "function"
+    },
+    {
+        "name": "dayClick",
+        "desc": "달력 클릭 이벤트",
+        "default": false,
+        "fullKey": "dayClick",
+        "type": "boolean"
+    },
+    {
+        "name": "eventWrite",
+        "desc": "일정 쓰기",
+        "default": false,
+        "fullKey": "eventWrite",
+        "type": "boolean"
+    },
+    {
+        "name": "eventWriteCallback",
+        "desc": "일정 저장 버튼 클릭시",
+        "default": false,
+        "fullKey": "eventWriteCallback",
+        "type": "boolean"
+    }
+]

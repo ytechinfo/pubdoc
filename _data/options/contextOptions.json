@@ -1,0 +1,51 @@
+[
+    {
+        "name": "fadeSpeed",
+        "desc": "숨김 속도",
+        "default": 100,
+        "fullKey": "fadeSpeed",
+        "type": "number"
+    },
+    {
+        "name": "filter",
+        "desc": "필터",
+        "default": "function",
+        "fullKey": "filter",
+        "type": "function"
+    },
+    {
+        "name": "theme",
+        "desc": "테마  light , dark",
+        "default": "light",
+        "fullKey": "theme",
+        "type": "string"
+    },
+    {
+        "name": "isStopPropagation",
+        "desc": "이벤트 전파 차단 여부",
+        "default": true,
+        "fullKey": "isStopPropagation",
+        "type": "boolean"
+    },
+    {
+        "name": "selectCls",
+        "desc": "item select class",
+        "default": "item_select",
+        "fullKey": "selectCls",
+        "type": "string"
+    },
+    {
+        "name": "callback",
+        "desc": "설명",
+        "default": "function",
+        "fullKey": "callback",
+        "type": "function"
+    },
+    {
+        "name": "beforeSelect",
+        "desc": "설명",
+        "default": "function",
+        "fullKey": "beforeSelect",
+        "type": "function"
+    }
+]

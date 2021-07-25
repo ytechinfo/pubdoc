@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/style.min.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+
+
+	
+
+</head>
+
+<body class="api">
+	<div class="pub-sub-navbar-fixed">
+    <div class="container gnb-container">
+        <a class="navbar-brand" href="/">Pub-JS</a>
+        <span class="sub-title">Tab</span>
+        <div id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/ytechinfo/pub"
+                        style="background: #f3f3f3;color: #000;border-radius: 5px;border: 1px solid #dedede;">
+                        <i class="fa fa-github"></i><i class="fa fa-star" style="padding-left: 10px;"></i>
+                        <span>Star</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="menu-area">
+            <li><a href="./">Demo</a></li>
+            <li><a href="./options.html">Options</a></li>
+            <!--
+            <li><a href="./methods.html">Methods</a></li>
+            <li><a href="./events.html">Events</a></li>
+            -->
+        </ul>
+    </div>
+    
+</div>
+	
+	<div class="main-demo-wrapper container">
+		<!-- <div style="width:100%;overflow-x:auto;overflow-y:hidden;">  -->
+	
+		
+		<!-- content-->
+		<div class="main-content">
+			
+
+			
+
+			<!-- detail options -->
+			<div class="all-options">
+				
+				<div id="width" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">width</span> 
+						<span class="opt-default">default (auto)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="itemMaxWidth" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">itemMaxWidth</span> 
+						<span class="opt-default">default (-1)</span> 
+					</div>
+					<pre class="opt-desc">tab max width</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="activeFirstItem" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">activeFirstItem</span> 
+						<span class="opt-default">default (true)</span> 
+					</div>
+					<pre class="opt-desc">,activeFirstItem : true	//로드시 첫번째 item 활성화 여부</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="enableClickEventChange" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">enableClickEventChange</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">click event item 변경시에만 활성화</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="itemPadding" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">itemPadding</span> 
+						<span class="opt-default">default (5)</span> 
+					</div>
+					<pre class="opt-desc">item padding 값</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="height" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">height</span> 
+						<span class="opt-default">default (22px)</span> 
+					</div>
+					<pre class="opt-desc">tab height</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="leftMargin" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">leftMargin</span> 
+						<span class="opt-default">default (30)</span> 
+					</div>
+					<pre class="opt-desc">왼쪽에 item 있을경우 더 이동할 space</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="overItemViewMode" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">overItemViewMode</span> 
+						<span class="opt-default">default (drop)</span> 
+					</div>
+					<pre class="opt-desc">over item  보여질 방법.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="dropItemHeight" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">dropItemHeight</span> 
+						<span class="opt-default">default (auto)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="dropItemWidth" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">dropItemWidth</span> 
+						<span class="opt-default">default (auto)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="moveZIndex" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">moveZIndex</span> 
+						<span class="opt-default">default (9)</span> 
+					</div>
+					<pre class="opt-desc">move 영역 z- index</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="titleIcon" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">titleIcon</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>left</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>overview</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>mouseover icon view  여부</td>
+									</tr>
+									
+									<tr>
+										<td>visible</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>html</td>
+										<td>string</td>
+										<td></td>
+										<td>활성시 추가할 html</td>
+									</tr>
+									
+									<tr>
+										<td>click</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>클릭 이벤트.</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>right</td>
+							<td colspan="3">
+								설명
+								<table class="options">
+									<tr>
+										<th>옵션명</th>
+										<th>타입</th>
+										<th>기본값</th>
+										<th>설명</th>
+									</tr>
+									
+									<tr>
+										<td>overview</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>mouseover icon view  여부</td>
+									</tr>
+									
+									<tr>
+										<td>visible</td>
+										<td>boolean</td>
+										<td>true</td>
+										<td>설명</td>
+									</tr>
+									
+									<tr>
+										<td>html</td>
+										<td>string</td>
+										<td></td>
+										<td>활성시 추가할 html</td>
+									</tr>
+									
+									<tr>
+										<td>click</td>
+										<td>boolean</td>
+										<td>false</td>
+										<td>클릭 이벤트.</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="contextMenu" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">contextMenu</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="addClass" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">addClass</span> 
+						<span class="opt-default">default (service_menu_tab)</span> 
+					</div>
+					<pre class="opt-desc">tab li 추가 클래스</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="items" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">items</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="click" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">click</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">클릭 이벤트.</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="removeItem" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">removeItem</span> 
+						<span class="opt-default">default (false)</span> 
+					</div>
+					<pre class="opt-desc">remove callback 옵션</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="blinkClass" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">blinkClass</span> 
+						<span class="opt-default">default (blinkcss)</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="itemKey" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">itemKey</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">설명</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>title</td>
+							<td>string</td>
+							<td>name</td>
+							<td>설명</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>id</td>
+							<td>string</td>
+							<td>_tabid</td>
+							<td>설명</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+				<div id="beforeUpdate" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">beforeUpdate</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">before update item callback</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="afterUpdate" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">afterUpdate</span> 
+						<span class="opt-default">default (function)</span> 
+					</div>
+					<pre class="opt-desc">after update item callback</pre>
+
+					
+
+					
+
+				</div>
+				
+				<div id="drag" class="options-area">
+					<div class="opt-info">
+						<span class="opt-name">drag</span> 
+						<span class="opt-default">default ()</span> 
+					</div>
+					<pre class="opt-desc">drag  이동</pre>
+
+					
+
+					
+					<table class="options">
+						<tr>
+							<th>옵션명</th>
+							<th>타입</th>
+							<th>기본값</th>
+							<th>설명</th>
+						</tr>
+						
+						
+
+						
+						<tr>
+							<td>enabled</td>
+							<td>boolean</td>
+							<td>false</td>
+							<td>활성 여부</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>dragStart</td>
+							<td>function</td>
+							<td>function</td>
+							<td>drag start</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>dragEnter</td>
+							<td>function</td>
+							<td>function</td>
+							<td>drag enter</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>dragDrop</td>
+							<td>function</td>
+							<td>function</td>
+							<td>drag enter</td>
+						</tr>
+						
+						
+						
+
+						
+						<tr>
+							<td>dragEnd</td>
+							<td>function</td>
+							<td>function</td>
+							<td>drag enter</td>
+						</tr>
+						
+						
+					</table>
+					
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- SCRIPTS-->
+<script>
+    $("body a").on("click", function () {
+        var fromTop = 100;  
+        var href = $(this).attr("href");
+    
+        if (href && href.indexOf("#") != -1 && href.indexOf("#") != href.length - 1) {
+            href = href.substring(href.indexOf("#"));
+            if ($(href).length > 0) { // If element exists
+                $('html, body').animate({ scrollTop: $(href).offset().top - fromTop }, 0);
+                return false;
+            }
+        }
+    });
+    </script>
+<!-- _includes에 정의된 scripts -->

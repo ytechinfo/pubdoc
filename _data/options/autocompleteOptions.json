@@ -1,0 +1,142 @@
+[
+    {
+        "name": "_currMode",
+        "desc": "설명",
+        "default": "default",
+        "fullKey": "_currMode",
+        "type": "string"
+    },
+    {
+        "name": "viewAreaSelector",
+        "desc": "결과가 보여질 element",
+        "default": false,
+        "fullKey": "viewAreaSelector",
+        "type": "boolean"
+    },
+    {
+        "name": "useFilter",
+        "desc": "필터 사용여부.",
+        "default": true,
+        "fullKey": "useFilter",
+        "type": "boolean"
+    },
+    {
+        "name": "minLength",
+        "desc": "최소 사이즈",
+        "default": 1,
+        "fullKey": "minLength",
+        "type": "number"
+    },
+    {
+        "name": "autoClose",
+        "desc": "자동 닫힘 여부",
+        "default": true,
+        "fullKey": "autoClose",
+        "type": "boolean"
+    },
+    {
+        "name": "itemkey",
+        "desc": "string , function",
+        "default": "title",
+        "fullKey": "itemkey",
+        "type": "string"
+    },
+    {
+        "name": "height",
+        "desc": "높이 값",
+        "default": 200,
+        "fullKey": "height",
+        "type": "number"
+    },
+    {
+        "name": "selectCls",
+        "desc": "select css class name",
+        "default": "selected",
+        "fullKey": "selectCls",
+        "type": "string"
+    },
+    {
+        "name": "emptyMessage",
+        "desc": "데이터 없을때 값",
+        "default": "no data",
+        "fullKey": "emptyMessage",
+        "type": "string"
+    },
+    {
+        "name": "searchDelay",
+        "desc": "검색 delay",
+        "default": -1,
+        "fullKey": "searchDelay",
+        "type": "number"
+    },
+    {
+        "name": "items",
+        "desc": "설명",
+        "default": [],
+        "fullKey": "items",
+        "type": "array"
+    },
+    {
+        "name": "charZeroConfig",
+        "desc": "글자 없을때 설정",
+        "default": false,
+        "fullKey": "charZeroConfig",
+        "type": "boolean"
+    },
+    {
+        "name": "filter",
+        "desc": "검색 데이터 처리 필터",
+        "default": "function",
+        "fullKey": "filter",
+        "type": "function"
+    },
+    {
+        "name": "source",
+        "desc": "data 호출",
+        "default": "function",
+        "fullKey": "source",
+        "type": "function"
+    },
+    {
+        "name": "select",
+        "desc": "select",
+        "default": "function",
+        "fullKey": "select",
+        "type": "function"
+    },
+    {
+        "name": "focus",
+        "desc": "foucs 시 이벤트",
+        "default": "function",
+        "fullKey": "focus",
+        "type": "function"
+    },
+    {
+        "name": "renderItem",
+        "desc": "표시 할 데이터 처리",
+        "default": "function",
+        "fullKey": "renderItem",
+        "type": "function"
+    },
+    {
+        "name": "hilightTemplate",
+        "desc": "하이라이트 처리",
+        "default": "<b>$1</b>",
+        "fullKey": "hilightTemplate",
+        "type": "string"
+    },
+    {
+        "name": "autocompleteTemplate",
+        "desc": "자동 완성 템플릿",
+        "default": "function",
+        "fullKey": "autocompleteTemplate",
+        "type": "function"
+    },
+    {
+        "name": "initTemplateElementEvent",
+        "desc": "template event 처리",
+        "default": "function",
+        "fullKey": "initTemplateElementEvent",
+        "type": "function"
+    }
+]

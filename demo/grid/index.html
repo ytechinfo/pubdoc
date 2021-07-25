@@ -1,0 +1,297 @@
+---
+layout: sub-demo
+title : Pub-GRID
+menuKey : grid
+folder : options
+fileName : gridOptions
+
+staticResources : '<script src="/assets/pub/dist/pub.grid.js"></script>
+<script src="/assets/pub/dist/pub.context.js"></script>
+'
+---
+
+<div class="js-result-area">
+	<div class="js-run-area">
+		<div style="margin:3px;">
+			<button class="exceldown btn btn-success btn-sm" type="button">excel download</button>
+			<span style="margin-left:10px;">
+				excel download시 
+				<a href="https://github.com/eligrey/FileSaver.js/"> FileSaver.js </a> ,<a href="https://github.com/exceljs/exceljs">exceljs.js</a>필요함.
+			</span>
+		</div>
+			
+		<div>
+			<i class="fa fa-address-book" aria-hidden="true"></i>
+			column : <select id="columnCount">
+				<option value="5">5</option>
+				<option value="10" selected>10</option>
+				<option value="20" >20</option>
+				<option value="30">30</option>
+				<option value="40">40</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+			item : <select id="rowCount">
+				<option value="3">3</option>
+				<option value="1">0</option>
+				<option value="10">10</option>
+				<option value="100" selected>100</option>
+				<option value="500">500</option>
+				<option value="1000">1000</option>
+				<option value="10000">10000</option>
+				<option value="100000">100000</option>
+			</select>
+			<button type="button" class="redrawBtn btn btn-info btn-sm">redraw</button>
+		</div>
+		<div class="js-view-area">
+			<div id="resultEl" style="height:100%"></div>
+		</div>
+	</div>
+	<div class="toggle-title" toggle-selector=".js-option-text">
+		선택한 옵션값
+	</div>
+	<div class="js-option-text" >
+		Options
+		<div style="border:1px solid #eeeeee;">
+<textarea id="optionCode" name="optionCode">
+	{
+		colFixedIndex : 0
+		,editable : true
+		,selectionMode : 'multiple-cell'	// row , cell , multiple-row , multiple-cell	// 선택 방법. 
+		,widthFixed : false
+		,showTooltip : true			// tooltip flag
+		,theme : $('#themeInfo').val()
+		,height:'auto'
+		,asideOptions :{
+			lineNumber : {enabled : true,width : 30}
+			,rowSelector :{
+				enabled : true
+				,key : 'checkbox'
+				,name : 'V'
+				,width : 25
+			}
+		}
+		,colOptions : {
+			maxWidth : -1
+		}
+		,headerOptions:{
+			view : true
+			,sort : true
+			,height :30
+			,displayLineNumber : true	 // 라인 넘버 보기.
+			,displayRowSelector : false	 // row selecotr checkbox 보기
+			,displayModifyInfo : false	 // 수정여부 보기
+			,isColSelectAll : false		 // 컬럼 세로 선택 여부.
+			,resize:{
+				enabled : true
+				,update :  function (item){
+					//console.log(item);
+				}
+			}
+			,contextMenu :{
+				callback: function(key,sObj) {
+					console.log('header context',this,key,sObj);
+				}
+				,items: [
+					{key : "refresh" , "name": "새로고침"}
+				]
+			}
+			,helpBtn:{
+				enabled : true	// header help btn 활성 여부.
+				,title : 'test'
+				,dblclick :  function (clickInfo){	// click event
+					console.log('clickInfo : ', clickInfo)
+				}
+			}
+		}
+		,scroll :{
+			vertical : {
+				onUpdate : function (item){	// 스크롤 업데이트. 
+					//console.log(item);
+					//return true; 
+				}
+			}
+			,horizontal :{
+				
+			}
+		}
+		,message :{
+			'asdf':''
+			,empty: '데이타 없음'
+			//,empty: function (){ return '데이타 없음'}
+			
+		}
+		,navigation : {
+			usePaging : false
+			,status : true
+			,height :20
+			,callback : function (no){
+				console.log(no);
+				//gridObj.setData(aaa);
+			}
+		}
+		,page : {
+			totalCount :1000
+			, currPage : 15
+			, countPerPage :10
+			, unitPage :10
+			,position : 'center'
+		}
+		,setting : {
+			enabled : true
+			,click : false
+			,callback : function (data){
+				//console.log(data)
+			}
+			,configVal1 : {search : {field:'col1', val : '111'}}
+		}
+		,bodyOptions : {
+			cellDblClick : function (itemInfo){
+				//console.log('cellDblClick', itemInfo)
+			}
+			// 방향키 컨트롤 . 
+			,keyNavHandler : function(moveInfo){
+				console.log(moveInfo);
+			}
+		}
+		,tfootItem :['asdf']
+		,rowOptions :{
+			height : 30
+			,dblClickCheck :true
+			,dblClick1: function (){
+				console.log('dblclick')
+			}
+			,click : function (itemInfo){
+				//console.log('rowOptions click' ,itemInfo)
+				
+				return ; 
+
+			}
+			,pasteBefore : function (a){
+				console.log('pasteBefore' ,a);
+				return a; 
+			}
+			,pasteAfter : function (a){
+				console.log('pasteAfter' ,a)
+			}
+			,contextMenu :{
+				beforeSelect :function (info){
+					
+				}
+				,callback: function(key,sObj) {
+					console.log(this,key,sObj);
+
+					if(key =='copy'){
+						gridObj.copyData();
+					}
+				}
+				,items: [
+					{key : "refresh" , "name": "새로고침"}
+					,{key : "copy" , "name": "복사", hotkey:'Ctrl+C'}
+					
+				]
+			}
+		}
+	}
+</textarea>
+		</div>
+	</div>
+</div>
+
+<script>
+var demoArea = {
+	optEditor :{}
+	,init :function (){
+		this.optEditor = CodeMirror.fromTextArea(document.getElementById("optionCode"), {
+			lineNumbers: true,
+			matchBrackets: true,
+			continueComments: "Enter",
+			extraKeys: {"Ctrl-Q": "toggleComment"}
+		});
+
+		this.initEvt();
+		this.view();
+	}
+	,initEvt : function (){
+		$('.exceldown').on('click', function (){
+			var sEle = $(this);
+			var mode = sEle.attr('mode');
+			var ws_name = 'downloadExcel';
+			
+			var allDataInfo =  $.pubGrid('#resultEl').getData({dataType:'json' ,isSelect: (mode=='select'? true :false)});
+						
+			getExcelDownload({
+				header: allDataInfo.header 
+				,data :  allDataInfo.data
+				,fileName : 'pubGridExcel'
+			});
+		});
+
+		var _this =this; 
+		$('.redrawBtn').on('click',function (e){
+			_this.view();
+		})
+	}
+	,view : function (){
+
+		var	item=this.getItem ( 2 );
+
+		var colKey =item.colKey
+			,rowItems  = item.rowItems;
+
+		var optText = this.optEditor.getValue();
+
+		var optObj = getDescSettingValue();
+
+		this.optEditor.setValue(JSON.stringify(optObj, null, '\t'));
+		
+		optObj.tbodyItem =rowItems;
+		optObj.tColItem =colKey;
+		
+		gridObj = $.pubGrid('#resultEl',optObj);
+	}
+	,getItem : function(type){
+		var colKey = [];
+		var rowItems = [];
+		var	rowCount = parseInt($('#rowCount').val(),10);
+		var	columnCount = parseInt($('#columnCount').val(),10);
+				
+		for(var i =0 ;i <rowCount; i++){
+			var tmpItem = {};
+
+			for(var j =0 ; j< columnCount ;j++){
+				var colName = 'col'+j ; 
+				tmpItem[colName] =  ('cont'+i+" _ "+j) ;
+			}
+
+			rowItems.push(tmpItem)
+		}
+			
+		if(rowItems.length > 0){
+			var colFirstItem = rowItems[0];
+			
+			for(var key in colFirstItem){
+				colKey.push( {
+					key :key
+					,label: key
+					,width:100
+				});
+			}
+		}
+		if(rowCount ==1){
+			rowItems =[];
+		}
+		
+		return {
+			"colKey": colKey
+			,"rowItems": rowItems
+		}; 
+	}
+}
+
+ 
+$(function (){
+	demoArea.init();
+})
+
+</script>

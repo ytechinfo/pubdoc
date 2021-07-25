@@ -27,11 +27,11 @@ function getDescSettingValue(){
 
 		if(sel.is('input[type="radio"]')){
 			if(sel.is(':checked')){
-				if(defaultVal != 'Y'){
+				if(defaultVal != selectVal){
 					fullKey = sel.attr('data-full-key'); 
 				}
+				selectVal = Boolean(selectVal);
 			}
-			selectVal = Boolean(selectVal);
 		}else{
 			if(sel.is('input[type="number"]')){
 				selectVal = parseInt(selectVal ,10);
